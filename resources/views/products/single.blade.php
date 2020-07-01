@@ -69,6 +69,8 @@
 					
 					
 				</form>
+				<hr>
+				<a href="" class="btn btn-primary">Sửa Sản Phẩm</a>
 			</div>
 
 		</div>
