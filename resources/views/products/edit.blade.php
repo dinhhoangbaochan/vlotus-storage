@@ -91,7 +91,7 @@
 					{{Form::submit('Sửa sản phẩm', ['name' => 'submit_product', 'class' => 'btn btn-primary'])}}
 					
 				{!! Form::open([ 
-					'action' => ['ProductsController@destroy', $post->id], 
+					'action' => ['ProductsController@destroy', $products->id], 
 					'method' => 'POST',
 					'class' => 'pull-right',
 				]) !!}	
