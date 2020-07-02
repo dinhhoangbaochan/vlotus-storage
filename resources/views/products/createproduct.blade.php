@@ -31,26 +31,28 @@
 
                <div class="row">
                   
-                  <div class="col-6">
+                  <div class="col-12">
                      <div class="form-group">
                         {{Form::label('', 'Tên sản phẩm')}}
                         {{Form::text('product_name','', ['placeholder' => 'Product Name', 'class' => 'form-control test'] )}}
                      </div>
                   </div>
 
+                  <div class="col-6">
+                     <div class="form-group">
+                        {{Form::label('', 'Mã sản phẩm (SKU)')}}
+                        {{Form::text('product_sku','', ['placeholder' => 'Mã SKU', 'class' => 'form-control test'] )}}
+                     </div>
+                  </div>
+
+                  <div class="col-6">
+                     <div class="form-group">
+                        {{Form::label('', 'Mã báo cáo')}}
+                        {{Form::text('product_code','', ['placeholder' => 'Mã báo cáo', 'class' => 'form-control test'] )}}
+                     </div>
+                  </div>
+
                </div>
-
-   					
-
-   					<div class="form-group">
-   						{{Form::label('', 'Mã sản phẩm (SKU)')}}
-   						{{Form::text('product_sku','', ['placeholder' => 'Mã SKU'] )}}
-   					</div>
-
-   					<div class="form-group">
-   						{{Form::label('', 'Mã báo cáo')}}
-   						{{Form::text('product_code','', ['placeholder' => 'Mã báo cáo'] )}}
-   					</div>
 
    					<div class="form-group">
    						{{Form::label('', 'Giá tiền')}}
