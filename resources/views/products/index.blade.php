@@ -16,7 +16,7 @@
 
 		<div class="container pt-4">
 			<div class="action_box">
-				<h2>Danh sách sản phẩm</h2>
+				<h2 class="main_content__title">Danh sách sản phẩm</h2>
 				<a href="/products/create">Thêm sản phẩm</a>
 			</div>
 			<table class="lotus_table">
