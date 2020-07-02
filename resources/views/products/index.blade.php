@@ -36,7 +36,7 @@
 						@foreach ( $products as $product )
 							<tr>
 								<td>Null</td>
-								<td><a href="/products/{{$product->id}}">{{ $product->product_name }}</a></td>
+								<td><a href="/products/{{$product->id}}/edit">{{ $product->product_name }}</a></td>
 								<td><span>{{ $product->product_sku }}</span></td>
 								<td><span>{{ $product->amount }}</span></td>
 								<td><span>

@@ -97,7 +97,28 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'product_name'  =>  'required',
+            'product_sku'  =>  'required',
+            'product_code'  =>  'required',
+            'product_price'  =>  'required',
+            'amount'  =>  'required',
+            'unit'  =>  'required',
+        ]);
+
+        // Update products
+        $products = Products::find($id);
+        $products->product_name = $request->input('product_name');
+        $products->product_sku = $request->input('product_sku');
+        $products->product_code = $request->input('product_code');
+        $products->product_price = $request->input('product_price');
+        $products->amount = $request->input('amount');
+        $products->unit = $request->input('unit');
+        $products->status = $request->input('status');
+
+        $products->save();
+
+        return redirect('/products')->with('success', 'Cập nhật thành công');
     }
 
     /**
