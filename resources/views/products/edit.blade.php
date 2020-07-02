@@ -89,8 +89,18 @@
    					
    					{{Form::hidden('_method', 'PUT')}}
 					{{Form::submit('Sửa sản phẩm', ['name' => 'submit_product', 'class' => 'btn btn-primary'])}}
-
+					
+				{!! Form::open([ 
+					'action' => ['ProductsController@destroy', $post->id], 
+					'method' => 'POST',
+					'class' => 'pull-right',
+				]) !!}	
+					
+					{{Form::hidden('_method', 'DELETE')}}
+					{{Form::submit( 'Delete', ['class' => 'btn btn-danger'] )}}
 				{!! Form::close() !!}
+
+
 			</div>
 
 		</div>
