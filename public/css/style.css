@@ -113,3 +113,7 @@ a.return_url:hover {
     line-height: 1.6;
     font-size: 13px;
 }
+
+.action_box {
+    display: flex;
+}
