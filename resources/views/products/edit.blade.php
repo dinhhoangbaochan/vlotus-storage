@@ -34,42 +34,42 @@
                   <div class="col-12">
                      <div class="form-group">
                         {{Form::label('', 'Tên sản phẩm')}}
-                        {{Form::text('product_name', $products->product_name, ['class' => 'form-control test'] )}}
+                        {{Form::text('product_name', $products->product_name, ['class' => 'form-control'] )}}
                      </div>
                   </div>
 
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Mã sản phẩm (SKU)')}}
-                        {{Form::text('product_sku','', ['placeholder' => 'Mã SKU', 'class' => 'form-control test'] )}}
+                        {{Form::text('product_sku', $products->product_sku, ['class' => 'form-control'] )}}
                      </div>
                   </div>
 
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Mã báo cáo')}}
-                        {{Form::text('product_code','', ['placeholder' => 'Mã báo cáo', 'class' => 'form-control test'] )}}
+                        {{Form::text('product_code', $products->product_code, ['class' => 'form-control'] )}}
                      </div>
                   </div>
 
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Giá tiền')}}
-                        {{Form::text('product_price','', ['placeholder' => 'Giá tiền'] )}}
+                        {{Form::text('product_price', $products->product_price, ['class' => 'form-control'] )}}
                      </div>
                   </div>
 
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Số lượng')}}
-                        {{Form::text('amount','', ['placeholder' => 'Số lượng'] )}}
+                        {{Form::text('amount', $products->amount, ['class' => 'form-control'] )}}
                      </div>
                   </div>
 
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Đơn vị')}}
-                        {{Form::text('unit','', ['placeholder' => 'Đơn vị'] )}}
+                        {{Form::text('unit', $products->unit, ['class' => 'form-control'] )}}
                      </div>
                   </div>
 
@@ -81,12 +81,13 @@
                            'left'         => 'Tồn Kho', 
                            'completed'    => 'Hoàn Tất',
                            'in-payment'   => 'Chờ Thanh Toán',
-                           ], 'on-deliver')}}
+                           ], $products->status)}}
                      </div>
                   </div>
 
                </div>
    					
+   					{{Form::hidden('_method', 'PUT')}}
 					{{Form::submit('Sửa sản phẩm', ['name' => 'submit_product', 'class' => 'btn btn-primary'])}}
 
 				{!! Form::close() !!}
