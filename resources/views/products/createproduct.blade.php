@@ -29,10 +29,18 @@
 			<div class="product_info">
 				{!! Form::open([ 'action' => 'ProductsController@store', 'method' => 'POST', ]) !!}
 
-   					<div class="form-group">
-   						{{Form::label('', 'Tên sản phẩm')}}
-   						{{Form::text('product_name','', ['placeholder' => 'Product Name'] )}}
-   					</div>
+               <div class="row">
+                  
+                  <div class="col-6">
+                     <div class="form-group">
+                        {{Form::label('', 'Tên sản phẩm')}}
+                        {{Form::text('product_name','', ['placeholder' => 'Product Name', 'class' => 'form-control test'] )}}
+                     </div>
+                  </div>
+
+               </div>
+
+   					
 
    					<div class="form-group">
    						{{Form::label('', 'Mã sản phẩm (SKU)')}}
