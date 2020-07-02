@@ -84,7 +84,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Products::find($id);
+        return view('products.edit')->with('products', $products);
     }
 
     /**
