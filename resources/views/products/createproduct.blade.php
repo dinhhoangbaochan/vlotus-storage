@@ -24,7 +24,7 @@
 		<div class="main_content">
 			
 			<a href="/products">< Quay lại danh sách sản phẩm</a>
-			<h2>Nhập sản phẩm mới</h2>
+			<h2 class="main_content__title">Nhập sản phẩm mới</h2>
 
 			<div class="product_info">
 				{!! Form::open([ 'action' => 'ProductsController@store', 'method' => 'POST', ]) !!}
