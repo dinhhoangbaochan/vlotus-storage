@@ -60,7 +60,7 @@
 						{{-- Pagination --}}
 						{{$products->links()}}		
 					@else 
-						<p>No products found.</p>
+						<p>Không tìm thấy sản phẩm.</p>
 					@endif	
 
 					<tr>
