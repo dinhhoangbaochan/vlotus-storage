@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PagesController@index');
 Route::get('about', 'PagesController@about');
 Route::get('services', 'PagesController@services');
-Route::get('dashboard', function () { return "Dashboard"; });
 Route::get('report', function () { return "Reports"; });
 
 
@@ -24,5 +23,5 @@ Route::resource('posts','PostsController');
 Route::resource('products', 'ProductsController');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('dashboard', 'DashboardController@index');
 
