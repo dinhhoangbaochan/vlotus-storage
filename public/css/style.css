@@ -55,12 +55,13 @@ body { background-color: #f4f6f8; }
 
 .lotus_table { width:  100%; }
 
-.product_info input {
+.product_info input, .product_info select {
     border: 1px solid #c4cdd5;
     border-radius: 3px;
     padding: 4px 2px 4px 6px;
     font-size: 13px;
     color: #000;
+    height: inherit !important;
 }
 
 .child_list li {

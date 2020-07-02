@@ -81,7 +81,7 @@
                            'left'         => 'Tồn Kho', 
                            'completed'    => 'Hoàn Tất',
                            'in-payment'   => 'Chờ Thanh Toán',
-                           ], $products->status)}}
+                           ], $products->status, ['class' => 'form-control'])}}
                      </div>
                   </div>
 
