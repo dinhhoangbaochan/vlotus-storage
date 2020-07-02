@@ -27,14 +27,14 @@
 			<h2 class="main_content__title">Nhập sản phẩm mới</h2>
 
 			<div class="product_info">
-				{!! Form::open([ 'action' => 'ProductsController@store', 'method' => 'POST', ]) !!}
+				{!! Form::open([ 'action' => ['ProductsController@update', $products->id], 'method' => 'POST', ]) !!}
 
                <div class="row">
                   
                   <div class="col-12">
                      <div class="form-group">
                         {{Form::label('', 'Tên sản phẩm')}}
-                        {{Form::text('product_name','', ['value' => {{$products->product_name}}, 'class' => 'form-control test'] )}}
+                        {{Form::text('product_name', $products->product_name, ['class' => 'form-control test'] )}}
                      </div>
                   </div>
 
