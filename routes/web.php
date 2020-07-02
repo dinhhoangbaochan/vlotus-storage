@@ -22,3 +22,6 @@ Route::get('report', function () { return "Reports"; });
 
 Route::resource('posts','PostsController');
 Route::resource('products', 'ProductsController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
