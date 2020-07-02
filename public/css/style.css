@@ -31,7 +31,8 @@ body { background-color: #f4f6f8; }
 }
 
 .menu_list li {
-    padding: 20px 10px;
+    padding: 12px 10px;
+    border-bottom: 1px solid #e7e7e742;
 }
 
 .menu_list ul li a {
