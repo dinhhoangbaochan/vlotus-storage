@@ -16,8 +16,8 @@ class PagesController extends Controller
     	return view('pages.about');
     }
 
-    public function services() {
-
+    public function services() 
+{
     	$data = array(
     		'title'			=>		'Services',
     		'description'	=>		'This is just a simple description',
@@ -26,4 +26,5 @@ class PagesController extends Controller
 
     	return view('pages.services')->with($data);
     }
+
 }

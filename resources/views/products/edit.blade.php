@@ -54,7 +54,7 @@
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Giá tiền')}}
-                        {{Form::text('product_price', number_format($products->product_price) . ' VNĐ', ['class' => 'form-control'] )}}
+                        {{Form::text('product_price', $products->product_price, ['class' => 'form-control'] )}}
                      </div>
                   </div>
 
@@ -88,16 +88,13 @@
    					
    					{{Form::hidden('_method', 'PUT')}}
 					{{Form::submit('Sửa sản phẩm', ['name' => 'submit_product', 'class' => 'btn btn-primary'])}}
-					
-				{!! Form::open([ 
-					'action' => ['ProductsController@destroy', $products->id], 
-					'method' => 'POST',
-					'class' => 'pull-right',
-				]) !!}	
-					
-					{{Form::hidden('_method', 'DELETE')}}
-					{{Form::submit( 'Delete', ['class' => 'btn btn-danger'] )}}
+
 				{!! Form::close() !!}
+
+				{!! Form::open( ['action' => ['ProductsController@destroy', $products->id], 'method' => 'POST']) !!}
+					{{ Form::submit('Xoá sản phẩm', ['class' => 'btn btn-danger']) }}
+				{!! Form::close() !!}
+
 
 
 			</div>
@@ -108,4 +105,3 @@
 </div>
 
 @endsection
-
