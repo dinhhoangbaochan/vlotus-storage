@@ -12,6 +12,8 @@
 
 	<div class="col-10 p-0">
 
+      @include('inc.navbar')
+
 		<div class="top_bar">
 			<a href="/products" class="btn btn-danger">Huỷ</a>
 			<a href="" class="btn btn-success">Trợ Giúp</a>
@@ -22,7 +24,7 @@
 
 		<div class="main_content">
 			
-			<a href="/products">< Quay lại danh sách sản phẩm</a>
+			<a href="/products" class="return_url">< Quay lại danh sách sản phẩm</a>
 			<h2 class="main_content__title">Nhập sản phẩm mới</h2>
 
 			<div class="product_info">

@@ -16,6 +16,8 @@
 			<a href="" class="btn btn-success">Trợ Giúp</a>
 		</div>
 		<div class="main_content">
+
+			@include('inc.navbar')
 			
 			<a href="/products" class="return_url">< Quay lại danh sách sản phẩm</a>
 			<h2 class="main_content__title">{{ $products->product_name }}</h2>

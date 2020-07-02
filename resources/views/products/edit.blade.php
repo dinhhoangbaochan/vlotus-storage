@@ -17,8 +17,10 @@
 			<a href="" class="btn btn-success">Trợ Giúp</a>
 
 		</div>
-
+   
+      @include('inc.navbar')
 		@include('inc.message')
+
 
 		<div class="main_content">
 			
