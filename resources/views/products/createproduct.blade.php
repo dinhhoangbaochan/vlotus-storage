@@ -52,34 +52,42 @@
                      </div>
                   </div>
 
+                  <div class="col-6">
+                     <div class="form-group">
+                        {{Form::label('', 'Giá tiền')}}
+                        {{Form::text('product_price','', ['placeholder' => 'Giá tiền'] )}}
+                     </div>
+                  </div>
+
+                  <div class="col-6">
+                     <div class="form-group">
+                        {{Form::label('', 'Số lượng')}}
+                        {{Form::text('amount','', ['placeholder' => 'Số lượng'] )}}
+                     </div>
+                  </div>
+
+                  <div class="col-6">
+                     <div class="form-group">
+                        {{Form::label('', 'Đơn vị')}}
+                        {{Form::text('unit','', ['placeholder' => 'Đơn vị'] )}}
+                     </div>
+                  </div>
+
+                  <div class="col-6">
+                     <div class="form-group">
+                        {{Form::label('', 'Trạng Thái')}}
+                        {{Form::select('status', [
+                           'on-deliver'   => 'Đang Giao Hàng', 
+                           'left'         => 'Tồn Kho', 
+                           'completed'    => 'Hoàn Tất',
+                           'in-payment'   => 'Chờ Thanh Toán',
+                           ], 'on-deliver')}}
+                     </div>
+                  </div>
+
                </div>
-
-   					<div class="form-group">
-   						{{Form::label('', 'Giá tiền')}}
-   						{{Form::text('product_price','', ['placeholder' => 'Giá tiền'] )}}
-   					</div>
-
-					<div class="form-group">
-   						{{Form::label('', 'Số lượng')}}
-   						{{Form::text('amount','', ['placeholder' => 'Số lượng'] )}}
-   					</div>
-
-   					<div class="form-group">
-   						{{Form::label('', 'Đơn vị')}}
-   						{{Form::text('unit','', ['placeholder' => 'Đơn vị'] )}}
-   					</div>
-
-   					<div class="form-group">
-   						{{Form::label('', 'Trạng Thái')}}
-   						{{Form::select('status', [
-   							'on-deliver' 	=> 'Đang Giao Hàng', 
-   							'left' 			=> 'Tồn Kho', 
-   							'completed' 	=> 'Hoàn Tất',
-   							'in-payment'	=> 'Chờ Thanh Toán',
-   							], 'on-deliver')}}
-   					</div>
-
-   					{{Form::submit('Đăng sản phẩm', ['name' => 'submit_product'])}}
+   					
+					{{Form::submit('Đăng sản phẩm', ['name' => 'submit_product', 'class' => 'btn btn-primary'])}}
 
 				{!! Form::close() !!}
 			</div>
