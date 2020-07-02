@@ -13,7 +13,6 @@
 	<div class="col-10 p-0">
 
 		<div class="top_bar">
-			<a href="" class="btn btn-primary">Lưu</a>
 			<a href="/products" class="btn btn-danger">Huỷ</a>
 			<a href="" class="btn btn-success">Trợ Giúp</a>
 
