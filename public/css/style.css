@@ -65,6 +65,7 @@ body { background-color: #f4f6f8; }
 
 .child_list li {
     padding: 10px;
+    border: none;
 }
 
 ul.child_list {
