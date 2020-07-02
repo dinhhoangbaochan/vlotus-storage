@@ -129,6 +129,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        return "Something";
+        $products = Products::find($id);
+        $products->delete();
+
+        return redirect('/products')->with('success','Đã xoá sản phẩm' );
     }
 }
