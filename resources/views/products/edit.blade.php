@@ -86,6 +86,14 @@
                      </div>
                   </div>
 
+                  <div class="col-6">
+                     <div class="form-group">
+
+                        {{Form::label('', 'Loại Sản Phẩm')}}
+                        {{Form::select('status', $list_cat, $products->status, ['class' => 'form-control'])}}
+                     </div>
+                  </div>
+
                </div>
    					
    					{{Form::hidden('_method', 'PUT')}}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Products;
+use App\ProductCategory;
 
 class ProductsController extends Controller
 {
@@ -77,6 +78,7 @@ class ProductsController extends Controller
     public function show($id)
     {
         $products = Products::find($id);
+        $list_cat = ProductCategory::all();
         return view('products.single')->with('products', $products);
     }
 
@@ -89,7 +91,14 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $products = Products::find($id);
-        return view('products.edit')->with('products', $products);
+        $list_cat = ProductCategory::pluck('cate_name','id');
+
+        $data = array(
+            'products'      =>      $products,
+            'list_cat'      =>      $list_cat,
+        );
+
+        return view('products.edit')->with($data);
     }
 
     /**
