@@ -14,14 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PagesController@index');
-Route::get('about', 'PagesController@about');
-Route::get('services', 'PagesController@services');
 Route::get('report', function () { return "Reports"; });
 
 
 Route::resource('posts','PostsController');
+
+// Products route
 Route::resource('products', 'ProductsController');
+
+// Authentication Route
 Auth::routes();
 
+// Product Category Route
+Route::resource('product-category', 'ProductCategoryController');
+
+// Dashboard
 Route::get('dashboard', 'DashboardController@index');
 
