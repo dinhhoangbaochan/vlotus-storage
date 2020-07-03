@@ -13,7 +13,7 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('products.category');
     }
 
     /**
