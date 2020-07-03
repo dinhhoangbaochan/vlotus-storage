@@ -35,7 +35,21 @@
 					{!! Form::close() !!}
 				</div>
 				<div class="col-8">
-					List
+					<?php 
+
+						if( count($category_list) > 0 ) {
+							foreach( $category_list as $cat ) {
+								?>
+									<ul>
+										<li><?php echo $cat->cate_name; ?></li>
+									</ul>
+								<?php 
+							}
+						} else {
+							echo '<span>Không có danh mục</span>';
+						}
+
+					?>
 				</div>
 			</div>
 

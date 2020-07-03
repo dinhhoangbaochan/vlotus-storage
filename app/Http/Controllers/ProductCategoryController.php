@@ -14,7 +14,8 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        return view('products.category');
+        $category_list = ProductCategory::all();
+        return view('products.category')->with('category_list', $category_list);
     }
 
     /**
