@@ -28,7 +28,11 @@
 
 			<div class="row">
 				<div class="col-4">
-					Meta form
+					{!! Form::open([ 'action' => 'ProductCategoryController@store', 'method' => 'POST', ]) !!}
+						{{Form::label('', 'Danh mục sản phẩm')}}
+					    {{Form::text('category_name', '', ['class' => 'form-control', 'placeholder' => 'Nhập danh mục sản phẩm']) }}
+						{{Form::submit('Tạo danh mục')}}
+					{!! Form::close() !!}
 				</div>
 				<div class="col-8">
 					List

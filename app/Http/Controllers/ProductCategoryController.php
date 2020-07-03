@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ProductCategory;
 
 class ProductCategoryController extends Controller
 {
@@ -23,7 +24,8 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        // Create category 
+        
     }
 
     /**
@@ -34,7 +36,19 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate
+        $this->validate($request, [
+            'category_name'  =>  'required',
+        ]);
+
+        // Save data
+        $product_category = new ProductCategory;
+
+        $product_category->cate_name = $request->input('category_name');
+        $product_category->save();
+
+        return redirect('/product-category')->with('success', 'Đăng thành công');
+
     }
 
     /**
