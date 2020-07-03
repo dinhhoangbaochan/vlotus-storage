@@ -48,6 +48,9 @@ class ProductsController extends Controller
             'unit'  =>  'required',
         ]);
 
+        // Get authenticated user ( current user )
+        $current_user = auth()->user();
+
         // Create products
         $products = new Products;
         $products->product_name = $request->input('product_name');
@@ -57,6 +60,7 @@ class ProductsController extends Controller
         $products->amount = $request->input('amount');
         $products->unit = $request->input('unit');
         $products->status = $request->input('status');
+        $products->by = $current_user->id;
 
         $products->save();
 
@@ -106,6 +110,9 @@ class ProductsController extends Controller
             'unit'  =>  'required',
         ]);
 
+        // Get authenticated user ( current user )
+        $current_user = auth()->user();
+
         // Update products
         $products = Products::find($id);
         $products->product_name = $request->input('product_name');
@@ -115,6 +122,7 @@ class ProductsController extends Controller
         $products->amount = $request->input('amount');
         $products->unit = $request->input('unit');
         $products->status = $request->input('status');
+        $products->by = $current_user->id;
 
         $products->save();
 
