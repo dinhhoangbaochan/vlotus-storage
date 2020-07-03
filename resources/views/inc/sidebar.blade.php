@@ -11,6 +11,7 @@
 				<ul class="child_list">
 					<li><a href="/products">Tất cả sản phẩm</a></li>
 					<li><a href="/products/create">Đăng sản phẩm</a></li>
+					<li><a href="/product-category">Quản lý danh mục</a></li>
 				</ul>
 			</li>
 			<li><a href="/report">Báo cáo</a></li>
