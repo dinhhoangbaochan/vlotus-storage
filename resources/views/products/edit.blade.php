@@ -50,7 +50,7 @@
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Giá tiền')}}
-                        {{Form::number('product_price', number_format($products->product_price, 0, ".", "." ), ['class' => 'form-control'] )}}
+                        {{Form::number('product_price', $products->product_price, ['class' => 'form-control'] )}}
                      </div>
                   </div>
 
@@ -96,7 +96,9 @@
 				{!! Form::close() !!}
 
 				{!! Form::open( ['action' => ['ProductsController@destroy', $products->id], 'method' => 'POST']) !!}
+               {{ Form::hidden('_method', 'DELETE') }}
 					{{ Form::submit('Xoá sản phẩm', ['class' => 'btn btn-danger']) }}
+               
 				{!! Form::close() !!}
 
 

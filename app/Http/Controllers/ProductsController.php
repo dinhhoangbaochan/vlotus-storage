@@ -163,3 +163,4 @@ class ProductsController extends Controller
         return redirect('/products')->with('success','Đã xoá sản phẩm' );
     }
 }
+ 
