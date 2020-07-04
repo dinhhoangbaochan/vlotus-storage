@@ -71,6 +71,7 @@
 														{{Form::submit('Sửa danh mục', ['class' => 'btn btn-primary'])}}
 													{!! Form::close() !!}
 													
+
 												</div>
 
 												<div class="modal-footer">
