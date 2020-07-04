@@ -94,7 +94,17 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'cate_name'  =>  'required',
+        ]);
+
+        // Update products
+        $product_cate = ProductCategory::find($id);
+        $product_cate->cate_name = $request->input('cate_name');
+
+        $product_cate->save();
+
+        return redirect('/product-category')->with('success', 'Cập nhật thành công');
     }
 
     /**
@@ -105,6 +115,14 @@ class ProductCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product_cat = ProductCategory::find($id);
+        $product_cat->delete();
+
+        return redirect('/product-category')->with('success','Đã xoá danh mục' );
     }
+
+    public function customUpdate(Request $request, $id) {
+        return $id;
+    }
+
 }

@@ -26,7 +26,10 @@ Route::resource('products', 'ProductsController');
 Auth::routes();
 
 // Product Category Route
+Route::get('product-category/delete/{id}', 'ProductCategoryController@destroy');
+Route::get('product-category/{id}', 'ProductCategoryController@customUpdate');
 Route::resource('product-category', 'ProductCategoryController');
+
 
 // Dashboard
 Route::get('dashboard', 'DashboardController@index');

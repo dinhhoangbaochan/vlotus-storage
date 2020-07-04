@@ -42,7 +42,48 @@
 								?>
 									<ul>
 										<li><?php echo $cat->cate_name; ?></li>
+										<div class="">
+											<a href="" data-toggle="modal" data-target="#edit_category_<?php echo $cat->id; ?>">Sửa</a>
+											<a href="{{URL::to('product-category/delete/' . $cat->id)}}">Xoá</a>
+										</div>
 									</ul>
+
+
+									<!-- Modal -->
+									<div class="modal fade" id="edit_category_<?php echo $cat->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+										<div class="modal-dialog" role="document">
+
+											<div class="modal-content">
+
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+
+												<div class="modal-body">
+													
+													{!! Form::open([ 'action' => ['ProductCategoryController@update', $cat->id], 'method' => 'POST', ]) !!}
+														{{ Form::text('cate_name', $cat->cate_name ) }}
+														{{Form::hidden('_method', 'PUT')}}
+														{{Form::submit('Sửa danh mục', ['class' => 'btn btn-primary'])}}
+													{!! Form::close() !!}
+													
+												</div>
+
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+													<button type="button" class="btn btn-primary">Save changes</button>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+
 								<?php 
 							}
 						} else {
@@ -57,6 +98,8 @@
 	</div>
 
 </div>
+
+
 
 @endsection
 
