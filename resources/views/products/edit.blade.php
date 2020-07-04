@@ -92,7 +92,7 @@
                      <div class="form-group">
 
                         {{Form::label('', 'Test Autocomplete')}}
-                        {{ Form::text('auto', $products->type, ['class' => 'autocomplete']) }}
+                        {{ Form::text('auto', $products->type, ['class' => 'autocomplete form-control']) }}
                      </div>
                   </div>
 
