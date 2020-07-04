@@ -88,6 +88,14 @@
                      </div>
                   </div>
 
+                  <div class="col-6">
+                     <div class="form-group">
+
+                        {{Form::label('', 'Test Autocomplete')}}
+                        {{ Form::text('auto', $products->type, ['class' => 'autocomplete']) }}
+                     </div>
+                  </div>
+
                </div>
    					
    					{{Form::hidden('_method', 'PUT')}}
@@ -111,3 +119,6 @@
 </div>
 
 @endsection
+
+<script>
+</script>
