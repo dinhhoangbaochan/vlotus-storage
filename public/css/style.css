@@ -15,6 +15,8 @@ body { background-color: #f4f6f8; }
 
 .main_content {
     padding: 2rem 4rem;
+    overflow-y: scroll;
+    max-height: 600px;
 }
 
 .logo {
