@@ -28,11 +28,11 @@
 
 			<div class="row">
 				<div class="col-4">
-{{-- 					{!! Form::open([ 'action' => 'ProductCategoryController@store', 'method' => 'POST', ]) !!}
-						{{Form::label('', 'Danh mục sản phẩm')}}
-					    {{Form::text('category_name', '', ['class' => 'form-control', 'placeholder' => 'Nhập danh mục sản phẩm']) }}
-						{{Form::submit('Tạo danh mục')}}
-					{!! Form::close() !!} --}}
+					{!! Form::open([ 'action' => 'ProductBrandController@store', 'method' => 'POST', ]) !!}
+						{{Form::label('', 'Thương hiệu sản phẩm')}}
+					    {{Form::text('category_name', '', ['class' => 'form-control', 'placeholder' => 'Nhập thương hiệu sản phẩm']) }}
+						{{Form::submit('Tạo thương hiệu')}}
+					{!! Form::close() !!}
 				</div>
 				<div class="col-8">
 				</div>
