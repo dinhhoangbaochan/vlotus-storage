@@ -7,6 +7,7 @@ use App\Products;
 use App\ProductCategory;
 use App\ProductBrand;
 
+
 class ProductsController extends Controller
 {
 
@@ -82,10 +83,27 @@ class ProductsController extends Controller
         $products->unit = $request->input('unit');
         $products->status = $request->input('status');
         $products->by = $current_user->id;
+        $products->cate = $request->input('category');
+        $products->brand = $request->input('brand');
+        $products->import_date = $request->input('import_date');
 
         $products->save();
 
         return redirect('/products')->with('success', 'Đăng thành công');
+        
+        // $test = array(
+        //     'product_name'      =>      $products->product_name,
+        //     'product_sku'       =>      $products->product_sku,
+        //     'product_code'      =>      $products->product_code,
+        //     'product_price'     =>      $products->product_price,
+        //     'amount'            =>      $products->amount,
+        //     'unit'              =>      $products->unit,
+        //     'status'            =>      $products->status,
+        //     'cat'               =>      $products->category,
+        //     'import_date'       =>      $products->import_date,
+        // );
+
+        // return $test;
 
     }
 
@@ -152,7 +170,9 @@ class ProductsController extends Controller
         $products->unit = $request->input('unit');
         $products->status = $request->input('status');
         $products->by = $current_user->id;
-
+        $products->cate = $request->input('category');
+        $products->brand = $request->input('brand');
+        $products->import_date = $request->input('import_date');
         $products->save();
 
         return redirect('/products')->with('success', 'Cập nhật thành công');

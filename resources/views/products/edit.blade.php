@@ -50,14 +50,14 @@
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Giá tiền')}}
-                        {{Form::number('product_price', $products->product_price, ['class' => 'form-control'] )}}
+                        {{Form::text('product_price', $products->product_price, ['class' => 'form-control'] )}}
                      </div>
                   </div>
 
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Số lượng')}}
-                        {{Form::text('amount', $products->amount, ['class' => 'form-control', 'data-type' => 'currency'] )}}
+                        {{Form::number('amount', $products->amount, ['class' => 'form-control', 'data-type' => 'currency'] )}}
                      </div>
                   </div>
 
@@ -91,7 +91,7 @@
                   <div class="col-6">
                      <div class="form-group">
 
-                        {{Form::label('', 'Test Date')}}
+                        {{Form::label('', 'Ngày Nhập Kho')}}
                         {{Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control'])}}
                      </div>
                   </div>

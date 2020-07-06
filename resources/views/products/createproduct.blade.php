@@ -63,7 +63,7 @@
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Số lượng')}}
-                        {{Form::text('amount','', ['placeholder' => 'Số lượng', 'class' => 'form-control'] )}}
+                        {{Form::number('amount','', ['placeholder' => 'Số lượng', 'class' => 'form-control'] )}}
                      </div>
                   </div>
 
@@ -90,7 +90,7 @@
                      <div class="form-group">
                         <label for="selectType">Chọn loại sản phẩm</label>
 
-                        <select multiple class="form-control" id="selectType">
+                        <select multiple class="form-control" id="selectType" name="category">
 
                            <?php
 
@@ -109,7 +109,7 @@
                      <div class="form-group">
                         <label for="selectBrand">Chọn thương hiệu</label>
 
-                        <select multiple class="form-control" id="selectBrand">
+                        <select multiple class="form-control" id="selectBrand" name="brand">
 
                            <?php
 
