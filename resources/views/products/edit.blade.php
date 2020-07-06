@@ -91,8 +91,8 @@
                   <div class="col-6">
                      <div class="form-group">
 
-                        {{Form::label('', 'Test Autocomplete')}}
-                        {{ Form::text('auto', $products->type, ['class' => 'autocomplete form-control']) }}
+                        {{Form::label('', 'Test Date')}}
+                        {{Form::date('name', \Carbon\Carbon::now(), ['class' => 'form-control'])}}
                      </div>
                   </div>
 

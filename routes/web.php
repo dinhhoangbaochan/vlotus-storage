@@ -31,6 +31,7 @@ Route::get('product-category/{id}', 'ProductCategoryController@customUpdate');
 Route::resource('product-category', 'ProductCategoryController');
 
 // Product Brand Route
+Route::get('product-brand/delete/{id}', 'ProductBrandController@destroy');
 Route::resource('product-brand', 'ProductBrandController');
 
 

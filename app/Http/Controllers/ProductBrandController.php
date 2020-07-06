@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ProductBrand;
 
 class ProductBrandController extends Controller
 {
@@ -24,7 +25,8 @@ class ProductBrandController extends Controller
      */
     public function index()
     {
-        return view('products.brand');
+        $brand_list = ProductBrand::all();
+        return view('products.brand')->with('brand_list', $brand_list);
     }
 
     /**
@@ -45,7 +47,22 @@ class ProductBrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        // Validate
+        $this->validate($request, [
+            'brand_name'  =>  'required',
+        ]);
+
+        // Define Model 
+        $brand = new ProductBrand;
+
+        // Get Input & Save 
+        $brand->brand_name = $request->input('brand_name');
+        $brand->save();
+
+        // Return & display message
+        return redirect('/product-brand')->with('success', 'Đăng thành công');
+
     }
 
     /**
@@ -79,7 +96,20 @@ class ProductBrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validate
+        $this->validate($request, [
+            'brand_name'  =>  'required',
+        ]);
+
+        // Find brand by id
+        $brand = ProductBrand::find($id);
+
+        // Get Input & Save 
+        $brand->brand_name = $request->input('brand_name');
+        $brand->save();
+
+        // Return & display message
+        return redirect('/product-brand')->with('success', 'Cập nhật thành công');
     }
 
     /**
@@ -90,6 +120,13 @@ class ProductBrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Find brand by id
+        $brand = ProductBrand::find($id);
+
+        // Delete 
+        $brand->delete();
+
+        // Return & display message
+        return redirect('/product-brand')->with('success', 'Đã xoá thương hiệu');
     }
 }
