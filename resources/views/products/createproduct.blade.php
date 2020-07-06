@@ -56,21 +56,21 @@
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Giá tiền')}}
-                        {{Form::text('product_price','', ['placeholder' => 'Giá tiền'] )}}
+                        {{Form::text('product_price','', ['placeholder' => 'Giá tiền', 'class' => 'form-control'] )}}
                      </div>
                   </div>
 
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Số lượng')}}
-                        {{Form::text('amount','', ['placeholder' => 'Số lượng'] )}}
+                        {{Form::text('amount','', ['placeholder' => 'Số lượng', 'class' => 'form-control'] )}}
                      </div>
                   </div>
 
                   <div class="col-6">
                      <div class="form-group">
                         {{Form::label('', 'Đơn vị')}}
-                        {{Form::text('unit','', ['placeholder' => 'Đơn vị'] )}}
+                        {{Form::text('unit','', ['placeholder' => 'Đơn vị', 'class' => 'form-control'] )}}
                      </div>
                   </div>
 
@@ -82,9 +82,55 @@
                            'left'         => 'Tồn Kho', 
                            'completed'    => 'Hoàn Tất',
                            'in-payment'   => 'Chờ Thanh Toán',
-                           ], 'on-deliver')}}
+                           ], 'on-deliver', ['class' => 'form-control'])}}
                      </div>
                   </div>
+
+                  <div class="col-6">
+                     <div class="form-group">
+                        <label for="selectType">Chọn loại sản phẩm</label>
+
+                        <select multiple class="form-control" id="selectType">
+
+                           <?php
+
+                              if ( count( $category ) > 0 ) {
+                                 foreach( $category as $cate ) {
+                                    ?> <option value="<?php echo $cate->id; ?>"><?php echo $cate->cate_name; ?></option> <?php
+                                 }
+                              }
+
+                            ?>
+                        </select>
+                     </div>
+                  </div>
+
+                  <div class="col-6">
+                     <div class="form-group">
+                        <label for="selectBrand">Chọn thương hiệu</label>
+
+                        <select multiple class="form-control" id="selectBrand">
+
+                           <?php
+
+                              if ( count( $brand ) > 0 ) {
+                                 foreach( $brand as $type ) {
+                                    ?> <option value="<?php echo $type->id; ?>"><?php echo $type->brand_name; ?></option> <?php
+                                 }
+                              }
+
+                            ?>
+                        </select>
+                     </div>
+                  </div>
+
+                  <div class="col-6">
+                     <div class="form-group">
+                        {{Form::label('', 'Ngày Nhập Kho')}}
+                        {{Form::date('import_date', \Carbon\Carbon::now(), ['class' => 'form-control'])}}
+                     </div>
+                  </div>
+
 
                </div>
    					

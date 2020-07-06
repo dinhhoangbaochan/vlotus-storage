@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Products;
 use App\ProductCategory;
+use App\ProductBrand;
 
 class ProductsController extends Controller
 {
@@ -39,8 +40,16 @@ class ProductsController extends Controller
      */
     public function create()
     {
+        $category = ProductCategory::all();
+        $brand = ProductBrand::all();
+
+        $args = array(
+            'category'  =>  $category,
+            'brand'     =>  $brand,
+        );
+
         // Create product
-        return view('products.createproduct');
+        return view('products.createproduct')->with($args);
     }
 
     /**

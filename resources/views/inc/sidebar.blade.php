@@ -12,6 +12,7 @@
 					<li><a href="/products">Tất cả sản phẩm</a></li>
 					<li><a href="/products/create">Đăng sản phẩm</a></li>
 					<li><a href="/product-category">Quản lý danh mục</a></li>
+					<li><a href="/product-brand">Quản lý thương hiệu</a></li>
 				</ul>
 			</li>
 			<li><a href="/report">Báo cáo</a></li>
