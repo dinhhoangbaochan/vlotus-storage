@@ -105,8 +105,7 @@
 
 				{!! Form::open( ['action' => ['ProductsController@destroy', $products->id], 'method' => 'POST']) !!}
                {{ Form::hidden('_method', 'DELETE') }}
-					{{ Form::submit('Xoá sản phẩm', ['class' => 'btn btn-danger']) }}
-               
+					{{ Form::submit('Xoá sản phẩm', ['class' => 'btn btn-danger']) }}  
 				{!! Form::close() !!}
 
 
