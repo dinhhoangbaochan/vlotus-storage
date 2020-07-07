@@ -38,3 +38,5 @@ Route::resource('product-brand', 'ProductBrandController');
 // Dashboard
 Route::get('dashboard', 'DashboardController@index');
 
+// Users
+Route::get('/users', 'UsersController@index');
