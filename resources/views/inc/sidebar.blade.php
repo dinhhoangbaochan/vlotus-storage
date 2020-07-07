@@ -16,6 +16,7 @@
 				</ul>
 			</li>
 			<li><a href="/report">Báo cáo</a></li>
+			<li><a href="/users">Quản trị viên</a></li>
 		</ul>
 	</div>
 </aside>
