@@ -46,10 +46,10 @@ Route::get('request-account', 'UsersController@requestAccount');
 Route::post('send-mail', 'UsersController@sendMail');
 
 // Create staff account 
-Route::get('new-staff/{id}/{staff_name}', 'UsersController@createStaffAccount');
+Route::get('new-staff/{email}/{staff_name}', 'UsersController@createStaffAccount');
 Route::post('register-staff/', 'UsersController@createStaff');
 
 // Delete account
 Route::get('users/delete/{id}', 'UsersController@deleteStaff');
 
-Route::post('users', 'UsersController@update');
+Route::match(['put', 'patch'],'users/{id}', 'UsersController@update');

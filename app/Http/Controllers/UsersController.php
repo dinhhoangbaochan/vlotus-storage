@@ -53,10 +53,10 @@ class UsersController extends Controller
     }
 
     // Create account for staff
-    public function createStaffAccount($id, $staff_name) {
+    public function createStaffAccount($email, $staff_name) {
 
     	$args = array(
-    		'id'			=>		$id,
+    		'email'			=>		$email,
     		'staff_name'	=>		$staff_name,
     	);
 
@@ -92,10 +92,16 @@ class UsersController extends Controller
     }
 
     // Update staff
-    public function update( Request $request ) {
-    	$name = $request->input('user_name');
+    public function update( Request $request, $id ) {
 
-    	return $name;
+    	$user = User::find($id);
+    	$user->name = $request->input('user_name');
+    	$user->email = $request->input('email');
+
+    	$user->save();
+
+    	return redirect('/users')->with('success', 'Đã cập nhật user');
+
     }
 
 }

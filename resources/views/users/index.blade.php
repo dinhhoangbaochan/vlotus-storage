@@ -51,7 +51,7 @@
 									<td><?php echo $user->created_at; ?></td>
 									<td>
 										<a href="/users/delete/<?php echo $user->id; ?>">Xoá</a> 
-										<a data-toggle="modal" data-target="#edit_user_<?php echo $user->id; ?>">Sửa</a>
+										<a href="" data-toggle="modal" data-target="#edit_user_<?php echo $user->id; ?>">Sửa</a>
 									</td>
 								</tr>
 								
@@ -71,9 +71,22 @@
 
 											<div class="modal-body">
 												
-												{!! Form::open([ 'action' => ['UsersController@update'], 'method' => 'POST', ]) !!}
-													{{Form::text('user_name', $user->name )}}
-													{{-- {{Form::hidden('_method', 'PUT')}} --}}
+												{!! Form::open([ 'action' => ['UsersController@update', $user->id], 'method' => 'POST', ]) !!}
+
+													<div class="form-group row">
+														<div class="col-6">
+															{{Form::label('name', 'Tên Nhân Viên', ['class' => 'awesome'])}}
+															{{Form::text('user_name', $user->name, ['class' => 'form-control'])}}
+														</div>
+														<div class="col-6">
+															{{Form::label('email', 'Email Nhân Viên', ['class' => 'awesome'])}}
+															{{Form::text('email', $user->email, ['class' => 'form-control'])}}
+														</div>
+														
+													</div>
+
+													
+													{{Form::hidden('_method', 'PUT')}}
 													{{Form::submit('Sửa user', ['class' => 'btn btn-primary'])}}
 												{!! Form::close() !!}
 												
@@ -82,7 +95,6 @@
 
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
 											</div>
 
 										</div>
