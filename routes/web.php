@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::get('/', function () {
+	return redirect('/login');
+});
 Route::get('report', function () { return "Reports"; });
 
 

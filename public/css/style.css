@@ -4,7 +4,7 @@
     color: #fff;
 }
 
-body { background-color: #f4f6f8; }
+body { background-color:#f1f1f1; }
 
 .top_bar {
     background-color: #fff;
@@ -117,4 +117,42 @@ a.return_url:hover {
     background: #fff;
     line-height: 1.6;
     font-size: 13px;
+}
+
+/* form */
+
+.account_form {
+    background: #9053c7;
+    background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.account_form .row.form_row {
+    background: #fff;
+    border-radius: 10px;
+    width: 980px;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+
+.form_row img {
+    width: 80%;
+}
+
+.form_ip {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    height: 50px;
+    border-radius: 25px;
+    font-weight: bold;
 }
