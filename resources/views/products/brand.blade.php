@@ -1,3 +1,5 @@
+@role('super admin')
+
 @extends('layouts.app')
 
 
@@ -101,4 +103,9 @@
 
 @endsection
 
+@else
+
+<h2 class="text-center">You're not allowed to visit this page.</h2>
+
+@endrole
 	

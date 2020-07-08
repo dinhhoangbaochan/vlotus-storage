@@ -15,7 +15,6 @@ class UsersController extends Controller
             'users'     =>     $users,
         );
 
-        
         return view('users.index')->with($data);
     }
 
