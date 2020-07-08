@@ -49,8 +49,48 @@
 									<td><?php echo $user->name; ?></td>
 									<td><?php echo $user->email; ?></td>
 									<td><?php echo $user->created_at; ?></td>
-									<td><a href="">Xoá</a> <a href="">Sửa</a></td>
+									<td>
+										<a href="/users/delete/<?php echo $user->id; ?>">Xoá</a> 
+										<a data-toggle="modal" data-target="#edit_user_<?php echo $user->id; ?>">Sửa</a>
+									</td>
 								</tr>
+								
+								<!-- Modal -->
+								<div class="modal fade" id="edit_user_<?php echo $user->id; ?>" tabindex="-1" role="dialog">
+
+									<div class="modal-dialog" role="document">
+
+										<div class="modal-content">
+
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+
+											<div class="modal-body">
+												
+												{!! Form::open([ 'action' => ['UsersController@update'], 'method' => 'POST', ]) !!}
+													{{Form::text('user_name', $user->name )}}
+													{{-- {{Form::hidden('_method', 'PUT')}} --}}
+													{{Form::submit('Sửa user', ['class' => 'btn btn-primary'])}}
+												{!! Form::close() !!}
+												
+
+											</div>
+
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-primary">Save changes</button>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
 
 								<?php 
 							}

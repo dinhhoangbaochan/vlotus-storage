@@ -64,6 +64,10 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group mt-3 text-center">
+                            <span>Nếu bạn không có tài khoản, hãy nhấn vào đây <a href="/request-account">Thiết lập tài khoản</a></span> 
+                        </div>
                     </form>
                 </div>
             </div>
