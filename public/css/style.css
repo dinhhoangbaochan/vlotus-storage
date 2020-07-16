@@ -1,10 +1,7 @@
-.left_sidebar {
-    height: 100vh;
-    background-color: #202d3f;
-    color: #fff;
+body { 
+    background-color:#f2f7fb;
+    font-family: "Quicksand", sans-serif;
 }
-
-body { background-color:#f1f1f1; }
 
 .top_bar {
     background-color: #fff;
@@ -13,39 +10,15 @@ body { background-color:#f1f1f1; }
     padding: 20px 40px;
 }
 
+.navbar {
+    height: 60px;
+    box-shadow: 0 4px 4px 0px rgba(0,0,0,0.1)
+}
+
 .main_content {
     padding: 2rem 4rem;
     overflow-y: scroll;
     max-height: 600px;
-}
-
-.logo {
-    text-align: center;
-}
-
-.logo img {
-    width: 140px;
-}
-
-.menu_list ul {
-    padding: 10px 0px;
-    list-style: none;
-}
-
-.menu_list li {
-    padding: 12px 10px;
-    border-bottom: 1px solid #e7e7e742;
-}
-
-.menu_list ul li a {
-    font-size: 14px;
-    color: #cad6e2;
-    transition: .3s ease all;
-}
-
-.menu_list ul li a:hover {
-    text-decoration: none;
-    color: #fff;
 }
 
 .product_info, .lotus_table {
@@ -64,15 +37,6 @@ body { background-color:#f1f1f1; }
     font-size: 13px;
     color: #000;
     height: inherit !important;
-}
-
-.child_list li {
-    padding: 10px;
-    border: none;
-}
-
-ul.child_list {
-    padding-bottom: 0;
 }
 
 .main_content__title {

@@ -1,0 +1,55 @@
+/**
+ * ALL SIDEBAR STYLES WILL BE PLACED HERE
+ */
+
+.left_sidebar {
+    height: 100vh;
+    background-color: #263544;
+    color: #fff;
+}
+
+.logo {
+    text-align: center;
+    padding: 14px 0;
+    height: 60px;
+    line-height: 60px;
+}
+
+.logo img {
+    width: 60px;
+}
+
+.menu_list ul {
+    padding: 10px 0px;
+    list-style: none;
+}
+
+.menu_list li {
+    padding: 12px 10px;
+}
+
+.menu_list ul li a {
+    font-size: 14px;
+    color: #b7c0cd;
+    transition: .3s ease all;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+}
+
+.menu_list ul li a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.child_list li {
+    padding: 10px;
+    border: none;
+}
+
+ul.child_list {
+    padding-bottom: 0;
+}
+
+.left_sidebar .material-icons { font-size: 18px; margin-right: 5px; }

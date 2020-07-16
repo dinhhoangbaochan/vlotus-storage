@@ -5,7 +5,7 @@
 		</div>
 		<div class="menu_list">
 			<ul>
-				<li><a href="/dashboard">Dashboard</a></li>
+				<li><a href="/dashboard"><span class="material-icons">home</span>Dashboard</a></li>
 				<li><a href="">Đơn hàng</a></li>
 				<li>
 					<a href="/products">Kho hàng</a>
