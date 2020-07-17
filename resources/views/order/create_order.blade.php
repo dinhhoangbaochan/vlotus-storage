@@ -15,8 +15,8 @@
             @include('inc.navbar')
 
             <div class="main_content">
-                <form action="">
-                    <input type="text" name="findProducts" value="">
+                <form id="findProducts">
+                    <input type="text" id="look_for_product" name="findProducts" value="" >
                     <div class="results">
                         <ul>
                             <li>Result 1</li>
@@ -30,5 +30,35 @@
         </div>
 
     </div>
+
+<script>
+
+    $(document).ready(function() {
+
+        $("#look_for_product").keyup(function(event) {
+            /* Act on the event */
+            var getInput = $(this).val();
+
+                $.ajax({
+                    url: "{{ url('search-product') }}",
+                    method: "GET",
+                    data: { input: getInput, },
+                    success: function(res) {
+                        console.log(res);
+                        $(".results").html(res);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+
+        });
+
+
+
+    });
+
+
+</script>
 
 @endsection
