@@ -60,3 +60,4 @@ Route::match(['put', 'patch'],'users/{id}', 'UsersController@update');
 Route::get('orders', 'OrderController@allOrder');
 Route::get('orders/create', 'OrderController@create');
 Route::get('search-product', 'OrderController@search');
+Route::get('get-selected-product', 'OrderController@findProduct');

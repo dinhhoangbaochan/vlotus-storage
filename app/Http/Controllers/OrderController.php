@@ -50,4 +50,32 @@ class OrderController extends Controller
     	
     }
 
+
+    // Find selected product
+    public function findProduct(Request $request)
+    {
+    	$current_id = $request->get('currentID');
+    	if ( $current_id ) {
+    		$find_product = DB::table('products')
+    		->where('id', $current_id)
+    		->get();
+
+    		foreach ($find_product as $product) {
+    			$response_array = array(
+    				'id'		=>		$product->id,
+    				'name'		=>		$product->product_name,
+    				'sku'		=>		$product->product_sku,
+    			);
+    		}
+
+    		$encode_res = json_encode($response_array);
+
+    		echo $encode_res;
+
+    	} else {
+    		echo "Unable to find what you've clicked";
+    	}
+    	
+    } 
+
 }

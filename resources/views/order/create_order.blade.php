@@ -24,6 +24,14 @@
                     </div>
 
                 </form>
+
+                <div class="selectedProduct">
+                    <h2>Các sản phẩm bạn đã chọn cho đơn hàng</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
             </div>
 
         </div>
@@ -34,8 +42,11 @@
 
     $(document).ready(function() {
 
+        var productsOrdered = [];
+
+        console.log(productsOrdered);
+
         $("#look_for_product").keyup(function(event) {
-            /* Act on the event */
             var getInput = $(this).val();
 
                 $.ajax({
@@ -55,8 +66,55 @@
 
         $(document).on("click", ".dropdown-item" , function(event){
             event.preventDefault();
-            console.log($(this).data("id"));
-        })
+            var currentDataID = $(this).data("id");
+            console.log(currentDataID);
+
+            $.ajax({
+                url: "{{ url('get-selected-product') }}",
+                method: "GET",
+                dataType: "json",
+                data: { currentID : currentDataID },
+                success: function(res) {
+                    productsOrdered.push(res);
+                    console.log(productsOrdered);
+                    var valueArr = productsOrdered.map(function(item){ return item.id });
+                    var isDuplicate = valueArr.some(function(item, index){ 
+                        return valueArr.indexOf(item) != index 
+                    });
+
+                    if ( isDuplicate == true ) {
+                        productsOrdered.pop();
+                        console.log(productsOrdered);
+
+                    } else {
+                        console.log('everything is fine');
+
+                        var i;
+                        for ( i = 0; i < productsOrdered.length; i++ ) {
+                            console.log(productsOrdered[i]);
+                        }
+
+                        // productsOrdered.forEach(function(item, index) {
+                        //     console.log(item["id"]);
+                        //     $(".selectedProduct ul").append(item["name"] + "<br>");
+                        // });
+
+                    }
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+
+
+        });
+
+
+
+        
+
+
 
     });
 
