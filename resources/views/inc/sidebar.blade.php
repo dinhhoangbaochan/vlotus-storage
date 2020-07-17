@@ -6,7 +6,14 @@
 		<div class="menu_list">
 			<ul>
 				<li><a href="/dashboard"><span class="material-icons">home</span>Dashboard</a></li>
-				<li><a href="">Đơn hàng</a></li>
+				<li>
+					<a href="/orders">Đơn hàng</a>
+					<ul class="child_list">
+						<li><a href="/order/create">Tạo đơn hàng</a></li>
+					</ul>
+
+				</li>
+				
 				<li>
 					<a href="/products">Kho hàng</a>
 					<ul class="child_list">

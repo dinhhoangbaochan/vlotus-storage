@@ -55,3 +55,7 @@ Route::post('register-staff/', 'UsersController@createStaff');
 Route::get('users/delete/{id}', 'UsersController@deleteStaff');
 
 Route::match(['put', 'patch'],'users/{id}', 'UsersController@update');
+
+// Orders
+Route::get('orders', 'OrderController@allOrder');
+Route::get('order/create', 'OrderController@create');
