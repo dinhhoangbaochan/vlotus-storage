@@ -16,14 +16,13 @@
 
             <div class="main_content">
                 <form id="findProducts">
-                    <input type="text" id="look_for_product" name="findProducts" value="" >
-                    <div class="results">
-                        <ul>
-                            <li>Result 1</li>
-                            <li>Result 2</li>
-                            <li>Result 3</li>
-                        </ul>
+
+                    <div class="dropdown">
+                        <input type="text" class="w-100" id="look_for_product" name="findProducts" value="" placeholder="Nhập tên sản phẩm cần thêm vào đơn hàng">
+                        <div id="findProductList" class="dropdown-menu" aria-labelledby="">
+                        </div>
                     </div>
+
                 </form>
             </div>
 
@@ -44,8 +43,8 @@
                     method: "GET",
                     data: { input: getInput, },
                     success: function(res) {
-                        console.log(res);
-                        $(".results").html(res);
+                        $("#findProductList").addClass("show");
+                        $("#findProductList").html(res);
                     },
                     error: function(err) {
                         console.log(err);
@@ -54,7 +53,10 @@
 
         });
 
-
+        $(document).on("click", ".dropdown-item" , function(event){
+            event.preventDefault();
+            console.log($(this).data("id"));
+        })
 
     });
 

@@ -23,7 +23,7 @@ class OrderController extends Controller
     }
 
     // Create order
-    public function create(Request $request)
+    public function create()
     {
     	return view('order.create_order');
     }
@@ -37,15 +37,15 @@ class OrderController extends Controller
             $data = DB::table('products')
             ->where('product_name', 'LIKE', "%{$query}%")
             ->get();
-            $output = '<ul>';
+            $output = '';
             foreach($data as $row)
             {
-               $output .= '
-               <li><a href="data/'. $row->id .'">'.$row->product_name.'</a></li>
-               ';
+               $output .= '<a href="" class="dropdown-item" data-id="' .$row->id. '" >' . $row->product_name . '</a>';
            }
-           $output .= '</ul>';
+           $output .= '';
            echo $output;
+       } else {
+       		echo "Unable to find";
        }
     	
     }

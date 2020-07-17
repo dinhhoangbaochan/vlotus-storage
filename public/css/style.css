@@ -19,6 +19,7 @@ body {
     padding: 2rem 4rem;
     overflow-y: scroll;
     max-height: 600px;
+    min-height: 500px;
 }
 
 .product_info, .lotus_table {
