@@ -14,12 +14,6 @@
 
       @include('inc.navbar')
 
-		<div class="top_bar">
-			<a href="/products" class="btn btn-danger">Huỷ</a>
-			<a href="" class="btn btn-success">Trợ Giúp</a>
-
-		</div>
-
 		@include('inc.message')
 
 		<div class="main_content">

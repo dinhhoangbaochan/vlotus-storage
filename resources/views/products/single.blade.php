@@ -11,10 +11,6 @@
 	</div>
 
 	<div class="col-10 p-0">
-		<div class="top_bar">
-			<a href="/products" class="btn btn-danger">Huỷ</a>
-			<a href="" class="btn btn-success">Trợ Giúp</a>
-		</div>
 		<div class="main_content">
 
 			@include('inc.navbar')
