@@ -9,7 +9,7 @@ $(document).ready(function() {
             var getInput = $(this).val();
 
             $.ajax({
-                url: "{{ url('search-product') }}",
+                url: "http://laravel-storage/search-product",
                 method: "GET",
                 data: { input: getInput, },
                 success: function(res) {
@@ -29,12 +29,21 @@ $(document).ready(function() {
             console.log(currentDataID);
 
             $.ajax({
-                url: "{{ url('get-selected-product') }}",
+                url: "/get-selected-product",
                 method: "GET",
                 dataType: "json",
                 data: { currentID : currentDataID },
                 success: function(res) {
+                	$("#findProductList").removeClass("show");
                     productsOrdered.push(res);
+                    console.log(typeof productsOrdered);
+                    var x, text = "";
+                    for (x in productsOrdered) {
+						text += productsOrdered[x].name + " ";
+					};
+                    document.getElementById("whereToPrint").innerHTML = text;
+                    // $("#whereToPrint").html(productsOrdered);
+                    
                     console.log(productsOrdered);
                     var valueArr = productsOrdered.map(function(item){ return item.id });
                     var isDuplicate = valueArr.some(function(item, index){ 
@@ -48,10 +57,7 @@ $(document).ready(function() {
                     } else {
                         console.log('everything is fine');
 
-                        var i;
-                        for ( i = 0; i < productsOrdered.length; i++ ) {
-                            console.log("heeee");
-                        }
+                        
 
 
                     }

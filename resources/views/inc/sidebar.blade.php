@@ -9,7 +9,7 @@
 				<li>
 					<a href="/orders">Đơn hàng</a>
 					<ul class="child_list">
-						<li><a href="/order/create">Tạo đơn hàng</a></li>
+						<li><a href="/orders/create">Tạo đơn hàng</a></li>
 					</ul>
 
 				</li>

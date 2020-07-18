@@ -25,7 +25,7 @@
 
                 </form>
 
-                <div class="selectedProduct">
+                <div id="whereToPrint" class="selectedProduct">
                     <h2>Các sản phẩm bạn đã chọn cho đơn hàng</h2>
                     <ul>
                         <li></li>
