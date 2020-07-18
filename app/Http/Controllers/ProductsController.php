@@ -66,8 +66,6 @@ class ProductsController extends Controller
             'product_sku'  =>  'required',
             'product_code'  =>  'required',
             'product_price'  =>  'required',
-            'amount'  =>  'required',
-            'unit'  =>  'required',
         ]);
 
         // Get authenticated user ( current user )
@@ -75,13 +73,12 @@ class ProductsController extends Controller
 
         // Create products
         $products = new Products;
-        $products->product_name = $request->input('product_name');
-        $products->product_sku = $request->input('product_sku');
-        $products->product_code = $request->input('product_code');
-        $products->product_price = $request->input('product_price');
-        $products->amount = $request->input('amount');
+        $products->name = $request->input('product_name');
+        $products->sku = $request->input('product_sku');
+        $products->code = $request->input('product_code');
+        $products->price = $request->input('product_price');
         $products->unit = $request->input('unit');
-        $products->status = $request->input('status');
+        $products->note = $request->input('product_note');
         $products->by = $current_user->id;
         $products->cate = $request->input('category');
         $products->brand = $request->input('brand');

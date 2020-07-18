@@ -34,7 +34,7 @@
                      <div class="col-12">
                      
                         <div class="form-label-group">
-                           <input type="text" id="product_name" class="form-control" placeholder="Tên sản phẩm" required autofocus>
+                           <input type="text" id="product_name" class="form-control" placeholder="Tên sản phẩm" name="product_name" autofocus>
                            <label for="product_name">Nhập tên sản phẩm</label>
                         </div>
 
@@ -46,14 +46,14 @@
                   <div class="row">
                      <div class="col-6">
                         <div class="form-label-group">
-                           <input type="text" id="product_sku" class="form-control" placeholder="SKU sản phẩm" required autofocus>
+                           <input type="text" id="product_sku" class="form-control" placeholder="SKU sản phẩm" name="product_sku" autofocus>
                            <label for="product_sku">Nhập SKU sản phẩm</label>
                         </div>
                      </div>
 
                      <div class="col-6">
                         <div class="form-label-group">
-                           <input type="text" id="product_code" class="form-control" placeholder="Code sản phẩm" required autofocus>
+                           <input type="text" id="product_code" class="form-control" placeholder="Code sản phẩm" name="product_code" autofocus>
                            <label for="product_code">Nhập code sản phẩm</label>
                         </div>
                      </div>
@@ -62,13 +62,13 @@
                   <div class="row">
                      <div class="col-6">
                         <div class="form-label-group">
-                           <input type="number" id="product_price" class="form-control" placeholder="Code sản phẩm" required autofocus>
+                           <input type="number" id="product_price" class="form-control" placeholder="Code sản phẩm" name="product_price" autofocus>
                            <label for="product_price">Nhập giá lẻ theo đơn vi</label>
                         </div>
                      </div>
                      <div class="col-6">
                         <div class="form-label-group">
-                           <input type="text" id="unit" class="form-control" placeholder="Code sản phẩm" required autofocus>
+                           <input type="text" id="unit" class="form-control" placeholder="Code sản phẩm" name="unit" autofocus>
                            <label for="unit">Nhập đơn vị</label>
                         </div>
                      </div>
@@ -77,8 +77,10 @@
                   <div class="row">
                      <div class="col-12">
                         <div class="form-label-group">
-                           <textarea name="product_note" id="product_note" rows="8"></textarea>
+                           <textarea name="product_note" id="product_note" rows="8" placeholder="Nhập ghi chú cho đơn hàng (Tuỳ chọn)"></textarea>
                         </div>
+
+                        <input type="submit" value="Đăng Sản Phẩm">
                      </div>
                   </div>
 

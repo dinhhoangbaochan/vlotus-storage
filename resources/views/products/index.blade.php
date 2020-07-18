@@ -26,8 +26,9 @@
 						<th>Image</th>
 						<th>Sản phẩm</th>
 						<th>SKU</th>
-						<th>Tồn Kho</th>
-						<th>Trạng thái</th>
+						<th>Mã Report</th>
+						<th>Ngày nhập</th>
+						<th>Đơn vị</th>
 					</tr>
 				</thead>
 
@@ -37,10 +38,12 @@
 						@foreach ( $products as $product )
 							<tr>
 								<td>Null</td>
-								<td><a href="/products/{{$product->id}}/edit">{{ $product->product_name }}</a></td>
-								<td><span>{{ $product->product_sku }}</span></td>
-								<td><span>{{ $product->amount }}</span></td>
-								<td><span>
+								<td><a href="/products/{{$product->id}}/edit">{{ $product->name }}</a></td>
+								<td><span>{{ $product->sku }}</span></td>
+								<td><span>{{ $product->code }}</span></td>
+								<td><span>{{ $product->import_date }}</span></td>
+								<td><span>{{ $product->unit }}</span></td>
+{{-- 								<td><span>
 									@switch( $product->status )
 										@case('on-deliver')
 											{{ 'Đang Giao Hàng' }}
@@ -58,7 +61,7 @@
 											{{ 'Chờ Thanh Toán' }}
 											@break
 									@endswitch
-								</span></td>
+								</span></td> --}}
 							</tr>
 						@endforeach	
 
