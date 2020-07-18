@@ -20,68 +20,80 @@
 			
 			<a href="/products" class="return_url">< Quay lại danh sách sản phẩm</a>
 			<h2 class="main_content__title">Nhập sản phẩm mới</h2>
+         
+         {!! Form::open([ 'action' => 'ProductsController@store', 'method' => 'POST', ]) !!}
 
-			<div class="product_info">
-				{!! Form::open([ 'action' => 'ProductsController@store', 'method' => 'POST', ]) !!}
+         <div class="row">
+            
+            <div class="col-8">
+               
+               <div class="product_info">
 
-               <div class="row">
+                  <div class="row">
                   
-                  <div class="col-12">
-                     <div class="form-group">
-                        {{Form::label('', 'Tên sản phẩm')}}
-                        {{Form::text('product_name','', ['placeholder' => 'Product Name', 'class' => 'form-control test'] )}}
+                     <div class="col-12">
+                     
+                        <div class="form-label-group">
+                           <input type="text" id="product_name" class="form-control" placeholder="Tên sản phẩm" required autofocus>
+                           <label for="product_name">Nhập tên sản phẩm</label>
+                        </div>
+
+                     </div>
+
+                  </div>
+                  
+
+                  <div class="row">
+                     <div class="col-6">
+                        <div class="form-label-group">
+                           <input type="text" id="product_sku" class="form-control" placeholder="SKU sản phẩm" required autofocus>
+                           <label for="product_sku">Nhập SKU sản phẩm</label>
+                        </div>
+                     </div>
+
+                     <div class="col-6">
+                        <div class="form-label-group">
+                           <input type="text" id="product_code" class="form-control" placeholder="Code sản phẩm" required autofocus>
+                           <label for="product_code">Nhập code sản phẩm</label>
+                        </div>
                      </div>
                   </div>
 
-                  <div class="col-6">
-                     <div class="form-group">
-                        {{Form::label('', 'Mã sản phẩm (SKU)')}}
-                        {{Form::text('product_sku','', ['placeholder' => 'Mã SKU', 'class' => 'form-control test'] )}}
+                  <div class="row">
+                     <div class="col-6">
+                        <div class="form-label-group">
+                           <input type="number" id="product_price" class="form-control" placeholder="Code sản phẩm" required autofocus>
+                           <label for="product_price">Nhập giá lẻ theo đơn vi</label>
+                        </div>
+                     </div>
+                     <div class="col-6">
+                        <div class="form-label-group">
+                           <input type="text" id="unit" class="form-control" placeholder="Code sản phẩm" required autofocus>
+                           <label for="unit">Nhập đơn vị</label>
+                        </div>
                      </div>
                   </div>
 
-                  <div class="col-6">
-                     <div class="form-group">
-                        {{Form::label('', 'Mã báo cáo')}}
-                        {{Form::text('product_code','', ['placeholder' => 'Mã báo cáo', 'class' => 'form-control test'] )}}
+                  <div class="row">
+                     <div class="col-12">
+                        <div class="form-label-group">
+                           <textarea name="product_note" id="product_note" rows="8"></textarea>
+                        </div>
                      </div>
                   </div>
 
-                  <div class="col-6">
-                     <div class="form-group">
-                        {{Form::label('', 'Giá tiền')}}
-                        {{Form::text('product_price','', ['placeholder' => 'Giá tiền', 'class' => 'form-control'] )}}
-                     </div>
+               </div>
+
+            </div>
+
+            <div class="col-4">
+               <div class="product_info">
+                  <div class="form-group">
+                     {{Form::label('', 'Ngày Nhập Kho')}}
+                     {{Form::date('import_date', \Carbon\Carbon::now(), ['class' => 'form-control'])}}
                   </div>
 
-                  <div class="col-6">
-                     <div class="form-group">
-                        {{Form::label('', 'Số lượng')}}
-                        {{Form::number('amount','', ['placeholder' => 'Số lượng', 'class' => 'form-control'] )}}
-                     </div>
-                  </div>
-
-                  <div class="col-6">
-                     <div class="form-group">
-                        {{Form::label('', 'Đơn vị')}}
-                        {{Form::text('unit','', ['placeholder' => 'Đơn vị', 'class' => 'form-control'] )}}
-                     </div>
-                  </div>
-
-                  <div class="col-6">
-                     <div class="form-group">
-                        {{Form::label('', 'Trạng Thái')}}
-                        {{Form::select('status', [
-                           'on-deliver'   => 'Đang Giao Hàng', 
-                           'left'         => 'Tồn Kho', 
-                           'completed'    => 'Hoàn Tất',
-                           'in-payment'   => 'Chờ Thanh Toán',
-                           ], 'on-deliver', ['class' => 'form-control'])}}
-                     </div>
-                  </div>
-
-                  <div class="col-6">
-                     <div class="form-group">
+                  <div class="form-group">
                         <label for="selectType">Chọn loại sản phẩm</label>
 
                         <select multiple class="form-control" id="selectType" name="category">
@@ -97,9 +109,7 @@
                             ?>
                         </select>
                      </div>
-                  </div>
 
-                  <div class="col-6">
                      <div class="form-group">
                         <label for="selectBrand">Chọn thương hiệu</label>
 
@@ -116,22 +126,18 @@
                             ?>
                         </select>
                      </div>
-                  </div>
-
-                  <div class="col-6">
-                     <div class="form-group">
-                        {{Form::label('', 'Ngày Nhập Kho')}}
-                        {{Form::date('import_date', \Carbon\Carbon::now(), ['class' => 'form-control'])}}
-                     </div>
-                  </div>
-
-
                </div>
-   					
-					{{Form::submit('Đăng sản phẩm', ['name' => 'submit_product', 'class' => 'btn btn-primary'])}}
 
-				{!! Form::close() !!}
-			</div>
+               <div class="product_info">
+                  <input type="file" placeholder="Upload">
+               </div>
+
+            </div>
+
+         </div>
+
+         {!! Form::close() !!}
+
 
 		</div>
 	</div>
