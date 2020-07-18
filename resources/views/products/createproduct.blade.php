@@ -17,6 +17,7 @@
 		@include('inc.message')
 
 		<div class="main_content">
+
 			
 			<a href="/products" class="return_url">< Quay lại danh sách sản phẩm</a>
 			<h2 class="main_content__title">Nhập sản phẩm mới</h2>
