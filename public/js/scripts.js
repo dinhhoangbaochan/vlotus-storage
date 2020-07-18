@@ -5,8 +5,9 @@ $(document).ready(function() {
 
         console.log(productsOrdered.length);
 
-        $("#look_for_product").keyup(function(event) {
-            var getInput = $(this).val();
+        // AJAX - Find product by name, check what user types in
+        function findProductByName(event) {
+        	var getInput = $(this).val();
 
             $.ajax({
                 url: "http://laravel-storage/search-product",
@@ -20,8 +21,12 @@ $(document).ready(function() {
                     console.log(err);
                 }
             });
+        } 
 
-        });
+        // AJAX - Get product that user select 
+        
+
+        $("#look_for_product").keyup(findProductByName);
 
         $(document).on("click", ".dropdown-item" , function(event){
             event.preventDefault();
@@ -39,7 +44,7 @@ $(document).ready(function() {
                     console.log(typeof productsOrdered);
                     var x, text = "";
                     for (x in productsOrdered) {
-						text += productsOrdered[x].name + " ";
+						text += productsOrdered[x].name + "<br>";
 					};
                     document.getElementById("whereToPrint").innerHTML = text;
                     // $("#whereToPrint").html(productsOrdered);
