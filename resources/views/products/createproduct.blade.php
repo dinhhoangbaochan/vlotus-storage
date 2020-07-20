@@ -22,7 +22,7 @@
 			<a href="/products" class="return_url">< Quay lại danh sách sản phẩm</a>
 			<h2 class="main_content__title">Nhập sản phẩm mới</h2>
          
-         {!! Form::open([ 'action' => 'ProductsController@store', 'method' => 'POST', ]) !!}
+         {!! Form::open([ 'action' => 'ProductsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
 
          <div class="row">
             
@@ -132,7 +132,7 @@
                </div>
 
                <div class="product_info">
-                  <input type="file" placeholder="Upload">
+                  <input type="file" placeholder="Upload" name="product_thumbnail">
                </div>
 
             </div>

@@ -66,7 +66,29 @@ class ProductsController extends Controller
             'product_sku'  =>  'required',
             'product_code'  =>  'required',
             'product_price'  =>  'required',
+            'product_thumbnail' => 'image|nullable|max:1999',
         ]);
+
+        // Handle file upload
+        if ( $request->hasFile('product_thumbnail') ) {
+
+            // Path 
+            $destinationPath = 'uploaded';
+            // Get filename with extension
+            $fileNameWithExtension = $request->file('product_thumbnail')->getClientOriginalName();
+            // Only get file name 
+            $fileName = pathinfo($fileNameWithExtension, PATHINFO_FILENAME);
+            // Only get extension
+            $extension = $request->file('product_thumbnail')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+
+            // Upload Image 
+            $path = $request->file('product_thumbnail')->move($destinationPath, $fileNameToStore);
+
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
 
         // Get authenticated user ( current user )
         $current_user = auth()->user();
@@ -80,6 +102,7 @@ class ProductsController extends Controller
         $products->unit = $request->input('unit');
         $products->note = $request->input('product_note');
         $products->by = $current_user->id;
+        $products->product_image = $fileNameToStore;
         $products->cate = $request->input('category');
         $products->brand = $request->input('brand');
         $products->import_date = $request->input('import_date');
