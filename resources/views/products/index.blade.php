@@ -23,12 +23,12 @@
 			<table class="lotus_table">
 				<thead>
 					<tr>
-						<th>Image</th>
-						<th>Sản phẩm</th>
-						<th>SKU</th>
-						<th>Mã Report</th>
-						<th>Ngày nhập</th>
-						<th>Đơn vị</th>
+						<th rowspan="1" colspan="1" style="width:100px">Image</th>
+						<th rowspan="1" colspan="1">Sản phẩm</th>
+						<th rowspan="1" colspan="1">SKU</th>
+						<th rowspan="1" colspan="1">Mã Report</th>
+						<th rowspan="1" colspan="1">Ngày nhập</th>
+						<th rowspan="1" colspan="1">Đơn vị</th>
 					</tr>
 				</thead>
 
@@ -37,7 +37,15 @@
 					@if( count($products) > 0 )
 						@foreach ( $products as $product )
 							<tr>
-								<td>Null</td>
+								<td style="text-align: center;">
+
+									@if ( $product->product_image )
+										<img src="/uploaded/{{ $product->product_image }}" alt="">
+									@else 
+										<img src="/uploaded/noimage.png" alt="">
+									@endif
+									
+								</td>
 								<td><a href="/products/{{$product->id}}/edit">{{ $product->name }}</a></td>
 								<td><span>{{ $product->sku }}</span></td>
 								<td><span>{{ $product->code }}</span></td>

@@ -87,7 +87,7 @@ class ProductsController extends Controller
             $path = $request->file('product_thumbnail')->move($destinationPath, $fileNameToStore);
 
         } else {
-            $fileNameToStore = 'noimage.jpg';
+            $fileNameToStore = 'noimage.png';
         }
 
         // Get authenticated user ( current user )

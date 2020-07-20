@@ -39,6 +39,12 @@ body {
 
 .lotus_table { width:  100%; }
 
+.lotus_table img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
 .product_info input, .product_info select, .product_info textarea {
     border: 1px solid #c4cdd5;
     border-radius: 3px;
@@ -66,7 +72,7 @@ a.return_url:hover {
 }
 
 .product_info label {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .lotus_table thead tr th {
@@ -76,7 +82,7 @@ a.return_url:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    min-width: 120px;
+/*     min-width: 120px;
     /* background: #fff; */
 }
 
@@ -86,7 +92,6 @@ a.return_url:hover {
     vertical-align: middle;
     text-overflow: ellipsis;
     white-space: nowrap;
-    min-width: 120px;
     background: #fff;
     line-height: 1.6;
     font-size: 13px;
@@ -137,7 +142,7 @@ a.return_url:hover {
 
 .form-label-group input {
   height: auto;
-  border-radius: 2rem;
+  border-radius: 4px;
 }
 
 .form-label-group>input,
@@ -172,6 +177,6 @@ a.return_url:hover {
 .form-label-group input:not(:placeholder-shown)~label {
   padding-top: calc(var(--input-padding-y) / 3);
   padding-bottom: calc(var(--input-padding-y) / 3);
-  font-size: 12px;
+  font-size: 11px;
   color: #777;
 }
