@@ -3,7 +3,11 @@
   --input-padding-y: 10px;
 }
 
+a:hover, a:focus { text-decoration: none; transition: 0.4s ease-in-out all; }
+
 textarea { width: 100%; }
+
+img { width: 100% }
 
 body { 
     background-color:#f2f7fb;
@@ -179,4 +183,57 @@ a.return_url:hover {
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 11px;
   color: #777;
+}
+
+.update_btn, .delete_btn {
+    width: 40%;
+    padding: 6px;
+    text-align: center;
+    color: #fff;
+    border-radius: 20px;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.update_btn:hover, .delete_btn:hover {
+  color: #fff;
+  border-radius: 3px;
+}
+.update_btn {
+    background:  linear-gradient(180deg,#08f,#4697fe);
+}
+
+a.delete_btn {
+    background: #dc3545;
+}
+
+.upload_img:after {
+    content: 'Chọn hình đại diện';
+    width: 100%;
+    background-color: #cc307f;
+    top: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: 600;
+    /* letter-spacing: 1px; */
+}
+
+.upload_img {
+    position: relative;
+    width: 100%;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+.img_preview {
+    margin-top: 10px;
+    border: 1px solid #c6c6c68a;
 }

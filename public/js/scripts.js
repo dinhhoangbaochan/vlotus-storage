@@ -78,8 +78,19 @@ $(document).ready(function() {
 
 
 
+      $(".img_preview").css("display","none");
+
+      $(".upload_img").on("change", function() {
+         $(".img_preview").removeAttr("style");
+         $(".img_preview").attr("src", URL.createObjectURL(this.files[0]));
+      });
+
         
+      var currentCategory = $("#current_cate").val();
+      console.log(currentCategory);
 
+      var eachElementInput = $(".each_el").find("input").val();
 
+      console.log(eachElementInput);
 
 })

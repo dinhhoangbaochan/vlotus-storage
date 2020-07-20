@@ -149,11 +149,14 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $products = Products::find($id);
-        $list_cat = ProductCategory::pluck('cate_name','id');
+        // $list_cat = ProductCategory::pluck('cate_name','id');
+        $list_cat = ProductCategory::all();
+        $list_brand = ProductBrand::all();
 
         $data = array(
             'products'      =>      $products,
             'list_cat'      =>      $list_cat,
+            'list_brand'    =>      $list_brand,
         );
 
         return view('products.edit')->with($data);
@@ -173,7 +176,6 @@ class ProductsController extends Controller
             'product_sku'  =>  'required',
             'product_code'  =>  'required',
             'product_price'  =>  'required',
-            'amount'  =>  'required',
             'unit'  =>  'required',
         ]);
 
@@ -182,17 +184,16 @@ class ProductsController extends Controller
 
         // Update products
         $products = Products::find($id);
-        $products->product_name = $request->input('product_name');
-        $products->product_sku = $request->input('product_sku');
-        $products->product_code = $request->input('product_code');
-        $products->product_price = $request->input('product_price');
-        $products->amount = $request->input('amount');
+        $products->name = $request->input('product_name');
+        $products->sku = $request->input('product_sku');
+        $products->code = $request->input('product_code');
+        $products->price = $request->input('product_price');
         $products->unit = $request->input('unit');
-        $products->status = $request->input('status');
+        $products->note = $request->input('product_note');
         $products->by = $current_user->id;
-        $products->cate = $request->input('category');
-        $products->brand = $request->input('brand');
-        $products->import_date = $request->input('import_date');
+        $products->cate = $request->input('cate_radio');
+        $products->brand = $request->input('brand_radio');
+
         $products->save();
 
         return redirect('/products')->with('success', 'Cập nhật thành công');

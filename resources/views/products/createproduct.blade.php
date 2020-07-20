@@ -131,8 +131,9 @@
                      </div>
                </div>
 
-               <div class="product_info">
-                  <input type="file" placeholder="Upload" name="product_thumbnail">
+               <div class="product_info text-center">
+                  <input type="file" placeholder="Upload" class="upload_img" name="product_thumbnail">
+                  <img class="img_preview">
                </div>
 
             </div>
@@ -148,4 +149,5 @@
 </div>
 
 @endsection
+
 
