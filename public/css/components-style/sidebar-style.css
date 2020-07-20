@@ -19,8 +19,9 @@
 }
 
 .menu_list ul {
-    padding: 10px 0px;
+    padding: 0;
     list-style: none;
+    margin-top: 10px;
 }
 
 .menu_list li {
@@ -49,6 +50,7 @@
 
 ul.child_list {
     padding-bottom: 0;
+    background: #1c26316b;
 }
 
 .left_sidebar .material-icons { font-size: 18px; margin-right: 5px; }
