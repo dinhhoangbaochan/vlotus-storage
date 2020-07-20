@@ -35,12 +35,12 @@ class OrderController extends Controller
         {
             $query = $request->get('input');
             $data = DB::table('products')
-            ->where('product_name', 'LIKE', "%{$query}%")
+            ->where('name', 'LIKE', "%{$query}%")
             ->get();
             $output = '';
             foreach($data as $row)
             {
-               $output .= '<a href="" class="dropdown-item" data-id="' .$row->id. '" >' . $row->product_name . '</a>';
+               $output .= '<a href="" class="dropdown-item" data-id="' .$row->id. '" >' . $row->name . '</a>';
            }
            $output .= '';
            echo $output;
@@ -63,8 +63,8 @@ class OrderController extends Controller
     		foreach ($find_product as $product) {
     			$response_array = array(
     				'id'		=>		$product->id,
-    				'name'		=>		$product->product_name,
-    				'sku'		=>		$product->product_sku,
+    				'name'		=>		$product->name,
+    				'sku'		=>		$product->sku,
     			);
     		}
 

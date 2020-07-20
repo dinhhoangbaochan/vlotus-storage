@@ -10,7 +10,7 @@ $(document).ready(function() {
         	var getInput = $(this).val();
 
             $.ajax({
-                url: "http://laravel-storage/search-product",
+                url: "/search-product",
                 method: "GET",
                 data: { input: getInput, },
                 success: function(res) {
@@ -18,7 +18,7 @@ $(document).ready(function() {
                     $("#findProductList").html(res);
                 },
                 error: function(err) {
-                    console.log(err);
+                    console.log(err);   
                 }
             });
         } 
