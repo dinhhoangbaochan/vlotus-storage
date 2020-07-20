@@ -91,20 +91,23 @@
                   
                   <div class="product_info d-flex justify-content-around">
 
-                     {{Form::hidden('_method', 'PUT')}}
-                     {{Form::submit('Sửa sản phẩm', ['name' => 'submit_product', 'class' => 'update_btn'])}}
                      
-                     <a class="update_btn" href="">Cập nhật</a>
-                     <a class="delete_btn" href="">Xoá</a>
+                     {{-- {{Form::submit('Sửa sản phẩm', ['name' => 'submit_product', 'class' => 'update_btn'])}} --}}
+                     {{Form::hidden('_method', 'PUT')}}
+                     <button type="submit" class="update_btn">Cập nhật</button>
+                     {{-- <a class="delete_btn" href="">Xoá</a> --}}
+                     {!! Form::open( ['action' => ['ProductsController@destroy', $products->id], 'method' => 'POST']) !!}
+                        {{ Form::hidden('_method', 'DELETE') }}
+                        {{ Form::submit('Xoá sản phẩm', ['class' => 'btn btn-danger']) }}  
+                     {!! Form::close() !!}
 
                   </div>
 
                   <div class="product_info">
-                     
-                     <h3>Danh mục sản phẩm</h3>
 
                      <div class="product_meta">
-
+                        
+                        <label for="selectBrand">Chỉnh sửa danh mục</label>
 
                         <input type="hidden" id="current_cate" name="current_cate" value="{{ $products->cate }}">
 
@@ -129,13 +132,10 @@
 
                      </div>
 
-                  </div>
-
-                  <div class="product_info">
                      
-                     <h3>Thương hiệu sản phẩm</h3>
-
                      <div class="product_meta">
+
+                        <label for="selectBrand">Chỉnh sửa thương hiệu</label>
 
                         @foreach( $list_brand as $brand )
                            <div class="each_el">
@@ -158,7 +158,9 @@
 
                      </div>
 
+
                   </div>
+
 
                   <div class="product_info">
                      <img src="../../uploaded/{{$products->product_image}}" alt="">
@@ -171,7 +173,7 @@
 
          {!! Form::close() !!}
 
-			<div class="product_info">
+			{{-- <div class="product_info">
 				{!! Form::open([ 'action' => ['ProductsController@update', $products->id], 'method' => 'POST', ]) !!}
 
                <div class="row">
@@ -260,7 +262,7 @@
 
 
 
-			</div>
+			</div> --}}
 
 		</div>
 	</div>

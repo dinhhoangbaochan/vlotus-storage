@@ -23,7 +23,6 @@ Route::resource('posts','PostsController');
 
 // Products route
 Route::resource('products', 'ProductsController');
-
 // Authentication Route
 Auth::routes();
 
