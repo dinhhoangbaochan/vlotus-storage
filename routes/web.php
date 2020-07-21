@@ -30,7 +30,6 @@ Auth::routes();
 Route::get('product-category/delete/{id}', 'ProductCategoryController@destroy');
 Route::get('product-category/{id}', 'ProductCategoryController@customUpdate');
 Route::resource('product-category', 'ProductCategoryController');
-Route::delete('products/xoa/{id}', 'ProductController@deleteProduct');
 
 // Product Brand Route
 Route::get('product-brand/delete/{id}', 'ProductBrandController@destroy');
@@ -61,3 +60,9 @@ Route::get('orders', 'OrderController@allOrder');
 Route::get('orders/create', 'OrderController@create');
 Route::get('search-product', 'OrderController@search');
 Route::get('get-selected-product', 'OrderController@findProduct');
+Route::match(['put','patch'], 'order/create', 'OrderController@store');
+
+// Storage 
+Route::get('storage', 'StorageController@viewAll');
+Route::get('storage/create', 'StorageController@create');
+Route::post('storage/create', 'StorageController@store');

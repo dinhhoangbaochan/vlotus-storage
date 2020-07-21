@@ -15,15 +15,27 @@
             @include('inc.navbar')
 
             <div class="main_content">
-                <form id="findProducts">
+                {!! Form::open([ 'action' => 'OrderController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
 
-                    <div class="dropdown">
-                        <input type="text" class="w-100" id="look_for_product" name="findProducts" value="" placeholder="Nhập tên sản phẩm cần thêm vào đơn hàng">
-                        <div id="findProductList" class="dropdown-menu" aria-labelledby="">
+                    <div class="row">
+                        
+                        <div class="col-8">
+                            
+                            <div class="product_info">
+                                <div class="dropdown">
+                                    <input type="text" class="w-100" id="look_for_product" name="findProducts" value="" placeholder="Nhập tên sản phẩm cần thêm vào đơn hàng">
+                                    <div id="findProductList" class="dropdown-menu" aria-labelledby="">
+                                    </div>
+                                </div>   
+                            </div>
+
                         </div>
+
                     </div>
 
-                </form>
+                    
+
+                {!! Form::close() !!}
 
                 <div id="whereToPrint" class="selectedProduct">
                     <h2>Các sản phẩm bạn đã chọn cho đơn hàng</h2>

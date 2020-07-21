@@ -78,4 +78,11 @@ class OrderController extends Controller
     	
     } 
 
+
+    // Order store
+    function store()
+    {
+        return "Hello";
+    }
+
 }
