@@ -30,6 +30,7 @@ Auth::routes();
 Route::get('product-category/delete/{id}', 'ProductCategoryController@destroy');
 Route::get('product-category/{id}', 'ProductCategoryController@customUpdate');
 Route::resource('product-category', 'ProductCategoryController');
+Route::delete('products/xoa/{id}', 'ProductController@deleteProduct');
 
 // Product Brand Route
 Route::get('product-brand/delete/{id}', 'ProductBrandController@destroy');

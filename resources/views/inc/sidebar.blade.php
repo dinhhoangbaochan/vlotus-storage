@@ -7,7 +7,7 @@
 			<ul>
 				<li><a href="/dashboard"><span class="material-icons">home</span>Dashboard</a></li>
 				<li>
-					<a href="/orders">Đơn hàng</a>
+					<a href="/orders"><span class="material-icons">assignment</span>Đơn hàng</a>
 					<ul class="child_list">
 						<li><a href="/orders/create">Tạo đơn hàng</a></li>
 					</ul>
@@ -15,7 +15,7 @@
 				</li>
 				
 				<li>
-					<a href="/products">Kho hàng</a>
+					<a href="/products"><span class="material-icons">backup</span>Kho hàng</a>
 					<ul class="child_list">
 						<li><a href="/products">Tất cả sản phẩm</a></li>
 						<li><a href="/products/create">Đăng sản phẩm</a></li>

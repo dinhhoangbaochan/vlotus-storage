@@ -95,11 +95,27 @@
                      {{-- {{Form::submit('Sửa sản phẩm', ['name' => 'submit_product', 'class' => 'update_btn'])}} --}}
                      {{Form::hidden('_method', 'PUT')}}
                      <button type="submit" class="update_btn">Cập nhật</button>
-                     {{-- <a class="delete_btn" href="">Xoá</a> --}}
-                     {!! Form::open( ['action' => ['ProductsController@destroy', $products->id], 'method' => 'POST']) !!}
+                     <a class="delete_btn" data-toggle="modal" href="#delete_modal">Xoá</a>
+<!-- Modal -->
+<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="delete_modal" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Alert!!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            ...
+         </div>
+      </div>
+   </div>
+</div>
+                     {{-- {!! Form::open( ['action' => ['ProductsController@destroy', $products->id], 'method' => 'POST']) !!}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Xoá sản phẩm', ['class' => 'btn btn-danger']) }}  
-                     {!! Form::close() !!}
+                     {!! Form::close() !!} --}}
 
                   </div>
 
