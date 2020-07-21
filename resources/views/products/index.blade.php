@@ -12,8 +12,8 @@
 
 	<div class="col-10 p-0">
 
-		@include('inc.message')
 		@include('inc.navbar')
+		@include('inc.message')
 
 		<div class="container pt-4">
 			<div class="action_box d-flex align-items-center justify-content-between">

@@ -21,7 +21,7 @@
 			<a href="/products" class="return_url">< Quay lại danh sách sản phẩm</a>
 			<h2 class="main_content__title">Nhập sản phẩm mới</h2>
 
-         {!! Form::open([ 'action' => ['ProductsController@update', $products->id], 'method' => 'POST', ]) !!}
+         {!! Form::open([ 'action' => ['ProductsController@update', $products->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
          
             <div class="row">
                
@@ -96,22 +96,7 @@
                      {{Form::hidden('_method', 'PUT')}}
                      <button type="submit" class="update_btn">Cập nhật</button>
                      <a class="delete_btn" data-toggle="modal" href="#delete_modal">Xoá</a>
-<!-- Modal -->
-<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="delete_modal" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Alert!!!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body">
-            ...
-         </div>
-      </div>
-   </div>
-</div>
+
                      {{-- {!! Form::open( ['action' => ['ProductsController@destroy', $products->id], 'method' => 'POST']) !!}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Xoá sản phẩm', ['class' => 'btn btn-danger']) }}  
@@ -121,9 +106,9 @@
 
                   <div class="product_info">
 
+                     <label for="selectBrand" class="title-label">Chỉnh sửa danh mục</label>
+
                      <div class="product_meta">
-                        
-                        <label for="selectBrand">Chỉnh sửa danh mục</label>
 
                         <input type="hidden" id="current_cate" name="current_cate" value="{{ $products->cate }}">
 
@@ -148,10 +133,11 @@
 
                      </div>
 
-                     
-                     <div class="product_meta">
+                     <div class="gap-1"></div>
 
-                        <label for="selectBrand">Chỉnh sửa thương hiệu</label>
+                     <label for="selectBrand" class="title-label">Chỉnh sửa thương hiệu</label>
+
+                     <div class="product_meta">
 
                         @foreach( $list_brand as $brand )
                            <div class="each_el">
@@ -178,9 +164,10 @@
                   </div>
 
 
-                  <div class="product_info">
-                     <img src="../../uploaded/{{$products->product_image}}" alt="">
-                  </div>
+               <div class="product_info text-center">
+                  <input type="file" placeholder="Upload" class="upload_img" name="product_thumbnail">
+                  <img src="../../uploaded/{{$products->product_image}}" class="img_preview">
+               </div>
 
                </div>
 
@@ -188,6 +175,33 @@
             </div>
 
          {!! Form::close() !!}
+
+
+         <!-- Delete Modal -->
+         <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="delete_modal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+
+                  {!! Form::open( ['action' => ['ProductsController@destroy', $products->id], 'method' => 'POST', 'class' => 'm-0']) !!}
+                  
+               
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Alert!!!</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     Bạn có chắc muốn xóa sản phẩm này? Hành động này không thể khôi phục.
+                  </div>
+                  <div class="modal-footer">
+                     {{ Form::hidden('_method', 'DELETE') }}
+                  {{ Form::submit('Xoá sản phẩm', ['class' => 'btn btn-danger']) }}  
+                  </div>
+                  {!! Form::close() !!}
+               </div>
+            </div>
+         </div>
 
 			{{-- <div class="product_info">
 				{!! Form::open([ 'action' => ['ProductsController@update', $products->id], 'method' => 'POST', ]) !!}

@@ -9,6 +9,10 @@ textarea { width: 100%; }
 
 img { width: 100% }
 
+.gap-1 {
+  height: 1rem;
+}
+
 body { 
     background-color:#f2f7fb;
     font-family: "Quicksand", sans-serif;
@@ -239,4 +243,27 @@ a.delete_btn {
 .img_preview {
     margin-top: 10px;
     border: 1px solid #c6c6c68a;
+}
+
+.product_meta {
+    min-height: 42px;
+    max-height: 200px;
+    overflow: auto;
+    padding: 10px;
+    border: solid 1px #ddd;
+    background-color: #fdfdfd;
+}
+
+.product_meta label {
+    font-size: 13px;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    padding: 3px 0px;
+}
+
+.each_el .radio input {
+    margin-right: 6px;
 }
