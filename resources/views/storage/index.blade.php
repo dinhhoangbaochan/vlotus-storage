@@ -21,11 +21,11 @@
 				<a href="/storage/create" class="btn btn-outline-dark">Thêm kho +</a>
 			</div>
 
-			<div class="row">
+			<div class="row justify-content-center">
 				@if ( count($storage) )
 
 					@foreach ( $storage as $value )
-						<div class="col-6">
+						<div class="col-4">
 							<div class="storage_info">
 								<span class="material-icons">unarchive</span>
 								<h3>{{ $value->location }}</h3>
@@ -49,14 +49,24 @@
 <style>
 	
 .storage_info {
-    /* border: 1px solid black; */
     background-color: #fff;
     box-shadow: 2px 3px 6px #c7c7c79e;
-    padding: 10px;
+    padding: 40px 10px;
     text-align: center;
     border-radius: 8px;
 }
 
+.storage_info h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: capitalize;
+}
 
+.storage_info .material-icons {
+    font-size: 40px;
+    color: #b80000;
+    margin-bottom: 1rem;
+}
 
 </style>

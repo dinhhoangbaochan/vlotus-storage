@@ -25,6 +25,7 @@
                                 <div class="dropdown">
                                     <input type="text" class="w-100" id="look_for_product" name="findProducts" value="" placeholder="Nhập tên sản phẩm cần thêm vào đơn hàng">
                                     <div id="findProductList" class="dropdown-menu" aria-labelledby="">
+                                        
                                     </div>
                                 </div>   
                             </div>
