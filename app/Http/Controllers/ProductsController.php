@@ -31,7 +31,7 @@ class ProductsController extends Controller
     {
         // Get products by update_at ( newest products ), get only 2 products
         // $products = Products::orderBy('updated_at','desc')->take(2)->get();
-        $products = Products::orderBy('updated_at','desc')->paginate(10);
+        $products = Products::paginate(10);
         return view('products.index')->with('products', $products);
     }
 
