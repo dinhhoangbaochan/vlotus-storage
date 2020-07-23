@@ -18,7 +18,7 @@
 					<a href="/products"><span class="material-icons">backup</span>Kho hàng</a>
 					<ul class="child_list">
 						<li><a href="/products">Quản lý sản phẩm</a></li>
-						<li><a href="/storage">Quản lý kho</a></li>
+						{{-- <li><a href="/storage">Quản lý kho</a></li> --}}
 						<li><a href="/product-category">Quản lý danh mục</a></li>
 						<li><a href="/product-brand">Quản lý thương hiệu</a></li>
 					</ul>

@@ -65,6 +65,7 @@ class OrderController extends Controller
     				'id'		=>		$product->id,
     				'name'		=>		$product->name,
     				'sku'		=>		$product->sku,
+                    'img'       =>      $product->product_image,
     			);
     		}
 
@@ -80,9 +81,30 @@ class OrderController extends Controller
 
 
     // Order store
-    function store()
-    {
-        return "Hello";
+    function store(Request $request)
+    {   
+        $qty = $request->qty;
+
+        foreach ($qty as $id => $amount) {
+            $product = Products::find($id);
+            $product->tmp_exp = (int)$amount; 
+            $product->save();
+        }
+        
+        $location = $request->location;
+        $productsInOrder = serialize($request->products);
+        $orderCode = $request->orderCode;
+        $deadline = $request->deadline;
+
+        $order = new Order;
+        $order->code = $orderCode;
+        $order->location = $location;
+        $order->products = $productsInOrder;
+        $order->status = "wait";
+        $order->deadline = $deadline;
+
+        $order->save();
+
     }
 
 }

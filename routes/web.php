@@ -60,7 +60,8 @@ Route::get('orders', 'OrderController@allOrder');
 Route::get('orders/create', 'OrderController@create');
 Route::get('search-product', 'OrderController@search');
 Route::get('get-selected-product', 'OrderController@findProduct');
-Route::match(['put','patch'], 'order/create', 'OrderController@store');
+// Route::match(['put','patch'], 'order/create', 'OrderController@store');
+Route::post('orders/create', 'OrderController@store');
 
 // Storage 
 Route::get('storage', 'StorageController@viewAll');
