@@ -19,7 +19,8 @@ class OrderController extends Controller
     // Render all orders page
     public function allOrder()
     {
-    	return view('order.all_order');
+        $order = Order::all();
+    	return view('order.all_order')->with('order', $order);
     }
 
     // Create order
@@ -104,6 +105,8 @@ class OrderController extends Controller
         $order->deadline = $deadline;
 
         $order->save();
+
+        return response()->json(['url' => url('/orders')]);
 
     }
 

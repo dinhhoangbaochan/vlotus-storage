@@ -102,8 +102,6 @@ $(document).ready(function() {
         });
 
         $("#createOrderSubmit").click(function(event) {
-            event.preventDefault();
-
             var formData = $('#formTwo').serializeArray(),
             rs = objToJson(formData);
 
@@ -124,10 +122,10 @@ $(document).ready(function() {
                 dataType: "json",
                 data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
                 success: function(res) {
-                    console.log(res);
+                    window.location=res.url;               
                 },
                 error: function(res) {
-                    console.log(res.responseText);                    
+                    console.log(res);                    
                 }
             });
 

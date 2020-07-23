@@ -13,9 +13,21 @@
         <div class="col-10 p-0">
 
             @include('inc.navbar')
+            @include('inc.message')
 
             <div class="main_content">
                 <h1>List of All Orders</h1>
+                <ul>
+                @if( count($order) > 0 )
+
+                    @foreach( $order as $value ) 
+                     <li>Mã: {{ $value->code }}</li>   
+                    @endforeach
+
+                @else 
+
+                @endif
+                </ul>
             </div>
 
         </div>
