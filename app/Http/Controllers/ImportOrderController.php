@@ -89,7 +89,7 @@ class ImportOrderController extends Controller
 
         foreach ($qty as $id => $amount) {
             $product = Products::find($id);
-            $product->tmp_exp = (int)$amount; 
+            $product->tmp_imp = (int)$amount; 
             $product->save();
         }
         
@@ -116,6 +116,13 @@ class ImportOrderController extends Controller
     function allImport() {
         $importOrder = ImportOrder::all();
         return view('order.all_import')->with( 'importOrder', $importOrder );
+    }
+
+
+    // Single order controller
+    function single($id) {
+        $currentImportOrder = ImportOrder::find($id);
+        return view('order.import.single')->with( 'thisOrder', $currentImportOrder );
     }
 
 }
