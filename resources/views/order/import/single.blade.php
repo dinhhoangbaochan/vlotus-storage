@@ -20,18 +20,8 @@
                     <div class="row">
                         
                         <div class="col-8">
-
-                            <form id="formOne">
-                                <div class="product_info">
-                                    <div class="dropdown">
-                                        <input type="text" class="w-100" id="look_for_product" name="findProducts" value="" placeholder="Nhập tên sản phẩm cần thêm vào đơn hàng">
-                                        <div id="findProductList" class="dropdown-menu" aria-labelledby="">
-                                        </div>
-                                    </div>   
-                                    
-
-                                </div>
-                            </form>
+                        
+                        <h2>Thông tin đơn hàng mã {{$currentImportOrder->code}}</h2>
                         
                         <form id="formTwo">
                             <table class="lotus_table">
@@ -56,7 +46,7 @@
                                             <td><img src="/uploaded/{{ $pio->product_image }}" alt=""></td>
                                             <td>{{ $pio->name }}</td>
                                             <td>{{ $pio->sku }}</td>
-                                            <td><input type="number" value="{{ $pio->tmp_imp }}"></td>
+                                            <td>{{ $pio->tmp_imp }}</td>
                                         </tr>
 
                                         {{-- <li>{{$Products::find($value)}}</li> --}}
@@ -66,13 +56,24 @@
                             </table>
                         </form>
 
-
-                        <input type="submit" value="Tạo đơn hàng" id="createOrderSubmit">
-
                         </div>
 
                         <div class="col-4">
+
                             <div class="product_info">
+                                <div class="status">
+                                    <span class="s_label">Trạng thái:</span> 
+                                    
+                                    <span class="s_text">
+                                        @if ( $currentImportOrder->status == "wait" )
+                                            Chờ duyệt
+                                        @else 
+                                            Đang giao
+                                        @endif
+                                    </span>
+                                    
+                                    
+                                </div>
                                 <div class="form-group">
                                     <label for="">Mã đơn hàng</label>
                                     <input type="text" name="order_code" id="order_code" class="form-control" value="">
