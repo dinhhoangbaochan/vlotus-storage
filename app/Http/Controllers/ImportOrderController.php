@@ -7,7 +7,6 @@ use App\ImportOrder;
 use App\Products;
 use DB;
 
-
 class ImportOrderController extends Controller
 {
     // Authentication 
@@ -94,7 +93,7 @@ class ImportOrderController extends Controller
         }
         
         $location = $request->location;
-        $productsInOrder = serialize($request->products);
+        $productsInOrder = json_encode($request->products);
         $orderCode = $request->orderCode;
         $deadline = $request->deadline;
 
@@ -122,7 +121,16 @@ class ImportOrderController extends Controller
     // Single order controller
     function single($id) {
         $currentImportOrder = ImportOrder::find($id);
-        return view('order.import.single')->with( 'thisOrder', $currentImportOrder );
+        $orderProducts = json_decode( $currentImportOrder->products );
+        $Products = new Products;
+
+        $data = array(
+            'currentImportOrder'    =>  $currentImportOrder,
+            'orderProducts'         =>  $orderProducts,
+            'Products'              =>  $Products,
+        );
+
+        return view('order.import.single')->with( $data );
     }
 
 }

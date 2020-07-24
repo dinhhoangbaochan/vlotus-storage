@@ -46,7 +46,20 @@
                                 </thead>
 
                                 <tbody class="LT_body">
-                                    <tr></tr>
+
+                                    
+
+                                    @foreach( $orderProducts as $value )
+                                        
+                                        <?php $pio = $Products::find($value) ?>
+
+                                        <tr>
+                                            <td><img src="/uploaded/{{ $pio->product_image }}" alt=""></td>
+                                            <td>{{ $pio->name }}</td>
+                                        </tr>
+
+                                        {{-- <li>{{$Products::find($value)}}</li> --}}
+                                    @endforeach
                                 </tbody>
 
                             </table>
@@ -61,7 +74,7 @@
                             <div class="product_info">
                                 <div class="form-group">
                                     <label for="">Mã đơn hàng</label>
-                                    <input type="text" name="order_code" id="order_code" class="form-control" value="{{ $thisOrder->code }}">
+                                    <input type="text" name="order_code" id="order_code" class="form-control" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="storage_location">Chọn chi nhánh</label>
