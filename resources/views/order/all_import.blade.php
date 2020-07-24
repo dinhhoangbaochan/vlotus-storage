@@ -39,7 +39,7 @@
 
                             @foreach( $importOrder as $import )
                                 <tr>
-                                    <td><a href="/orders/import/{{$import->id}}">{{$import->code}}</a></td>
+                                    <td><a href="/import/{{$import->id}}">{{$import->code}}</a></td>
                                     <td>
                                         @if ( $import->location == 1 )
                                             Kho Nơ Trang Long

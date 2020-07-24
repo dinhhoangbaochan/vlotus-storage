@@ -80,16 +80,16 @@ $(document).ready(function() {
                     for (x in productsOrdered) {
                         // text += productsOrdered[x].name + "<br>";
 
-                        text += "<tr>" + 
+                        text += "<tr class='tt'>" + 
                                 "<td>" + "<img src='../uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                 "<td>" + productsOrdered[x].name + "</td>"  + 
                                 "<td>" + productsOrdered[x].sku + "</td>"  +
-                                "<td>" + productsOrdered[x].price + "</td>" +
                                 "<td>" + "<input type='number' name='" + productsOrdered[x].id + "'>" + "</td>" + 
                                 "<tr>";
                         pio.push(productsOrdered[x].id);
                     };
-                    document.querySelector(".LT_body").innerHTML = text;
+                    // document.querySelector(".LT_body").innerHTML = text;
+                    $(".LT_body").append(text);
 
 
 
