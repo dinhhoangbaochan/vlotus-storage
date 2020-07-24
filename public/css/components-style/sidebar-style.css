@@ -6,6 +6,7 @@
     height: 100vh;
     background-color: #263544;
     color: #fff;
+    overflow:  auto;
 }
 
 .logo {

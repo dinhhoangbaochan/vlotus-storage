@@ -5,6 +5,28 @@
 		</div>
 		<div class="menu_list">
 			<ul>
+				
+				<li><a href="/users">Quản lý User</a></li>
+				<li><a href="">Quản lý vận đơn</a></li> <!-- đơn hàng vận chuyển ra ngoài -->
+				<li>
+					<a href="/storage">Quản lý kho</a>
+					<ul class="child_list">
+						<li><a href="/products">Quản lý sản phẩm</a></li>
+						<li><a href="/product-category">Quản lý danh mục</a></li>
+						<li><a href="/product-brand">Quản lý thương hiệu</a></li>
+						<li><a href="/orders">Quản lý nhập hàng</a></li>
+						<li><a href="">Quản lý xuất hàng</a></li>
+						<li><a href="">Quản lý hạn sử dụng</a></li>
+						<li><a href="">Quản lý xuất chuyển kho</a></li>
+						<li><a href="">Quản lý đổi trả</a></li>
+					</ul>
+				</li>
+
+				<li><a href="/report">Report</a></li>
+				<li><a href="">Notification</a></li>
+
+
+
 				<li><a href="/dashboard"><span class="material-icons">home</span>Dashboard</a></li>
 				<li>
 					<a href="/orders"><span class="material-icons">assignment</span>Đơn hàng</a>
