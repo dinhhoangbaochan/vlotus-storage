@@ -40,7 +40,6 @@
                                         <th rowspan="1" colspan="1" style="width:100px">Image</th>
                                         <th rowspan="1" colspan="1">Sản phẩm</th>
                                         <th rospan="1" colspan="1">SKU</th>
-                                        <th rowspan="1" colspan="1">Giá</th>
                                         <th rowspan="1" colspan="1">Số lượng</th>
                                     </tr>
                                 </thead>
@@ -56,6 +55,8 @@
                                         <tr>
                                             <td><img src="/uploaded/{{ $pio->product_image }}" alt=""></td>
                                             <td>{{ $pio->name }}</td>
+                                            <td>{{ $pio->sku }}</td>
+                                            <td><input type="number" value="{{ $pio->tmp_imp }}"></td>
                                         </tr>
 
                                         {{-- <li>{{$Products::find($value)}}</li> --}}
