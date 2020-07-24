@@ -16,7 +16,14 @@
             @include('inc.message')
 
             <div class="main_content">
+
+                <div class="action_box d-flex align-items-center justify-content-between">
+                    <h2 class="main_content__title">Đơn hàng nhập kho</h2>
+                    <a href="/products/create" class="btn btn-outline-dark">Tạo đơn nhập +</a>
+                </div>
+
                 <ul>
+
                 @if( count( $importOrder ) > 0 )
 
                     @foreach( $importOrder as $import )
