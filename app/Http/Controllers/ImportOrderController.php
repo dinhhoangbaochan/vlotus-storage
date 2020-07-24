@@ -133,4 +133,16 @@ class ImportOrderController extends Controller
         return view('order.import.single')->with( $data );
     }
 
+    // Approve Order
+    function approve($id) {
+
+        $order = ImportOrder::find($id);
+
+        $order->status = "approve";
+        $order->save();
+
+        return redirect('import/' . $id)->with('success', 'Trạng thái đơn hàng đã chuyển sang duyệt');
+
+    }
+
 }

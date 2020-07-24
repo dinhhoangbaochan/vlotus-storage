@@ -13,6 +13,7 @@
         <div class="col-10 p-0">
 
             @include('inc.navbar')
+            @include('inc.message')
 
             <div class="main_content">
                 <input type="hidden" value name="productsInOrder" id="pio">
@@ -58,8 +59,23 @@
 
                         <div class="product_info">
                             <div class="do_action">
+
+                                @if( $currentImportOrder->status == "wait" )
+
                                 <h4>Duyệt và vận chuyển?</h4>
                                 <a href="{{ url('import/approve-order/'. $currentImportOrder->id) }}">Xác nhận</a>
+
+                                @elseif ( $currentImportOrder->status == "approve" )
+                                    
+                                    <h4>Xác nhận hoàn tất?</h4>
+                                    <a href="{{ url('import/approve-order/'. $currentImportOrder->id) }}">Hoàn tất</a>
+
+                                @else 
+
+                                    <h4>Đơn hàng này đã hoàn tất.</h4>
+
+                                @endif
+
                             </div>
                         </div>
 
