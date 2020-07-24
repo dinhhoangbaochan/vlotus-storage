@@ -67,6 +67,7 @@ class ImportOrderController extends Controller
     				'name'		=>		$product->name,
     				'sku'		=>		$product->sku,
                     'img'       =>      $product->product_image,
+                    'price'     =>      $product->price,
     			);
     		}
 

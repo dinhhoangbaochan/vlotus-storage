@@ -19,7 +19,7 @@
 
                 <div class="action_box d-flex align-items-center justify-content-between">
                     <h2 class="main_content__title">Đơn hàng nhập kho</h2>
-                    <a href="/products/create" class="btn btn-outline-dark">Tạo đơn nhập +</a>
+                    <a href="/orders/create-import" class="btn btn-outline-dark">Tạo đơn nhập +</a>
                 </div>
 
                 <ul>

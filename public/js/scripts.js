@@ -84,6 +84,7 @@ $(document).ready(function() {
                                 "<td>" + "<img src='../uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                 "<td>" + productsOrdered[x].name + "</td>"  + 
                                 "<td>" + productsOrdered[x].sku + "</td>"  +
+                                "<td>" + productsOrdered[x].price + "</td>" +
                                 "<td>" + "<input type='number' name='" + productsOrdered[x].id + "'>" + "</td>" + 
                                 "<tr>";
                         pio.push(productsOrdered[x].id);
