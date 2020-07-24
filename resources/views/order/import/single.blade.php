@@ -56,6 +56,13 @@
                             </table>
                         </form>
 
+                        <div class="product_info">
+                            <div class="do_action">
+                                <h4>Duyệt và vận chuyển?</h4>
+                                <input type="button" value="Xác Nhận">
+                            </div>
+                        </div>
+
                         </div>
 
                         <div class="col-4">
@@ -64,7 +71,7 @@
                                 <div class="status">
                                     <span class="s_label">Trạng thái:</span> 
                                     
-                                    <span class="s_text">
+                                    <span class="s_text float-right">
                                         @if ( $currentImportOrder->status == "wait" )
                                             Chờ duyệt
                                         @else 
@@ -74,23 +81,37 @@
                                     
                                     
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Mã đơn hàng</label>
-                                    <input type="text" name="order_code" id="order_code" class="form-control" value="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="storage_location">Chọn chi nhánh</label>
-                                    <select class="form-control" id="storage_location">
-                                        <option value="1">Nơ Trang Long</option>
-                                        <option value="2">Tân Tạo</option>
-                                    </select>
+
+                                <div class="location">
+                                    Nhập về kho <b>
+                                        @if( $currentImportOrder->location == 1 )
+                                            Nơ Trang Long
+                                        @else 
+                                            Tân Tạo
+                                        @endif
+                                        </b>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="deadline_date">Ngày hẹn giao</label>
-                                    {{Form::date('deadline', \Carbon\Carbon::now(), ['class' => 'form-control'])}}
+                                <div class="order_meta">
+                                    <div class="each_info">
+                                        Mã đơn hàng: {{ $currentImportOrder->code }}
+                                    </div>
+                                    <div class="each_info">
+                                        Ngày hẹn giao: {{ $currentImportOrder->deadline }}
+                                    </div>
+                                    <div class="each_info">
+                                        Nhân viên tạo đơn: Đinh Hoàng Bảo Chấn
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="product_info">
+                                <div class="each_info">
+                                    <h4>Ghi chú</h4>
+                                    <p>Không có</p>
+                                </div>
+                            </div>
+
                         </div>
     
 
