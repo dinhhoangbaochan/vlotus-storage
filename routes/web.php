@@ -67,6 +67,7 @@ Route::get('orders/import', 'ImportOrderController@allImport');
 Route::get('orders/create-import', 'ImportOrderController@createImport');
 Route::post('orders/create-import', 'ImportOrderController@storeImport');
 Route::get('/import/{id}', 'ImportOrderController@single');
+Route::get('import/approve-order/{id}', 'ImportOrderController@approve');
 
 // Storage 
 Route::get('storage', 'StorageController@viewAll');

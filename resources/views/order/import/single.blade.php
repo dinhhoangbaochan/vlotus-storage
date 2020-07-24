@@ -59,7 +59,7 @@
                         <div class="product_info">
                             <div class="do_action">
                                 <h4>Duyệt và vận chuyển?</h4>
-                                <input type="button" value="Xác Nhận">
+                                <a href="{{ url('import/approve-order/'. $currentImportOrder->id) }}">Xác nhận</a>
                             </div>
                         </div>
 
