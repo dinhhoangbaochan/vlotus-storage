@@ -16,18 +16,7 @@
             @include('inc.message')
 
             <div class="main_content">
-                <h1>Danh sách đơn nhập hàng</h1>
-                <ul>
-                @if( count($order) > 0 )
-
-                    @foreach( $order as $value ) 
-                     <li>Mã: {{ $value->code }}</li>   
-                    @endforeach
-
-                @else 
-
-                @endif
-                </ul>
+                <h2>Chưa có đơn nhập hàng</h2>
             </div>
 
         </div>
