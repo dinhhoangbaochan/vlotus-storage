@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Order;
+use App\ImportOrder;
 use App\Products;
 use DB;
 
 
-class OrderController extends Controller
+class ImportOrderController extends Controller
 {
     // Authentication 
     // public function __construct()
@@ -97,7 +97,7 @@ class OrderController extends Controller
         $orderCode = $request->orderCode;
         $deadline = $request->deadline;
 
-        $order = new Order;
+        $order = new ImportOrder;
         $order->code = $orderCode;
         $order->location = $location;
         $order->products = $productsInOrder;
@@ -106,14 +106,15 @@ class OrderController extends Controller
 
         $order->save();
 
-        return response()->json(['url' => url('/orders')]);
+        return response()->json(['url' => url('orders/import')]);
 
     }
 
 
     // View all import orders
     function allImport() {
-        return view('order.all_import');
+        $importOrder = ImportOrder::all();
+        return view('order.all_import')->with( 'importOrder', $importOrder );
     }
 
 }

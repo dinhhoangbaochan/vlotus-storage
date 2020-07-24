@@ -59,13 +59,13 @@ Route::match(['put', 'patch'],'users/{id}', 'UsersController@update');
  * ORDERS ROUTE
  * All Orders Routes
  */
-Route::get('orders', 'OrderController@allOrder');
-Route::get('search-product', 'OrderController@search');
-Route::get('get-selected-product', 'OrderController@findProduct');
+Route::get('orders', 'ImportOrderController@allOrder');
+Route::get('search-product', 'ImportOrderController@search');
+Route::get('get-selected-product', 'ImportOrderController@findProduct');
 
-Route::get('orders/import', 'OrderController@allImport');
-Route::get('orders/create-import', 'OrderController@createImport');
-Route::post('orders/create', 'OrderController@storeImport');
+Route::get('orders/import', 'ImportOrderController@allImport');
+Route::get('orders/create-import', 'ImportOrderController@createImport');
+Route::post('orders/create-import', 'ImportOrderController@storeImport');
 
 // Storage 
 Route::get('storage', 'StorageController@viewAll');

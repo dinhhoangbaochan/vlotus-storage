@@ -16,7 +16,18 @@
             @include('inc.message')
 
             <div class="main_content">
-                <h2>Chưa có đơn nhập hàng</h2>
+                <ul>
+                @if( count( $importOrder ) > 0 )
+
+                    @foreach( $importOrder as $import )
+                        <li>{{ $import->code }}</li>
+                    @endforeach 
+                @else 
+                    <h2>Chưa có đơn nhập hàng</h2>
+                @endif
+
+                </ul>
+                
             </div>
 
         </div>

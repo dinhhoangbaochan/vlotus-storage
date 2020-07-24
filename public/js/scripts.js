@@ -117,7 +117,7 @@ $(document).ready(function() {
             });
 
             $.ajax({
-                url: "/orders/create",
+                url: "/orders/create-import",
                 method: "post",
                 dataType: "json",
                 data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
