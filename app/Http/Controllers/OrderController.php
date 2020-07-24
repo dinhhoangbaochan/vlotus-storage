@@ -24,7 +24,7 @@ class OrderController extends Controller
     }
 
     // Create order
-    public function create()
+    public function createImport()
     {
     	return view('order.create_order');
     }
@@ -81,8 +81,8 @@ class OrderController extends Controller
     } 
 
 
-    // Order store
-    function store(Request $request)
+    // Import Order store
+    function storeImport(Request $request)
     {   
         $qty = $request->qty;
 

@@ -55,13 +55,15 @@ Route::get('users/delete/{id}', 'UsersController@deleteStaff');
 
 Route::match(['put', 'patch'],'users/{id}', 'UsersController@update');
 
-// Orders
+/** 
+ * ORDERS ROUTE
+ * All Orders Routes
+ */
 Route::get('orders', 'OrderController@allOrder');
-Route::get('orders/create', 'OrderController@create');
+Route::get('orders/create-import', 'OrderController@createImport');
 Route::get('search-product', 'OrderController@search');
 Route::get('get-selected-product', 'OrderController@findProduct');
-// Route::match(['put','patch'], 'order/create', 'OrderController@store');
-Route::post('orders/create', 'OrderController@store');
+Route::post('orders/create', 'OrderController@storeImport');
 
 // Storage 
 Route::get('storage', 'StorageController@viewAll');
