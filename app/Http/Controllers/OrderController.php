@@ -110,4 +110,10 @@ class OrderController extends Controller
 
     }
 
+
+    // View all import orders
+    function allImport() {
+        return view('order.all_import');
+    }
+
 }

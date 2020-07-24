@@ -60,9 +60,11 @@ Route::match(['put', 'patch'],'users/{id}', 'UsersController@update');
  * All Orders Routes
  */
 Route::get('orders', 'OrderController@allOrder');
-Route::get('orders/create-import', 'OrderController@createImport');
 Route::get('search-product', 'OrderController@search');
 Route::get('get-selected-product', 'OrderController@findProduct');
+
+Route::get('orders/import', 'OrderController@allImport');
+Route::get('orders/create-import', 'OrderController@createImport');
 Route::post('orders/create', 'OrderController@storeImport');
 
 // Storage 
