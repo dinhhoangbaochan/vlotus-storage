@@ -6,10 +6,10 @@
 		<div class="menu_list">
 			<ul>
 				
-				<li><a href="/users">Quản lý User</a></li>
-				<li><a href="">Quản lý vận đơn</a></li> <!-- đơn hàng vận chuyển ra ngoài -->
+				<li><a href="/users"> <span class="material-icons">group</span>Quản lý User</a></li>
+				<li><a href=""><span class="material-icons">account_tree</span>Quản lý vận đơn</a></li> <!-- đơn hàng vận chuyển ra ngoài -->
 				<li>
-					<a href="/storage">Quản lý kho</a>
+					<a href="/storage"> <span class="material-icons">storefront</span>Quản lý kho</a>
 					<ul class="child_list">
 						<li><a href="/products">Quản lý sản phẩm</a></li>
 						<li><a href="/product-category">Quản lý danh mục</a></li>
@@ -22,31 +22,9 @@
 					</ul>
 				</li>
 
-				<li><a href="/report">Report</a></li>
-				<li><a href="">Notification</a></li>
+				<li><a href="/report"><span class="material-icons">list_alt</span>Report</a></li>
+				<li><a href=""><span class="material-icons">emoji_flags</span>Notification</a></li>
 
-
-
-				<li><a href="/dashboard"><span class="material-icons">home</span>Dashboard</a></li>
-				<li>
-					<a href="/orders"><span class="material-icons">assignment</span>Đơn hàng</a>
-					<ul class="child_list">
-						<li><a href="/orders/create">Tạo đơn hàng</a></li>
-					</ul>
-
-				</li>
-				
-				<li>
-					<a href="/products"><span class="material-icons">backup</span>Kho hàng</a>
-					<ul class="child_list">
-						<li><a href="/products">Quản lý sản phẩm</a></li>
-						{{-- <li><a href="/storage">Quản lý kho</a></li> --}}
-						<li><a href="/product-category">Quản lý danh mục</a></li>
-						<li><a href="/product-brand">Quản lý thương hiệu</a></li>
-					</ul>
-				</li>
-				<li><a href="/report">Báo cáo</a></li>
-				<li><a href="/users">Quản trị viên</a></li>
 			</ul>
 		</div>
 	</aside>
