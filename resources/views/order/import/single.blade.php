@@ -68,7 +68,7 @@
                                 @elseif ( $currentImportOrder->status == "approve" )
                                     
                                     <h4>Xác nhận hoàn tất?</h4>
-                                    <a href="{{ url('import/approve-order/'. $currentImportOrder->id) }}">Hoàn tất</a>
+                                    <a href="{{ url('import/confirm-order/'. $currentImportOrder->id) }}">Hoàn tất</a>
 
                                 @else 
 
