@@ -12,7 +12,8 @@ class ExportOrderController extends Controller
 		return "all Export";
 	}
 
-    public function createExport() {
-    	return view('order.export.create');
+    public function createExport($location_id) {
+    	// return view('order.export.create');
+    	return $location_id;
     }
 }

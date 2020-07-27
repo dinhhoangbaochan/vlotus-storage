@@ -142,4 +142,26 @@ $(document).ready(function() {
       });
 
 
+        // Trigger event
+        $("#exportable_products").keyup(findProductByName);
+
+      // Load products in storage based on storage location 
+        function findExportableProducts(event) {
+            var getInput = $(this).val();
+
+            $.ajax({
+                url: "/load-exportable-product",
+                method: "GET",
+                data: { input: getInput, },
+                success: function(res) {
+                    $("#findProductList").addClass("show");
+                    $("#findProductList").html(res);
+                },
+                error: function(err) {
+                    console.log(err);   
+                }
+            });
+        } 
+
+
 })

@@ -74,7 +74,7 @@ Route::get('import/confirm-order/{id}', 'ImportOrderController@confirm');
  * EXPORT ROUTE
  */
 Route::get('orders/export', 'ExportOrderController@allExport');
-Route::get('orders/create-export/', 'ExportOrderController@createExport');
+Route::get('orders/create-export/location_{location_id}', 'ExportOrderController@createExport');
 
 
 // Storage 
