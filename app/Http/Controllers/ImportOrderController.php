@@ -93,7 +93,7 @@ class ImportOrderController extends Controller
 
         foreach ($qty as $id => $amount) {
 
-            $productsInStorage = ProductsInStorage::where('p_id', '=' , $id);
+            $productsInStorage = ProductsInStorage::where('p_id', '=' , $id)->first();
 
             if ( $productsInStorage === null ) {
                 $newProducts = new ProductsInStorage;
@@ -103,17 +103,18 @@ class ImportOrderController extends Controller
                 $newProducts->location = $location;
 
                 $newProducts->save();
+                $res = "khong ton tai";
+
             } else {
 
                 $productsInStorage->p_id = $id;
-                $productsInStorage->tmp_imp = (int)$amount;
+                $productsInStorage->tmp_imp = $productsInStorage->tmp_imp + (int)$amount;
                 $productsInStorage->location = $location;
 
                 $productsInStorage->save();
+                $res = "ton tai";
 
-            }
-
-            
+            }            
 
         }
 
@@ -127,6 +128,7 @@ class ImportOrderController extends Controller
         $order->save();
 
         return response()->json(['url' => url('orders/import')]);
+        return $res;
 
     }
 
@@ -171,11 +173,16 @@ class ImportOrderController extends Controller
         $order = ImportOrder::find($id);
         $productsInOrder = unserialize($order->products);
 
-        foreach ($productsInOrder as $id => $amount) {
+        foreach ($productsInOrder as $id => $amountInput) {
             $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->first();
 
             $productsInStorage->tmp_imp = null;
-            $productsInStorage->amount = $amount;
+            if ( $productsInStorage->amount ) {
+                $productsInStorage->amount = $productsInStorage->amount + $amountInput;
+            } else {
+                $productsInStorage->amount = $amountInput;
+            }
+            
 
             $productsInStorage->save();
 
