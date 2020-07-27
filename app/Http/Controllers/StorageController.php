@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Storage;
 use App\ProductsInStorage;
+use App\Products;
 
 class StorageController extends Controller
 {
@@ -34,9 +35,12 @@ class StorageController extends Controller
     public function single($id) {
         $storage = Storage::find($id);
         $productsInStorage = ProductsInStorage::where('location', '=', $id)->get();
+        $product = new Products;
 
         $data = array(
             'productsInStorage' =>  $productsInStorage,
+            'product'           =>  $product,
+            'storage'           =>  $storage,
         );
 
         return view('storage.single')->with($data);

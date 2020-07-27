@@ -18,14 +18,14 @@
             <div class="main_content">
 
                 <div class="action_box d-flex align-items-center justify-content-between">
-                    <h2 class="main_content__title">Đơn hàng nhập kho</h2>
+                    <h2 class="main_content__title">{{ $storage->location }}</h2>
                 </div>
 
                 <table class="lotus_table">
                     
                     <thead>
                         <tr>
-                            <th rowspan="1" colspan="1">Mã</th>
+                            <th rowspan="1" colspan="1">Tên sản phẩm</th>
                             <th rowspan="1" colspan="1">Nơi lưu trữ</th>
                             <th rowspan="1" colspan="1">Số lượng chờ nhập</th>
                             <th>Số lượng chờ xuất</th>
@@ -36,25 +36,31 @@
                     <tbody>
                         @if( count( $productsInStorage ) > 0 )
 
-                            @foreach( $productsInStorage as $product )
+                            @foreach( $productsInStorage as $p )
                                 <tr>
-                                    <td>{{$product->p_id}}</td>
+                                    <td>{{ $product::find($p->p_id)->name }}</td>
                                     <td>
-                                    	@if( $product->location == 1 )
+                                    	@if( $p->location == 1 )
                                     		Kho Nơ Trang Long
                                     	@else 
                                     		Kho Tân Tạo
                                     	@endif
                                     </td>
                                     <td>
-										@if ( $product->tmp_imp === null )
+										@if ( $p->tmp_imp === null )
 											Không có
 										@else 
-											{{ $product->tmp_imp }}
+											{{ $p->tmp_imp }}
 										@endif
                                     </td>
-                                    <td>{{ $product->tmp_exp }}</td>
-                                    <td>{{ $product->amount }}</td>
+                                    <td>
+										@if ( $p->tmp_exp === null )
+											Không có
+										@else 
+											{{ $p->tmp_exp }}
+										@endif
+                                    </td>
+                                    <td>{{ $p->amount }}</td>
                                 </tr>
                             @endforeach 
                         @else 
