@@ -70,6 +70,12 @@ Route::get('/import/{id}', 'ImportOrderController@single');
 Route::get('import/approve-order/{id}', 'ImportOrderController@approve');
 Route::get('import/confirm-order/{id}', 'ImportOrderController@confirm');
 
+/**
+ * EXPORT ROUTE
+ */
+Route::get('orders/export', 'ExportOrderController@createExport');
+
+
 // Storage 
 Route::get('storage', 'StorageController@viewAll');
 Route::get('storage/create', 'StorageController@create');
