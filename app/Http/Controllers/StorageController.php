@@ -34,6 +34,11 @@ class StorageController extends Controller
     public function single($id) {
         $storage = Storage::find($id);
         $productsInStorage = ProductsInStorage::where('location', '=', $id)->get();
-        return $productsInStorage;
+
+        $data = array(
+            'productsInStorage' =>  $productsInStorage,
+        );
+
+        return view('storage.single')->with($data);
     }
 }
