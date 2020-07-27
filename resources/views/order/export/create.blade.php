@@ -18,7 +18,7 @@
                 <input type="hidden" value name="productsInOrder" id="pio">
 
                     <div class="row">
-                        
+
                         <div class="col-8">
 
                             <form id="formOne">
