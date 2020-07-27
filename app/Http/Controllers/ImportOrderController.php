@@ -106,7 +106,7 @@ class ImportOrderController extends Controller
         $order = new ImportOrder;
         $order->code = $orderCode;
         $order->location = $location;
-        $order->products = json_encode($qty);
+        $order->products = serialize($qty);
         $order->status = "wait";
         $order->deadline = $deadline;
 
@@ -155,22 +155,22 @@ class ImportOrderController extends Controller
     function confirm($id) {
 
         $order = ImportOrder::find($id);
-        $productsInOrder = unserialize($order->products);
+        $productsInOrder = $order->products;
 
-        foreach ($productsInOrder as $id => $amount) {
-            $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->first();
+        // foreach ($productsInOrder as $id => $amount) {
+        //     $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->first();
 
-            $productsInStorage->tmp_imp = null;
-            $productsInStorage->amount = $amount;
+        //     $productsInStorage->tmp_imp = null;
+        //     $productsInStorage->amount = $amount;
 
-            $productsInStorage->save();
+        //     $productsInStorage->save();
 
-        }
+        // }
 
-        $order->status = "confirm";
-        $order->save();
+        // $order->status = "confirm";
+        // $order->save();
 
-        return redirect('import/' . $id)->with('success', 'Đã hoàn tất nhập hàng');
+        return unserialize($productsInOrder);
 
     }
 
