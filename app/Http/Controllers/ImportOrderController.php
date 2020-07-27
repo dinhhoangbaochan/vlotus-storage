@@ -92,9 +92,6 @@ class ImportOrderController extends Controller
         $deadline = $request->deadline;
 
         foreach ($qty as $id => $amount) {
-            // $product = Products::find($id);
-            // $product->tmp_imp = (int)$amount; 
-            // $product->save();
 
             $productsInStorage = new ProductsInStorage;
 
@@ -151,6 +148,16 @@ class ImportOrderController extends Controller
         $order->save();
 
         return redirect('import/' . $id)->with('success', 'Trạng thái đơn hàng đã chuyển sang duyệt');
+
+    }
+
+    // Confirm order
+    function confirm($id) {
+
+        $order = ImportOrder::find($id);
+        $productsInOrder = json_decode($order->products);
+
+        return print_r($productsInOrder);
 
     }
 
