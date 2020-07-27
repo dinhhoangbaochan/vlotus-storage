@@ -106,7 +106,7 @@ class ImportOrderController extends Controller
         $order = new ImportOrder;
         $order->code = $orderCode;
         $order->location = $location;
-        $order->products = $productsInOrder;
+        $order->products = $rs;
         $order->status = "wait";
         $order->deadline = $deadline;
 
@@ -156,6 +156,14 @@ class ImportOrderController extends Controller
 
         $order = ImportOrder::find($id);
         $productsInOrder = json_decode($order->products);
+
+        // foreach ($productsInOrder as $key => $value) {
+        //     $productsInStorage = ProductsInStorage::where('p_id', '=', $key);
+
+        //     $productsInStorage->tmp_imp = null;
+        //     $productsInStorage
+
+        // }
 
         return print_r($productsInOrder);
 
