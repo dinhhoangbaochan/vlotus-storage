@@ -16,21 +16,23 @@ class ExportOrderController extends Controller
 	}
 
     public function createExport($location_id) {
-    	return view('order.export.create');
+    	return view('order.export.create')->with('location_id', $location_id);
     	// return $location_id;
     	
     }
 
     public function search(Request $request) {
 
-    	$exportable = DB::table('products_in_storage')->where('location', 2)->get();
+    	$exportable = DB::table('products_in_storage')->where('location', 1)->get();
 
     	$output = '';
         foreach($exportable as $row)
         {
-        	$find = Products::where('id', $row->p_id)->get();
+        	$query = $request->get('input');
+        	$find = Products::where('id', $row->p_id)->where('name', 'LIKE', "%{$query}%")->get();
         	foreach ($find as $prd) {
         		$output .= '<a href="" class="dropdown-item" data-id="' .$prd->id. '" >' . $prd->name . '</a>';
+        		
         	}
            
        	}

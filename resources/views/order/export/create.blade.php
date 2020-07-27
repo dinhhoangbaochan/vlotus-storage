@@ -20,7 +20,7 @@
                     <div class="row">
 
                         <div class="col-8">
-
+                        
                             <form id="formOne">
                                 <div class="product_info">
                                     <div class="dropdown">
