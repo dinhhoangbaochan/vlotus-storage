@@ -71,9 +71,9 @@
                         <div class="form-label-group">
                            
                            <select name="unit" id="" class="form-control" style="padding: var(--input-padding-y) var(--input-padding-x)">
-                              <option value="">Hộp</option>
-                              <option value="">Chai</option>
-                              <option value="">Thùng</option>
+                              <option value="s_box">Hộp</option>
+                              <option value="bottle">Chai</option>
+                              <option value="b_box">Thùng</option>
                            </select>
                            
                         </div>

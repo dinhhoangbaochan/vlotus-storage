@@ -64,7 +64,7 @@
                                 </tr>
                             @endforeach 
                         @else 
-                            <h2>Chưa có đơn nhập hàng</h2>
+                            <h2>Kho còn trống</h2>
                         @endif    
                     </tbody>
 

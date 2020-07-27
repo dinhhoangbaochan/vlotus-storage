@@ -19,7 +19,7 @@
 		<div class="main_content">
 			
 			<a href="/products" class="return_url">< Quay lại danh sách sản phẩm</a>
-			<h2 class="main_content__title">Nhập sản phẩm mới</h2>
+			<h2 class="main_content__title">Thông tin sản phẩm</h2>
 
          {!! Form::open([ 'action' => ['ProductsController@update', $products->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
          
@@ -34,35 +34,38 @@
                         <div class="col-12">
                            <div class="form-label-group">
                               <input type="text" id="product_name" class="form-control" value="{{ $products->name }}" name="product_name" autofocus>
-                              <label for="product_name">Sửa tên sản phẩm</label>
+                              <label for="product_name">Tên sản phẩm</label>
                            </div>
                         </div>
 
                         <div class="col-6">
                            <div class="form-label-group">
                               <input type="text" id="product_sku" class="form-control" value="{{ $products->sku }}" name="product_sku" autofocus>
-                              <label for="product_sku">Sửa SKU sản phẩm</label>
+                              <label for="product_sku">Mã sản phẩm (mã kho)</label>
                            </div>
                         </div>
 
                         <div class="col-6">
                            <div class="form-label-group">
                               <input type="text" id="product_code" class="form-control" value="{{$products->code}}" name="product_code" autofocus>
-                              <label for="product_code">Sửa code sản phẩm</label>
+                              <label for="product_code">Mã sản phẩm (mã kế toán)</label>
                            </div>
                         </div>
 
                         <div class="col-6">
                            <div class="form-label-group">
                               <input type="number" id="product_price" class="form-control" value="{{$products->price}}" name="product_price" autofocus>
-                              <label for="product_price">Chỉnh sửa giá</label>
+                              <label for="product_price">Giá sản phẩm</label>
                            </div>
                         </div>
 
                         <div class="col-6">
                            <div class="form-label-group">
-                              <input type="text" id="unit" class="form-control" value="{{ $products->unit }}" name="unit" autofocus>
-                              <label for="unit">Sửa đơn vị</label>
+                              <select name="unit" id="" class="form-control" style="padding: var(--input-padding-y) var(--input-padding-x)">
+                                 <option value="">Hộp</option>
+                                 <option value="">Chai</option>
+                                 <option value="">Thùng</option>
+                              </select>
                            </div>
                         </div>
 
