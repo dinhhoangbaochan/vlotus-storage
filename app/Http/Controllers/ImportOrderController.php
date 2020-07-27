@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ImportOrder;
 use App\Products;
+use App\ProductsInStorage;
 use DB;
 
 class ImportOrderController extends Controller
@@ -85,17 +86,16 @@ class ImportOrderController extends Controller
     function storeImport(Request $request)
     {   
         $qty = $request->qty;
+        $location = $request->location;
+        $productsInOrder = json_encode($request->products);
+        $orderCode = $request->orderCode;
+        $deadline = $request->deadline;
 
         foreach ($qty as $id => $amount) {
             $product = Products::find($id);
             $product->tmp_imp = (int)$amount; 
             $product->save();
         }
-        
-        $location = $request->location;
-        $productsInOrder = json_encode($request->products);
-        $orderCode = $request->orderCode;
-        $deadline = $request->deadline;
 
         $order = new ImportOrder;
         $order->code = $orderCode;
