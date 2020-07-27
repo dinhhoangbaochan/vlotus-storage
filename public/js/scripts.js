@@ -143,7 +143,7 @@ $(document).ready(function() {
 
 
         // Trigger event
-        $("#exportable_products").keyup(findProductByName);
+        $("#exportable_products").keyup(findExportableProducts);
 
       // Load products in storage based on storage location 
         function findExportableProducts(event) {
@@ -154,6 +154,7 @@ $(document).ready(function() {
                 method: "GET",
                 data: { input: getInput, },
                 success: function(res) {
+                    console.log(res);
                     $("#findProductList").addClass("show");
                     $("#findProductList").html(res);
                 },
