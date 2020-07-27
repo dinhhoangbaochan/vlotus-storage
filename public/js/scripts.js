@@ -148,11 +148,12 @@ $(document).ready(function() {
       // Load products in storage based on storage location 
         function findExportableProducts(event) {
             var getInput = $(this).val();
+            var location = $("#location_id").val();
 
             $.ajax({
                 url: "/load-exportable-product",
                 method: "GET",
-                data: { input: getInput, },
+                data: { input: getInput, location: location},
                 success: function(res) {
                     console.log(res);
                     $("#findProductList").addClass("show");

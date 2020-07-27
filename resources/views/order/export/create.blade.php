@@ -63,11 +63,9 @@
                                     <input type="text" name="order_code" id="order_code" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="storage_location">Chọn chi nhánh</label>
-                                    <select class="form-control" id="storage_location" name="storage_location">
-                                        <option value="1">Nơ Trang Long</option>
-                                        <option value="2">Tân Tạo</option>
-                                    </select>
+                                    <label for="storage_location">Giao từ chi nhánh</label>
+                                    <input type="hidden" id="location_id" value="{{$location_id}}">
+                                    <input type="text" value="@if( $location_id == 1 ) Nơ Trang Long @else Tân Tạo @endif" class="form-control" readonly>
                                 </div>
 
                                 <div class="form-group">

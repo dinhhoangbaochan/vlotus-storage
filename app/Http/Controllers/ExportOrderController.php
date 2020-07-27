@@ -22,8 +22,9 @@ class ExportOrderController extends Controller
     }
 
     public function search(Request $request) {
+    	$location = $request->location;
 
-    	$exportable = DB::table('products_in_storage')->where('location', 1)->get();
+    	$exportable = DB::table('products_in_storage')->where('location', $location)->get();
 
     	$output = '';
         foreach($exportable as $row)
