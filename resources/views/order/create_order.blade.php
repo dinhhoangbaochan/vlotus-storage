@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="storage_location">Chọn chi nhánh</label>
-                                    <select class="form-control" id="storage_location">
+                                    <select class="form-control" id="storage_location" name="storage_location">
                                         <option value="1">Nơ Trang Long</option>
                                         <option value="2">Tân Tạo</option>
                                     </select>
