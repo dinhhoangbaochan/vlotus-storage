@@ -88,9 +88,8 @@ $(document).ready(function() {
                                 "<tr>";
                         pio.push(productsOrdered[x].id);
                     };
-                    // document.querySelector(".LT_body").innerHTML = text;
-                    $(".LT_body").append(text);
-
+                    document.querySelector(".LT_body").innerHTML = text;
+                    // $(".LT_body").append(text);
 
 
                 },

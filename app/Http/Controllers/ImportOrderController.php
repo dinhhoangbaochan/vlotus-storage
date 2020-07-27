@@ -92,9 +92,18 @@ class ImportOrderController extends Controller
         $deadline = $request->deadline;
 
         foreach ($qty as $id => $amount) {
-            $product = Products::find($id);
-            $product->tmp_imp = (int)$amount; 
-            $product->save();
+            // $product = Products::find($id);
+            // $product->tmp_imp = (int)$amount; 
+            // $product->save();
+
+            $productsInStorage = new ProductsInStorage;
+
+            $productsInStorage->p_id = $id;
+            $productsInStorage->tmp_imp = (int)$amount;
+            $productsInStorage->location = $location;
+
+            $productsInStorage->save();
+
         }
 
         $order = new ImportOrder;
