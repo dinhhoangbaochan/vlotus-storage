@@ -20,7 +20,7 @@
 
 			
 			<a href="/products" class="return_url">< Quay lại danh sách sản phẩm</a>
-			<h2 class="main_content__title">Nhập sản phẩm mới</h2>
+			<h2 class="main_content__title">Thông tin sản phẩm</h2>
          
          {!! Form::open([ 'action' => 'ProductsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
 
@@ -36,7 +36,7 @@
                      
                         <div class="form-label-group">
                            <input type="text" id="product_name" class="form-control" placeholder="Tên sản phẩm" name="product_name" autofocus>
-                           <label for="product_name">Nhập tên sản phẩm</label>
+                           <label for="product_name">Tên sản phẩm</label>
                         </div>
 
                      </div>
@@ -48,14 +48,14 @@
                      <div class="col-6">
                         <div class="form-label-group">
                            <input type="text" id="product_sku" class="form-control" placeholder="SKU sản phẩm" name="product_sku" autofocus>
-                           <label for="product_sku">Nhập SKU sản phẩm</label>
+                           <label for="product_sku">Mã sản phẩm (mã kho)</label>
                         </div>
                      </div>
 
                      <div class="col-6">
                         <div class="form-label-group">
                            <input type="text" id="product_code" class="form-control" placeholder="Code sản phẩm" name="product_code" autofocus>
-                           <label for="product_code">Nhập code sản phẩm</label>
+                           <label for="product_code">Mã sản phẩm (kế toán)</label>
                         </div>
                      </div>
                   </div>
@@ -64,13 +64,18 @@
                      <div class="col-6">
                         <div class="form-label-group">
                            <input type="number" id="product_price" class="form-control" placeholder="Code sản phẩm" name="product_price" autofocus>
-                           <label for="product_price">Nhập giá lẻ theo đơn vi</label>
+                           <label for="product_price">Giá sản phẩm</label>
                         </div>
                      </div>
                      <div class="col-6">
                         <div class="form-label-group">
-                           <input type="text" id="unit" class="form-control" placeholder="Code sản phẩm" name="unit" autofocus>
-                           <label for="unit">Nhập đơn vị</label>
+                           
+                           <select name="unit" id="" class="form-control" style="padding: var(--input-padding-y) var(--input-padding-x)">
+                              <option value="">Hộp</option>
+                              <option value="">Chai</option>
+                              <option value="">Thùng</option>
+                           </select>
+                           
                         </div>
                      </div>
                   </div>
