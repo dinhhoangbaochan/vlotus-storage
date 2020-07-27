@@ -106,7 +106,7 @@ class ImportOrderController extends Controller
         $order = new ImportOrder;
         $order->code = $orderCode;
         $order->location = $location;
-        $order->products = $rs;
+        $order->products = json_encode($qty);
         $order->status = "wait";
         $order->deadline = $deadline;
 
