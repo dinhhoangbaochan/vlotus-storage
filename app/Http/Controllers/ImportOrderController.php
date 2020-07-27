@@ -93,13 +93,27 @@ class ImportOrderController extends Controller
 
         foreach ($qty as $id => $amount) {
 
-            $productsInStorage = new ProductsInStorage;
+            $productsInStorage = ProductsInStorage::where('p_id', '=' , $id);
 
-            $productsInStorage->p_id = $id;
-            $productsInStorage->tmp_imp = (int)$amount;
-            $productsInStorage->location = $location;
+            if ( $productsInStorage === null ) {
+                $newProducts = new ProductsInStorage;
 
-            $productsInStorage->save();
+                $newProducts->p_id = $id;
+                $newProducts->tmp_imp = (int)$amount;
+                $newProducts->location = $location;
+
+                $newProducts->save();
+            } else {
+
+                $productsInStorage->p_id = $id;
+                $productsInStorage->tmp_imp = (int)$amount;
+                $productsInStorage->location = $location;
+
+                $productsInStorage->save();
+
+            }
+
+            
 
         }
 
@@ -127,7 +141,7 @@ class ImportOrderController extends Controller
     // Single order controller
     function single($id) {
         $currentImportOrder = ImportOrder::find($id);
-        $orderProducts = json_decode( $currentImportOrder->products );
+        $orderProducts = unserialize( $currentImportOrder->products );
         $Products = new Products;
 
         $data = array(
@@ -155,22 +169,22 @@ class ImportOrderController extends Controller
     function confirm($id) {
 
         $order = ImportOrder::find($id);
-        $productsInOrder = $order->products;
+        $productsInOrder = unserialize($order->products);
 
-        // foreach ($productsInOrder as $id => $amount) {
-        //     $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->first();
+        foreach ($productsInOrder as $id => $amount) {
+            $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->first();
 
-        //     $productsInStorage->tmp_imp = null;
-        //     $productsInStorage->amount = $amount;
+            $productsInStorage->tmp_imp = null;
+            $productsInStorage->amount = $amount;
 
-        //     $productsInStorage->save();
+            $productsInStorage->save();
 
-        // }
+        }
 
-        // $order->status = "confirm";
-        // $order->save();
+        $order->status = "confirm";
+        $order->save();
 
-        return unserialize($productsInOrder);
+        return redirect('orders/import')->with('success' , 'okay');
 
     }
 
