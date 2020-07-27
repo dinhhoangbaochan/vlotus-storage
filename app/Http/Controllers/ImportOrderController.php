@@ -155,17 +155,22 @@ class ImportOrderController extends Controller
     function confirm($id) {
 
         $order = ImportOrder::find($id);
-        $productsInOrder = json_decode($order->products);
+        $productsInOrder = unserialize($order->products);
 
-        // foreach ($productsInOrder as $key => $value) {
-        //     $productsInStorage = ProductsInStorage::where('p_id', '=', $key);
+        foreach ($productsInOrder as $id => $amount) {
+            $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->first();
 
-        //     $productsInStorage->tmp_imp = null;
-        //     $productsInStorage
+            $productsInStorage->tmp_imp = null;
+            $productsInStorage->amount = $amount;
 
-        // }
+            $productsInStorage->save();
 
-        return print_r($productsInOrder);
+        }
+
+        $order->status = "confirm";
+        $order->save();
+
+        return redirect('import/' . $id)->with('success', 'Đã hoàn tất nhập hàng');
 
     }
 

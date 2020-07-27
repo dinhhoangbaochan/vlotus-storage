@@ -47,7 +47,7 @@
                                             <td><img src="/uploaded/{{ $pio->product_image }}" alt=""></td>
                                             <td>{{ $pio->name }}</td>
                                             <td>{{ $pio->sku }}</td>
-                                            <td>{{ $pio->tmp_imp }}</td>
+                                            <td>{{ $value }}</td>
                                         </tr>
 
                                         {{-- <li>{{$Products::find($value)}}</li> --}}
