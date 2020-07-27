@@ -81,7 +81,7 @@ $(document).ready(function() {
                         // text += productsOrdered[x].name + "<br>";
 
                         text += "<tr class='tt'>" + 
-                                "<td>" + "<img src='../uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
+                                "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                 "<td>" + productsOrdered[x].name + "</td>"  + 
                                 "<td>" + productsOrdered[x].sku + "</td>"  +
                                 "<td>" + "<input type='number' name='" + productsOrdered[x].id + "'>" + "</td>" + 
