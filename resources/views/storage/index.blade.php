@@ -28,7 +28,7 @@
 						<div class="col-4">
 							<div class="storage_info">
 								<span class="material-icons">unarchive</span>
-								<h3>{{ $value->location }}</h3>
+								<h3><a href="storage/{{$value->id}}">{{ $value->location }}</a></h3>
 							</div>
 						</div>
 					@endforeach
