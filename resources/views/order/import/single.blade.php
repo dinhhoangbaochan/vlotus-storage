@@ -39,9 +39,9 @@
 
                                     
 
-                                    @foreach( $orderProducts as $value )
+                                    @foreach( $orderProducts as $key => $value )
                                         
-                                        <?php $pio = $Products::find($value) ?>
+                                        <?php $pio = $Products::find($key) ?>
 
                                         <tr>
                                             <td><img src="/uploaded/{{ $pio->product_image }}" alt=""></td>
