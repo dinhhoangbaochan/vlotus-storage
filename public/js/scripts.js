@@ -172,7 +172,7 @@ $(document).ready(function() {
             rs = objToJson(formData);
 
             var uniquePiO = getUnique(pio);
-            var location = $("#storage_location").val();
+            var location = $("#location_id").val();
             var orderCode = $("#order_code").val();
             var deadline = $("input[name='deadline']").val();
 
@@ -188,7 +188,7 @@ $(document).ready(function() {
                 dataType: "json",
                 data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
                 success: function(res) {
-                    // window.location=res.url;
+                    window.location=res.url;
                     console.log(res);               
                 },
                 error: function(res) {
