@@ -52,7 +52,7 @@
                         </form>
 
 
-                        <input type="submit" value="Tạo đơn hàng" id="createOrderSubmit">
+                        <input type="submit" value="Tạo đơn xuất hàng" id="createExportOrder">
 
                         </div>
 
