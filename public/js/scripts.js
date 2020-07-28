@@ -167,6 +167,7 @@ $(document).ready(function() {
 
 
         $("#createExportOrder").click(function(event) {
+            event.preventDefault();
             var formData = $('#exportForm').serializeArray(),
             rs = objToJson(formData);
 
@@ -187,7 +188,8 @@ $(document).ready(function() {
                 dataType: "json",
                 data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
                 success: function(res) {
-                    window.location=res.url;               
+                    // window.location=res.url;
+                    console.log(res);               
                 },
                 error: function(res) {
                     console.log(res);                    
