@@ -33,7 +33,7 @@
                                 </div>
                             </form>
                         
-                        <form id="formTwo">
+                        <form id="exportForm">
                             <table class="lotus_table">
                                 <thead>
                                     <tr>
