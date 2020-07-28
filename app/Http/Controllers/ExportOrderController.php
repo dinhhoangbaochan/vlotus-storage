@@ -50,32 +50,14 @@ class ExportOrderController extends Controller
         $orderCode = $request->orderCode;
         $deadline = $request->deadline;
 
-        // foreach ($qty as $id => $amount) {
+        foreach ($qty as $id => $amount) {
 
-        //     $productsInStorage = ProductsInStorage::where('p_id', '=' , $id)->first();
+            $productsInStorage = ProductsInStorage::where('p_id', '=' , $id)->where('location', $location)->first();
 
-        //     if ( $productsInStorage === null ) {
-        //         $newProducts = new ProductsInStorage;
+            $productsInStorage->tmp_exp = (int)$amount;
+            $productsInStorage->save();           
 
-        //         $newProducts->p_id = $id;
-        //         $newProducts->tmp_imp = (int)$amount;
-        //         $newProducts->location = $location;
-
-        //         $newProducts->save();
-        //         $res = "khong ton tai";
-
-        //     } else {
-
-        //         $productsInStorage->p_id = $id;
-        //         $productsInStorage->tmp_imp = $productsInStorage->tmp_imp + (int)$amount;
-        //         $productsInStorage->location = $location;
-
-        //         $productsInStorage->save();
-        //         $res = "ton tai";
-
-        //     }            
-
-        // }
+        }
 
         $order = new ExportOrder;
         $order->code = $orderCode;
