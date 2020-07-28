@@ -43,4 +43,8 @@ class ExportOrderController extends Controller
 
     }
 
+    public function store(Request $request) {
+        return $request;
+    }
+
 }
