@@ -12,7 +12,7 @@ class ExportOrderController extends Controller
 {
 
 	public function allExport() {
-		return "all Export";
+		return view('order.export.all_export');
 	}
 
     public function createExport($location_id) {
