@@ -166,7 +166,7 @@ $(document).ready(function() {
         }
 
 
-        $("#createOrderSubmit").click(function(event) {
+        $("#createExportOrder").click(function(event) {
             var formData = $('#exportForm').serializeArray(),
             rs = objToJson(formData);
 
