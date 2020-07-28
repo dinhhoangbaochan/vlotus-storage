@@ -12,7 +12,8 @@ class ExportOrderController extends Controller
 {
 
 	public function allExport() {
-		return view('order.export.all_export');
+        $exportOrder = ExportOrder::all();
+		return view('order.export.all_export')->with('exportOrder', $exportOrder);
 	}
 
     public function createExport($location_id) {

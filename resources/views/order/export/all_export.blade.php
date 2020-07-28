@@ -35,6 +35,36 @@
                     </thead>
 
 
+                    <tbody>
+                        @if( count( $exportOrder ) > 0 )
+
+                            @foreach( $exportOrder as $export )
+                                <tr>
+                                    <td><a href="/import/{{$export->id}}">{{$export->code}}</a></td>
+                                    <td>
+                                        @if ( $export->location == 1 )
+                                            Kho Nơ Trang Long
+                                        @else 
+                                            Kho Tân Tạo
+                                        @endif
+                                    </td>
+                                    <td>{{ $export->created_at }}</td>
+                                    <td>{{ $export->deadline }}</td>
+                                    <td>
+                                        @if ( $export->status == "wait" ) 
+                                            Chờ duyệt
+                                        @else 
+                                            Đã duyệt
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach 
+                        @else 
+                            <h2>Chưa có đơn nhập hàng</h2>
+                        @endif    
+                    </tbody>
+
+
                 </table>
 
                 
