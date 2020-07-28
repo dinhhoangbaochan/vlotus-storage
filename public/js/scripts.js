@@ -163,7 +163,38 @@ $(document).ready(function() {
                     console.log(err);   
                 }
             });
-        } 
+        }
+
+
+        $("#createOrderSubmit").click(function(event) {
+            var formData = $('#exportForm').serializeArray(),
+            rs = objToJson(formData);
+
+            var uniquePiO = getUnique(pio);
+            var location = $("#storage_location").val();
+            var orderCode = $("#order_code").val();
+            var deadline = $("input[name='deadline']").val();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: "/orders/create-export",
+                method: "post",
+                dataType: "json",
+                data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
+                success: function(res) {
+                    window.location=res.url;               
+                },
+                error: function(res) {
+                    console.log(res);                    
+                }
+            });
+
+        }); 
 
 
 })
