@@ -1,7 +1,15 @@
 $(document).ready(function() {
 
 
-        function objToJson(formArray) { //serialize data function
+    /**
+    * HELPER FUNCTIONS
+    */
+
+        var productsOrdered = [];
+        var pio = [];
+        
+        // Convert Object to JSON
+        function objToJson(formArray) { 
             var returnArray = {};
             for (var i = 0, len = formArray.length; i < len; i++)
                 returnArray[formArray[i].name] = formArray[i].value;
@@ -20,8 +28,6 @@ $(document).ready(function() {
             return uniqueArray;
         }
 
-        var productsOrdered = [];
-        var pio = [];
 
         console.log(productsOrdered.length);
 
