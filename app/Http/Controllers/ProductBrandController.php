@@ -130,4 +130,3 @@ class ProductBrandController extends Controller
         return redirect('/product-brand')->with('success', 'Đã xoá thương hiệu');
     }
 }
-
