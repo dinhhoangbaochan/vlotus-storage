@@ -28,7 +28,6 @@ $(document).ready(function() {
             return uniqueArray;
         }
 
-
         console.log(productsOrdered.length);
 
         // AJAX - Find product by name, check what user types in
@@ -203,6 +202,11 @@ $(document).ready(function() {
             });
 
         }); 
+
+        function createNewObjectToForm(args) {
+            var args = 
+            console.log(args) 
+        }
 
 
 })
