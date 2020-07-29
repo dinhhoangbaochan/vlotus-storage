@@ -93,7 +93,7 @@ class ImportOrderController extends Controller
 
         foreach ($qty as $id => $amount) {
 
-            $productsInStorage = ProductsInStorage::where('p_id', '=' , $id)->first();
+            $productsInStorage = ProductsInStorage::where('p_id', '=' , $id)->where('location', $location)->first();
 
             if ( $productsInStorage === null ) {
                 $newProducts = new ProductsInStorage;
