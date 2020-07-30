@@ -11,10 +11,10 @@ use DB;
 class ImportOrderController extends Controller
 {
     // Authentication 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     // Render all orders page
     public function allOrder()
