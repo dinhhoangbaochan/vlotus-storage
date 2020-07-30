@@ -79,7 +79,48 @@ class ExportOrderController extends Controller
     }
 
     public function single($id) {
-        return $id;
+        $export = ExportOrder::find($id);
+        return view('order.export.single');
+    }
+
+    // Approve Order
+    function approve($id) {
+
+        $order = ExportOrder::find($id);
+
+        $order->status = "approve";
+        $order->save();
+
+        return redirect('export/' . $id)->with('success', 'Trạng thái đơn hàng đã chuyển sang duyệt');
+
+    }
+
+    // Confirm order
+    function confirm($id) {
+
+        $order = ExportOrder::find($id);
+        $productsInOrder = unserialize($order->products);
+
+        foreach ($productsInOrder as $id => $amountInput) {
+            $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->first();
+
+            $productsInStorage->tmp_imp = null;
+            if ( $productsInStorage->amount ) {
+                $productsInStorage->amount = $productsInStorage->amount + $amountInput;
+            } else {
+                $productsInStorage->amount = $amountInput;
+            }
+            
+
+            $productsInStorage->save();
+
+        }
+
+        $order->status = "confirm";
+        $order->save();
+
+        return redirect('orders/export')->with('success' , 'okay');
+
     }
 
 }
