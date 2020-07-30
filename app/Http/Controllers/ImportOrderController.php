@@ -171,10 +171,11 @@ class ImportOrderController extends Controller
     function confirm($id) {
 
         $order = ImportOrder::find($id);
+        $order_location = $order->location;
         $productsInOrder = unserialize($order->products);
 
         foreach ($productsInOrder as $id => $amountInput) {
-            $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->first();
+            $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->where('location', $order_location)->first();
 
             $productsInStorage->tmp_imp = null;
             if ( $productsInStorage->amount ) {
