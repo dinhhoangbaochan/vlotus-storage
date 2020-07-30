@@ -109,6 +109,9 @@ class ExportOrderController extends Controller
         $order = ExportOrder::find($id);
         $productsInOrder = unserialize($order->products);
 
+        $order->status = "confirm";
+        $order->save();
+
         foreach ($productsInOrder as $id => $amountInput) {
             $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->first();
 
@@ -124,8 +127,7 @@ class ExportOrderController extends Controller
 
         }
 
-        $order->status = "confirm";
-        $order->save();
+        
 
         return redirect('orders/export')->with('success' , 'okay');
 
