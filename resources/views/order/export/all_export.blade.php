@@ -40,7 +40,7 @@
 
                             @foreach( $exportOrder as $export )
                                 <tr>
-                                    <td><a href="/import/{{$export->id}}">{{$export->code}}</a></td>
+                                    <td><a href="/export/{{$export->id}}">{{$export->code}}</a></td>
                                     <td>
                                         @if ( $export->location == 1 )
                                             Kho Nơ Trang Long
