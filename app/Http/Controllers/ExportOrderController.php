@@ -79,8 +79,16 @@ class ExportOrderController extends Controller
     }
 
     public function single($id) {
-        $export = ExportOrder::find($id);
-        return view('order.export.single');
+        $currentExportOrder = ExportOrder::find($id);
+        $orderProducts = unserialize( $currentExportOrder->products );
+        $Products = new Products;
+
+        $data = array(
+            'currentExportOrder'    =>  $currentExportOrder,
+            'orderProducts'         =>  $orderProducts,
+            'Products'              =>  $Products,
+        );
+        return view('order.export.single')->with($data);
     }
 
     // Approve Order
@@ -104,11 +112,11 @@ class ExportOrderController extends Controller
         foreach ($productsInOrder as $id => $amountInput) {
             $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->first();
 
-            $productsInStorage->tmp_imp = null;
+            $productsInStorage->tmp_exp = null;
             if ( $productsInStorage->amount ) {
-                $productsInStorage->amount = $productsInStorage->amount + $amountInput;
+                $productsInStorage->amount = $productsInStorage->amount - $amountInput;
             } else {
-                $productsInStorage->amount = $amountInput;
+                $alert = "Nothing changed";
             }
             
 

@@ -22,7 +22,7 @@
                         
                         <div class="col-8">
                         
-                        <h2>Thông tin đơn xuất hàng mã {{$currentImportOrder->code}}</h2>
+                        <h2>Thông tin đơn xuất hàng mã {{$currentExportOrder->code}}</h2>
                         
                         <form id="formTwo">
                             <table class="lotus_table">
@@ -60,15 +60,15 @@
                         <div class="product_info">
                             <div class="do_action">
 
-                                @if( $currentImportOrder->status == "wait" )
+                                @if( $currentExportOrder->status == "wait" )
 
                                 <h4>Duyệt và vận chuyển?</h4>
-                                <a href="{{ url('import/approve-order/'. $currentImportOrder->id) }}">Xác nhận</a>
+                                <a href="{{ url('export/approve-order/'. $currentExportOrder->id) }}">Xác nhận</a>
 
-                                @elseif ( $currentImportOrder->status == "approve" )
+                                @elseif ( $currentExportOrder->status == "approve" )
                                     
                                     <h4>Xác nhận hoàn tất?</h4>
-                                    <a href="{{ url('import/confirm-order/'. $currentImportOrder->id) }}">Hoàn tất</a>
+                                    <a href="{{ url('export/confirm-order/'. $currentExportOrder->id) }}">Hoàn tất</a>
 
                                 @else 
 
@@ -88,7 +88,7 @@
                                     <span class="s_label">Trạng thái:</span> 
                                     
                                     <span class="s_text float-right">
-                                        @if ( $currentImportOrder->status == "wait" )
+                                        @if ( $currentExportOrder->status == "wait" )
                                             Chờ duyệt
                                         @else 
                                             Đang giao
@@ -100,7 +100,7 @@
 
                                 <div class="location">
                                     Nhập về kho <b>
-                                        @if( $currentImportOrder->location == 1 )
+                                        @if( $currentExportOrder->location == 1 )
                                             Nơ Trang Long
                                         @else 
                                             Tân Tạo
@@ -110,10 +110,10 @@
 
                                 <div class="order_meta">
                                     <div class="each_info">
-                                        Mã đơn hàng: {{ $currentImportOrder->code }}
+                                        Mã đơn hàng: {{ $currentExportOrder->code }}
                                     </div>
                                     <div class="each_info">
-                                        Ngày hẹn giao: {{ $currentImportOrder->deadline }}
+                                        Ngày hẹn giao: {{ $currentExportOrder->deadline }}
                                     </div>
                                     <div class="each_info">
                                         Nhân viên tạo đơn: Đinh Hoàng Bảo Chấn
