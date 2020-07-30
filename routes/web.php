@@ -77,7 +77,7 @@ Route::get('orders/export', 'ExportOrderController@allExport');
 Route::get('orders/create-export/location_{location_id}', 'ExportOrderController@createExport');
 Route::get('/load-exportable-product', 'ExportOrderController@search');
 Route::post('/orders/create-export', 'ExportOrderController@store');
-
+Route::get('export/{id}', 'ExportOrderController@single');
 
 // Storage 
 Route::get('storage', 'StorageController@viewAll');
