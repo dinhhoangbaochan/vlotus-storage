@@ -78,6 +78,10 @@ class ExportOrderController extends Controller
 
     }
 
+    public function single($id) {
+        return $id;
+    }
+
 }
 
 
