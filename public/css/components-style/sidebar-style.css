@@ -4,7 +4,7 @@
 
 .left_sidebar {
     height: 100vh;
-    background-color: #263544;
+    background-color: #060818;
     color: #fff;
     overflow:  auto;
 }
@@ -30,8 +30,8 @@
 }
 
 .menu_list ul li a {
-    font-size: 14px;
-    color: #b7c0cd;
+    font-size: 13px;
+    color: #ebedf2;
     transition: .3s ease all;
     display: flex;
     flex-direction: row;
@@ -51,7 +51,7 @@
 
 ul.child_list {
     padding-bottom: 0;
-    background: #1c26316b;
+    background: rgba(59, 63, 92, 0.35);
 }
 
 .left_sidebar .material-icons { font-size: 18px; margin-right: 5px; }
