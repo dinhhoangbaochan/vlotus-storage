@@ -9,12 +9,14 @@ textarea { width: 100%; }
 
 img { width: 100% }
 
+input:focus { box-shadow: none !important; border: 1px solid #007bff !important; }
+
 .gap-1 {
   height: 1rem;
 }
 
 body { 
-    background-color:#f2f7fb;
+    background-color:#f1f2f3;
     font-family: "Quicksand", sans-serif;
 }
 
@@ -190,11 +192,11 @@ a.return_url:hover {
 }
 
 .update_btn, .delete_btn {
-    width: 40%;
+    width: 34%;
     padding: 6px;
     text-align: center;
     color: #fff;
-    border-radius: 20px;
+    border-radius: 2px;
     text-transform: capitalize;
     font-size: 14px;
     font-weight: 600;
