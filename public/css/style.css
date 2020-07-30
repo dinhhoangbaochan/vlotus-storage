@@ -28,20 +28,20 @@ body {
 }
 
 .navbar {
-    height: 60px;
+    height: 8vh;
     box-shadow: 0 4px 4px 0px rgba(0,0,0,0.1)
 }
 
 .main_content {
     padding: 2rem 4rem;
     overflow-y: scroll;
-    max-height: 600px;
+    max-height: 92vh;
     min-height: 500px;
 }
 
 .product_info, .lotus_table {
     background-color: #fff;
-    box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px 0 rgba(63,63,68,.15);
+    box-shadow: 0 4px 6px 0 rgba(85, 85, 85, 0.09019607843137255), 0 1px 20px 0 rgba(0, 0, 0, 0.08), 0px 1px 11px 0px rgba(0, 0, 0, 0.06);
     padding: 14px 20px;
     border-radius: 5px;
     margin-bottom: 1rem;
