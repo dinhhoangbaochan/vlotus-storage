@@ -18,7 +18,7 @@
             <div class="main_content">
 
                 <div class="action_box d-flex align-items-center justify-content-between">
-                    <h2 class="main_content__title">Đơn hàng nhập kho</h2>
+                    <h2 class="main_content__title">Đơn hàng xuất kho</h2>
                     <a data-toggle="modal" data-target="#selectLocation" class="btn btn-outline-dark">Tạo đơn xuất +</a>
                 </div>
 
@@ -60,7 +60,7 @@
                                 </tr>
                             @endforeach 
                         @else 
-                            <h2>Chưa có đơn nhập hàng</h2>
+                            <p>Chưa có đơn nhập hàng</p>
                         @endif    
                     </tbody>
 
