@@ -11,12 +11,12 @@
 				<li>
 					<a href="/storage"> <span class="material-icons">storefront</span>Quản lý kho</a>
 					<ul class="child_list">
-						<li><a href="/products">Quản lý sản phẩm</a></li>
-						<li><a href="/product-category">Quản lý danh mục</a></li>
-						<li><a href="/product-brand">Quản lý thương hiệu</a></li>
-						<li><a href="/orders/import">Quản lý nhập hàng</a></li>
-						<li><a href="/orders/export">Quản lý xuất hàng</a></li>
-						<li><a href="">Quản lý hạn sử dụng</a></li>
+						<li><a href="{{ url('products') }}">Quản lý sản phẩm</a></li>
+						<li><a href="{{ url('/product-category') }}">Quản lý danh mục</a></li>
+						<li><a href="{{ url('/product-brand') }}">Quản lý thương hiệu</a></li>
+						<li><a href="{{ url('/orders/import') }}">Quản lý nhập hàng</a></li>
+						<li><a href="{{ url('/orders/export') }}">Quản lý xuất hàng</a></li>
+						<li><a href="{{ url('expiration') }}">Quản lý hạn sử dụng</a></li>
 						<li><a href="">Quản lý xuất chuyển kho</a></li>
 						<li><a href="">Quản lý đổi trả</a></li>
 					</ul>
