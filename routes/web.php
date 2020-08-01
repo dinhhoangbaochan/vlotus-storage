@@ -86,3 +86,6 @@ Route::get('storage', 'StorageController@viewAll');
 Route::get('storage/create', 'StorageController@create');
 Route::post('storage/create', 'StorageController@store');
 Route::get('storage/{id}', 'StorageController@single');
+
+// Expiraton date
+Route::get('expiration', 'ExpirationController@index');
