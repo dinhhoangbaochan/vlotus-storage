@@ -21,10 +21,9 @@
 				<a href="/storage/create" class="btn btn-outline-dark">Thêm HSD +</a>
 			</div>
 
-			{{ $products }}
-
 			@foreach ($productsInStorage as $item)
-				<li>{{ $item->p_id }}</li>
+				@php $currentProducts = $products::find( $item->p_id ) @endphp
+				<li>{{ $currentProducts->name }}</li>
 			@endforeach
 
 		</div>
