@@ -40,7 +40,7 @@
 							@php $currentProducts = $products::find( $item->p_id ) @endphp
 							<tr>
 								<td>{{ $currentProducts->product_image }}</td>
-								<td>{{ $currentProducts->name }}</td>
+								<td><a href="/expiration/{{ $item->p_id }}/{{ $item->location }}">{{ $currentProducts->name }}</a></td>
 								<td>{{ $item->location }}</td>
 								<td>{{ $item->amount }}</td>
 							</tr>
