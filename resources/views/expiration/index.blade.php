@@ -21,6 +21,9 @@
 				<a href="/storage/create" class="btn btn-outline-dark">Thêm HSD +</a>
 			</div>
 
+			@foreach ($productsInStorage as $item)
+				<li>{{ $item->p_id }}</li>
+			@endforeach
 
 		</div>
 	</div>

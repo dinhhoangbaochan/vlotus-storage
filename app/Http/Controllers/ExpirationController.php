@@ -9,8 +9,7 @@ class ExpirationController extends Controller
 {
     public function index() {
 
-        $productsInStorage = new ProductsInStorage;
-        
+        $productsInStorage = ProductsInStorage::all();
 
         $data = array(
             'productsInStorage'     =>      $productsInStorage,
