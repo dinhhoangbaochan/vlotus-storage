@@ -22,9 +22,13 @@ class ExpirationController extends Controller
     }
 
     public function single($id, $location) {
+
+        $products = new Products; 
+
         $data = array(
             'id'            =>          $id,
             'location'      =>          $location,
+            'products'      =>          $products,
         );
         return view('expiration.single')->with($data);
     }
