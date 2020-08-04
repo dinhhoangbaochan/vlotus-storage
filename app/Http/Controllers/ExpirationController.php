@@ -15,6 +15,7 @@ class ExpirationController extends Controller
 
         $data = array(
             'productsInStorage'     =>      $productsInStorage,
+            'products'              =>      $products,
         );
 
         return view('expiration.index')->with($data);
