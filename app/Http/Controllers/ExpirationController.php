@@ -20,4 +20,12 @@ class ExpirationController extends Controller
 
         return view('expiration.index')->with($data);
     }
+
+    public function single($id, $location) {
+        $data = array(
+            'id'            =>          $id,
+            'location'      =>          $location,
+        );
+        return view('expiration.single')->with($data);
+    }
 }

@@ -89,3 +89,4 @@ Route::get('storage/{id}', 'StorageController@single');
 
 // Expiraton date
 Route::get('expiration', 'ExpirationController@index');
+Route::get('expiration/{id}/{location}', 'ExpirationController@single');
