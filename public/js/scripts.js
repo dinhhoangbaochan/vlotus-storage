@@ -203,10 +203,61 @@ $(document).ready(function() {
 
         }); 
 
-        function createNewObjectToForm(args) {
-            var args = 
-            console.log(args) 
-        }
+        // Create expiration dates
+        $("#addExpDate").click(function(e) {
+            e.preventDefault();
+            $("#expirationDates").append(
+                "<tr>" + 
+                "<td>Phiên bản</td>" +
+                "<td>Số lượng: <input type='number' class='form-control' name='expAmount' /></td>" +
+                "<td>Ngày hết hạn: <input type='date' class='form-control' name='expDate' /></td>" +
+                "<td></td>" +
+                "<td></td>"
+                + "</tr>"
+            )
+        });
+
+        // Submit expiration form 
+        var amountDate = {};
+        var formOBJ = {};
+        $("#submitExpi").click(function(e) {
+            var formData = $("#expirationForm").serializeArray();
+            var formValues = new FormData($('#expirationForm')[0]);
+            var pid = $("#getPID").val();
+
+            var allAmount = formValues.getAll('expAmount');
+            var allDate = formValues.getAll('expDate');
+            var location = $("#getLocation").val();
+
+            allAmount.forEach((key, i) => amountDate[key] = allDate[i]);
+
+            console.log(amountDate);
+
+            // Display the key/value pairs
+            for(var pair of formValues.entries()) {
+                console.log(pair[0]+ ', '+ pair[1]); 
+            }
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: '/expiration/submit',
+                method: "post",
+                dataType: "json",
+                data: { formData: formData, pid: pid, amountDate: amountDate, location: location },
+                success: function(res) {
+                    console.log(res);
+                    window.location=res.url;
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            })
+        });
 
 
 })

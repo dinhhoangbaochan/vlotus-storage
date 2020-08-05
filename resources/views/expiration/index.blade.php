@@ -18,7 +18,7 @@
 		<div class="container pt-4">
 			<div class="action_box d-flex align-items-center justify-content-between">
 				<h2 class="main_content__title">Quản lý Hạn Sử Dụng</h2>
-				<a href="/storage/create" class="btn btn-outline-dark">Thêm HSD +</a>
+
 			</div>
 
 			<table class="lotus_table">
@@ -40,8 +40,8 @@
 							@php $currentProducts = $products::find( $item->p_id ) @endphp
 							<tr>
 								<td>{{ $currentProducts->product_image }}</td>
-								<td><a href="/expiration/{{ $item->p_id }}/{{ $item->location }}">{{ $currentProducts->name }}</a></td>
-								<td>{{ $item->location }}</td>
+								<td><a href="/expiration/p_id={{ $item->p_id }}&location={{ $item->location }}&id={{ $item->id }}">{{ $currentProducts->name }}</a></td>
+								<td> @if ($item->location == 1) Nơ Trang Long @else Tân Tạo @endif</td>
 								<td>{{ $item->amount }}</td>
 							</tr>
 						@endforeach

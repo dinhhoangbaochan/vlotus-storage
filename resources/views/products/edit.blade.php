@@ -18,7 +18,7 @@
 
 		<div class="main_content">
 			
-			<a href="/products" class="return_url">< Quay lại danh sách sản phẩm</a>
+			<a href="{{url('products')}}" class="return_url">< Quay lại danh sách sản phẩm</a>
 			<h2 class="main_content__title">Thông tin sản phẩm</h2>
 
          {!! Form::open([ 'action' => ['ProductsController@update', $products->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
