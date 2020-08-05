@@ -90,7 +90,7 @@ $(document).ready(function() {
                                 "<td>" + productsOrdered[x].name + "</td>"  + 
                                 "<td>" + productsOrdered[x].sku + "</td>"  +
                                 "<td>" + "<input type='number' name='" + productsOrdered[x].id + "'>" + "</td>" + 
-                                "<td>" + "<a href='' class='triggerExp'>Test</a>" +
+                                "<td>" + "<a href='' data-id='" + productsOrdered[x].id + "' class='triggerExp'>Tạo HSD</a>" +
                                 "<tr>";
                         pio.push(productsOrdered[x].id);
                     };
@@ -109,7 +109,7 @@ $(document).ready(function() {
 
         $(document).on('click', ".triggerExp", function(event) {
             event.preventDefault();
-            console.log('Nene');
+            console.log($(this).data('id'));
         });
 
         $("#createOrderSubmit").click(function(event) {
