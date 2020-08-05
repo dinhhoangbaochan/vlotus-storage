@@ -52,6 +52,25 @@
                             </table>
                         </form>
 
+                        <form action="" id="listExpiration">
+                            <table class="lotus_table">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="1" colspan="1" style="width:100px">Image</th>
+                                        <th rowspan="1" colspan="1">Sản phẩm</th>
+                                        <th rospan="1" colspan="1">SKU</th>
+                                        <th rowspan="1" colspan="1">Số lượng</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="exp_tb_body">
+                                    <tr></tr>
+                                </tbody>
+
+                            </table>
+                        </form>
+
 
                         <input type="submit" value="Tạo đơn hàng" id="createOrderSubmit">
 
