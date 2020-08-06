@@ -90,7 +90,7 @@ $(document).ready(function() {
                                 "<td>" + productsOrdered[x].name + "</td>"  + 
                                 "<td>" + productsOrdered[x].sku + "</td>"  +
                                 "<td>" + "<input type='number' name='" + productsOrdered[x].id + "'>" + "</td>" + 
-                                "<td>" + "<a href='' data-id='" + productsOrdered[x].id + "' class='triggerExp'>Tạo HSD</a>" +
+                                "<td>" + "<input type='date' />" +
                                 "<tr>";
                         pio.push(productsOrdered[x].id);
                     };
