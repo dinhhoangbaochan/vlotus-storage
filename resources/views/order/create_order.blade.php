@@ -57,8 +57,8 @@
                                 <thead>
                                     <tr>
                                         <th rowspan="1" colspan="1">Sản phẩm</th>
-                                        <th rospan="1" colspan="1">SKU</th>
-                                        <th rowspan="1" colspan="1">Số lượng</th>
+                                        <th rospan="1" colspan="1">Số lượng</th>
+                                        <th rowspan="1" colspan="1">Số hạn sử dụng</th>
                                         <th></th>
                                     </tr>
                                 </thead>
