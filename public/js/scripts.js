@@ -66,9 +66,7 @@ $(document).ready(function() {
                 	$("#findProductList").removeClass("show");
                     productsOrdered.push(res);
                     var x, text = "";
-                    // $("#whereToPrint").html(productsOrdered);
-                    
-                    // console.log(productsOrdered);
+
                     var valueArr = productsOrdered.map(function(item){ return item.id });
                     var isDuplicate = valueArr.some(function(item, index){ 
                         return valueArr.indexOf(item) != index 
@@ -78,19 +76,17 @@ $(document).ready(function() {
                         productsOrdered.pop();
                         console.log(productsOrdered);
 
-                    } else {
-                        console.log('everything is fine');
-                    }
-
+                    } 
                     for (x in productsOrdered) {
                         // text += productsOrdered[x].name + "<br>";
 
-                        text += "<tr class='tt'>" + 
+                        text += "<tr class='tt' data-id='"+ productsOrdered[x].id +"'>" + 
                                 "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                 "<td>" + productsOrdered[x].name + "</td>"  + 
                                 "<td>" + productsOrdered[x].sku + "</td>"  +
-                                "<td>" + "<input type='number' name='" + productsOrdered[x].id + "'>" + "</td>" + 
-                                "<td>" + "<input type='date' />" +
+                                "<td>" + "<input type='number' name='pickAmount'>" + "</td>" + 
+                                "<td>" + "<input type='date' name='pickADate' />" +
+                                "<td><a>+</a></td>"
                                 "<tr>";
                         pio.push(productsOrdered[x].id);
                     };
@@ -128,24 +124,26 @@ $(document).ready(function() {
             var orderCode = $("#order_code").val();
             var deadline = $("input[name='deadline']").val();
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+            console.log(formData);
 
-            $.ajax({
-                url: "/orders/create-import",
-                method: "post",
-                dataType: "json",
-                data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
-                success: function(res) {
-                    window.location=res.url;               
-                },
-                error: function(res) {
-                    console.log(res);                    
-                }
-            });
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //     }
+            // });
+
+            // $.ajax({
+            //     url: "/orders/create-import",
+            //     method: "post",
+            //     dataType: "json",
+            //     data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
+            //     success: function(res) {
+            //         window.location=res.url;               
+            //     },
+            //     error: function(res) {
+            //         console.log(res);                    
+            //     }
+            // });
 
             // $('#rs').html(JSON.stringify(rs, undefined, 2));
 

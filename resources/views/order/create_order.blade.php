@@ -41,6 +41,7 @@
                                         <th rowspan="1" colspan="1">Sản phẩm</th>
                                         <th rospan="1" colspan="1">SKU</th>
                                         <th rowspan="1" colspan="1">Số lượng</th>
+                                        <th>Ngày hết hạn</th>
                                         <th></th>
                                     </tr>
                                 </thead>
