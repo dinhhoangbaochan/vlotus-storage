@@ -81,13 +81,31 @@ $(document).ready(function() {
                         // text += productsOrdered[x].name + "<br>";
 
                         text += "<tr class='tt' data-id='"+ productsOrdered[x].id +"'>" + 
-                                "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
-                                "<td>" + productsOrdered[x].name + "<input type='hidden' name='productID' value='"+ productsOrdered[x].id +"' />" + "</td>"  + 
-                                "<td>" + productsOrdered[x].sku + "</td>"  +
-                                "<td>" + "<input type='number' name='pickAmount'>" + "</td>" + 
-                                "<td>" + "<input type='date' name='pickADate' />" +
-                                "<td><a href='' class='triggerExp'>+</a></td>"
-                                "<tr>";
+                                    "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
+                                    "<td>" + productsOrdered[x].name + "<input type='hidden' name='productID' value='"+ productsOrdered[x].id +"' />" + "</td>"  + 
+                                    "<td>" + productsOrdered[x].sku + "</td>"  +
+                                    "<td>" + "<input type='number' name='pickAmount'>" + "</td>" + 
+                                    "<td>" + "<input type='date' name='pickADate' />" +
+                                    "<td><a href data-target='#op_"+ productsOrdered[x].id +"' data-toggle='modal'>+</a></td>" +
+                                "<tr>" +
+
+                                "<div class='modal fade' id='op_"+ productsOrdered[x].id +"' role='dialog' aria-hidden='true'>" +
+                                    "<div class='modal-dialog' role='document'>" +
+                                        "<div class='modal-content'>" +
+
+                                            "<div class='modal-header'>" +
+                                                "<h5 class='modal-title'>Quản lý hạn sử dụng</h5>" +
+                                                "<button class='close' data-dismiss='modal'><span>&times;</span></button>" +
+                                            "</div>" +
+
+                                            "<div class='modal-body'>" +
+                                                "<span>This is product: </span>" + productsOrdered[x].name + 
+                                            "</div>" +
+
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>"
+                                ;
                         pio.push(productsOrdered[x].id);
                     };
                     document.querySelector(".LT_body").innerHTML = text;
