@@ -275,3 +275,15 @@ a.delete_btn {
 .expiration-modal {
     max-width: 800px;
 }
+
+a.triggerExp:hover {
+    color: #007bff !important;
+    cursor: pointer;
+}
+
+a.triggerExp {
+    color: #007bff !important;
+    font-weight: 800;
+    font-size: 18px;
+    vertical-align: middle;
+}
