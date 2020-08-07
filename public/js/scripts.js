@@ -28,6 +28,7 @@ $(document).ready(function() {
             return uniqueArray;
         }
 
+
         console.log(productsOrdered.length);
 
         // AJAX - Find product by name, check what user types in
@@ -53,6 +54,7 @@ $(document).ready(function() {
         $("#look_for_product").keyup(findProductByName);
 
         var fData = new FormData($('#formTwo')[0]);
+        var mergeArray = {};
 
         $(document).on("click", ".dropdown-item" , function(event){
             event.preventDefault();
@@ -104,31 +106,51 @@ $(document).ready(function() {
                                                 "<span>This is product: " + productsOrdered[x].name + "</span>" +
 
                                                 "<div class='row'>" + 
-                                                    "<div class='col-5'><input type='number' name='Amount_' /></div>" +
-                                                    "<div class='col-5'><input type='date' name='Date_"+ productsOrdered[x].id +"' /></div>" +
-                                                    "<div class='col-2'><a class='triggerExp'>OwO</a></div>" +
+                                                    "<div class='col-5'><input type='number' class='form-control' name='Amount_' /></div>" +
+                                                    "<div class='col-5'><input type='date' class='form-control' name='Date_"+ productsOrdered[x].id +"' /></div>" +
+                                                    "<div class='col-2'><a class='triggerExp'>++</a></div>" +
                                                 "</div>" +
 
                                             "</div>" +
 
                                             "<div class='modal-footer'>" +
-                                                "<button id='cf_"+ productsOrdered[x].id +"'>Trgg</button>" +
+                                                "<button id='cf_"+ productsOrdered[x].id +"'>Trigger</button>" +
                                             "</div>" +
 
                                         "</div>" +
                                     "</div>" +
-                                "</div>"
+                                "</div>" 
                                 ;
                         pio.push(productsOrdered[x].id);
-                        
+
+                        // var newScript = document.createElement("script");
+                        // var inlineScript = document.createTextNode("alert('Hello World!' + productsOrdered[x].id);");
+                        // newScript.appendChild(inlineScript); 
+                        // document.querySelector(".LT_body").appendChild(newScript);
+
                         var currentAmounts = fData.getAll('Amount_');
 
                         $(document).on("click", "#cf_" + productsOrdered[x].id ,function(e) {
                             e.preventDefault();
-                            console.log('trigger event at ID ' + $(this).parent().parent().parent().parent().attr('id'));
-                            console.log($("#formTwo").serializeArray());
+                            var thisParentId = $(this).parent().parent().parent().parent().attr('id');
+                            console.log('trigger event at ID ' + thisParentId);
+
+                            var inputAmountValues = $('#'+ thisParentId  + ' input[type="number"]').map(function() {
+                                return $(this).val()
+                            }).get();
+                            
+                            var inputDateValues = $('#'+ thisParentId + ' input[type="date"]').map(function() {
+                                return $(this).val()
+                            }).get();
+
+                            console.log(inputAmountValues);
+                            console.log(inputDateValues);
+                            console.log(16);
                         });
+
+
                     };
+                    
                     document.querySelector(".LT_body").innerHTML = text;
                     // $(".LT_body").append(text);
 
