@@ -133,6 +133,7 @@ $(document).ready(function() {
                         $(document).on("click", "#cf_" + productsOrdered[x].id ,function(e) {
                             e.preventDefault();
                             var thisParentId = $(this).parent().parent().parent().parent().attr('id');
+                            var thisParentData = $(this).parent().parent().parent().parent().data('sku');
                             console.log('trigger event at ID ' + thisParentId);
 
                             var inputAmountValues = $('#'+ thisParentId  + ' input[type="number"]').map(function() {
@@ -145,7 +146,10 @@ $(document).ready(function() {
 
                             console.log(inputAmountValues);
                             console.log(inputDateValues);
-                            console.log(16);
+                            mergeArray[thisParentData] = {};
+
+                            inputAmountValues.forEach((key, i) => mergeArray[thisParentData][key] = inputDateValues[i]);
+                            console.log(mergeArray);
                         });
 
 
