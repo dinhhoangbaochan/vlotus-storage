@@ -103,18 +103,6 @@ $(document).ready(function() {
 
         });
 
-        $(document).on('click', ".triggerExp", function(event) {
-            event.preventDefault();
-            console.log($(this).data('id'));
-            $("#exp_tb_body").append(
-                "<tr>" + 
-                "<td>"+ "<input type='hidden' value='"+ $(this).data('id') +"'>"+ $(this).data('id') +"</td>"
-                + "<td> <input type='number'> </td>" 
-                + "<td> <input type='date' /> </td>" +
-                "</tr>"
-            );
-        });
-
         $("#createOrderSubmit").click(function(event) {
             var formData = $('#formTwo').serializeArray(),
             rs = objToJson(formData);
@@ -150,12 +138,24 @@ $(document).ready(function() {
         });
 
 
+        $(document).on('click', ".triggerExp", function(event) {
+            event.preventDefault();
+            console.log($(this).data('id'));
+            $("#exp_tb_body").append(
+                "<tr>" + 
+                "<td>"+ "<input type='hidden' value='"+ $(this).data('id') +"'>"+ $(this).data('id') +"</td>"
+                + "<td> <input type='number'> </td>" 
+                + "<td> <input type='date' /> </td>" +
+                "</tr>"
+            );
+        });
 
-      $(".upload_img").on("change", function() {
-        console.log($(".upload_img").val());
-         $(".img_preview").removeAttr("style");
-         $(".img_preview").attr("src", URL.createObjectURL(this.files[0]));
-      });
+
+        // Image preview when uploaded
+        $(".upload_img").on("change", function() {
+            $(".img_preview").removeAttr("style");
+            $(".img_preview").attr("src", URL.createObjectURL(this.files[0]));
+        });
 
 
         // Trigger event
