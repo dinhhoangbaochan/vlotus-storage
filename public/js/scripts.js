@@ -74,7 +74,7 @@ $(document).ready(function() {
 
                     if ( isDuplicate == true ) {
                         productsOrdered.pop();
-                        console.log(productsOrdered);
+                        // console.log(productsOrdered);
 
                     } 
                     for (x in productsOrdered) {
@@ -82,11 +82,11 @@ $(document).ready(function() {
 
                         text += "<tr class='tt' data-id='"+ productsOrdered[x].id +"'>" + 
                                 "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
-                                "<td>" + productsOrdered[x].name + "</td>"  + 
+                                "<td>" + productsOrdered[x].name + "<input type='hidden' name='productID' value='"+ productsOrdered[x].id +"' />" + "</td>"  + 
                                 "<td>" + productsOrdered[x].sku + "</td>"  +
                                 "<td>" + "<input type='number' name='pickAmount'>" + "</td>" + 
                                 "<td>" + "<input type='date' name='pickADate' />" +
-                                "<td><a>+</a></td>"
+                                "<td><a href='' class='triggerExp'>+</a></td>"
                                 "<tr>";
                         pio.push(productsOrdered[x].id);
                     };
@@ -103,17 +103,25 @@ $(document).ready(function() {
 
         });
 
+        
+        var object = {};
+        var json = JSON.stringify(object);
         $("#createOrderSubmit").click(function(event) {
-            var formData = $('#formTwo').serializeArray(),
-            rs = objToJson(formData);
+            
+            var formProducts = $('#formTwo');
+            var formData = new FormData(formProducts[0]);
+            // rs = objToJson(formData);
 
             var uniquePiO = getUnique(pio);
             var location = $("#storage_location").val();
             var orderCode = $("#order_code").val();
             var deadline = $("input[name='deadline']").val();
 
-            console.log(formData);
-
+            formData.forEach(function(value, key){
+                // console.log('key ' + key + ' - ' + 'value ' + value);
+                console.log(formData);
+            });
+            
             // $.ajaxSetup({
             //     headers: {
             //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -140,14 +148,10 @@ $(document).ready(function() {
 
         $(document).on('click', ".triggerExp", function(event) {
             event.preventDefault();
-            console.log($(this).data('id'));
-            $("#exp_tb_body").append(
-                "<tr>" + 
-                "<td>"+ "<input type='hidden' value='"+ $(this).data('id') +"'>"+ $(this).data('id') +"</td>"
-                + "<td> <input type='number'> </td>" 
-                + "<td> <input type='date' /> </td>" +
-                "</tr>"
-            );
+            var elementParent = $(this).parent().parent();
+            console.log(elementParent.clone());
+            elementParent.clone().insertAfter(elementParent);
+            
         });
 
 
