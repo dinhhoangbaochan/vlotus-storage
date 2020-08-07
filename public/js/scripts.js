@@ -52,6 +52,8 @@ $(document).ready(function() {
     
         $("#look_for_product").keyup(findProductByName);
 
+        var fData = new FormData($('#formTwo')[0]);
+
         $(document).on("click", ".dropdown-item" , function(event){
             event.preventDefault();
             var currentDataID = $(this).data("id");
@@ -89,8 +91,8 @@ $(document).ready(function() {
                                     "<td><a href data-target='#op_"+ productsOrdered[x].id +"' data-toggle='modal'>+</a></td>" +
                                 "<tr>" +
 
-                                "<div class='modal fade' id='op_"+ productsOrdered[x].id +"' role='dialog' aria-hidden='true'>" +
-                                    "<div class='modal-dialog' role='document'>" +
+                                "<div class='modal fade' id='op_"+ productsOrdered[x].id +"' data-sku='"+ productsOrdered[x].id +"' role='dialog' aria-hidden='true'>" +
+                                    "<div class='modal-dialog expiration-modal' role='document'>" +
                                         "<div class='modal-content'>" +
 
                                             "<div class='modal-header'>" +
@@ -99,7 +101,18 @@ $(document).ready(function() {
                                             "</div>" +
 
                                             "<div class='modal-body'>" +
-                                                "<span>This is product: </span>" + productsOrdered[x].name + 
+                                                "<span>This is product: " + productsOrdered[x].name + "</span>" +
+
+                                                "<div class='row'>" + 
+                                                    "<div class='col-5'><input type='number' name='Amount_' /></div>" +
+                                                    "<div class='col-5'><input type='date' name='Date_"+ productsOrdered[x].id +"' /></div>" +
+                                                    "<div class='col-2'><a class='triggerExp'>OwO</a></div>" +
+                                                "</div>" +
+
+                                            "</div>" +
+
+                                            "<div class='modal-footer'>" +
+                                                "<button id='cf_"+ productsOrdered[x].id +"'>Trgg</button>" +
                                             "</div>" +
 
                                         "</div>" +
@@ -107,6 +120,14 @@ $(document).ready(function() {
                                 "</div>"
                                 ;
                         pio.push(productsOrdered[x].id);
+                        
+                        var currentAmounts = fData.getAll('Amount_');
+
+                        $(document).on("click", "#cf_" + productsOrdered[x].id ,function(e) {
+                            e.preventDefault();
+                            console.log('trigger event at ID ' + $(this).parent().parent().parent().parent().attr('id'));
+                            console.log($("#formTwo").serializeArray());
+                        });
                     };
                     document.querySelector(".LT_body").innerHTML = text;
                     // $(".LT_body").append(text);
