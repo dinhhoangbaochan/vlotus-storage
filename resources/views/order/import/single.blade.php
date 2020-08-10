@@ -23,59 +23,60 @@
                         <div class="col-8">
                         
                         <h2>Thông tin đơn hàng mã {{$currentImportOrder->code}}</h2>
-                        
-                        <form id="formTwo">
-                            <table class="lotus_table">
-                                <thead>
-                                    <tr>
-                                        <th rowspan="1" colspan="1" style="width:100px">Image</th>
-                                        <th rowspan="1" colspan="1">Sản phẩm</th>
-                                        <th rospan="1" colspan="1">SKU</th>
-                                        <th rowspan="1" colspan="1">Số lượng</th>
-                                    </tr>
-                                </thead>
 
-                                <tbody class="LT_body">
+                        {!! Form::open([ 'action' => 'ImportOrderController@confirm', 'method' => 'POST', 'foo' => 'bar' ]) !!}
+
+                        <input type="hidden" name="orderID" value="{{$orderID}}">
+                        <input type="hidden" name="originalExpiration" value="{{$originalExpiration}}">
+
+                        <table class="lotus_table">
+                            <thead>
+                                <tr>
+                                    <th rowspan="1" colspan="1" style="width:100px">Image</th>
+                                    <th rowspan="1" colspan="1">Sản phẩm</th>
+                                    <th rospan="1" colspan="1">SKU</th>
+                                    <th rowspan="1" colspan="1">Số lượng</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="LT_body">
+                                
+
+                                @foreach( $orderProducts as $key => $value )
                                     
+                                    <?php $pio = $Products::find($key) ?>
 
-                                    @foreach( $orderProducts as $key => $value )
-                                        
-                                        <?php $pio = $Products::find($key) ?>
+                                    <tr>
+                                        <td><img src="/uploaded/{{ $pio->product_image }}" alt=""></td>
+                                        <td>{{ $pio->name }}</td>
+                                        <td>{{ $pio->sku }}</td>
+                                        <td>{{ $value }} <a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'>open</a></td>
+                                    </tr>
 
-                                        <tr>
-                                            <td><img src="/uploaded/{{ $pio->product_image }}" alt=""></td>
-                                            <td>{{ $pio->name }}</td>
-                                            <td>{{ $pio->sku }}</td>
-                                            <td>{{ $value }} <a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'>open</a></td>
-                                        </tr>
+                                    {{-- <li>{{$Products::find($value)}}</li> --}}
+                                @endforeach
+                            </tbody>
 
-                                        {{-- <li>{{$Products::find($value)}}</li> --}}
-                                    @endforeach
-                                </tbody>
-
-                            </table>
-                        </form>
+                        </table>
                         
-                        <pre>
-                            @php
-                                var_dump($expiration);
-                            @endphp
-                        </pre>
 
                         @foreach ($expiration as $p_id => $expirationArray)
                             <div class='modal fade' id='op_<?php echo $p_id ?>' role='dialog' aria-hidden='true'>
-                                <div class='modal-dialog expiration-modal' role='document'>
+                                <div class='modal-dialog' role='document'>
                                     <div class='modal-content'>
                                         @php
                                             $thisProduct = $Products::find($p_id);
                                         @endphp
                                         <div class="modal-header">
-                                            Quản lý HSD Sản phẩm <b>{{$thisProduct->name}}</b>
+                                            <b>Hạn sử dụng {{$thisProduct->name}}</b>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
 
                                         <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-6">
+                                            <div class="row justify-content-center">
+                                                <div class="col-4">
                                                     Số lượng 
                                                 </div>
                                                 <div class="col-6">
@@ -84,8 +85,8 @@
                                             </div>
                                             @foreach ($expirationArray as $key => $value)
                                                 @foreach ($value as $amount => $exp) 
-                                                <div class="row">
-                                                    <div class="col-6">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-4">
                                                         <input type="number" value="{{$amount}}" class="form-control" readonly>
                                                     </div>
                                                     <div class="col-6">
@@ -114,7 +115,7 @@
                                 @elseif ( $currentImportOrder->status == "approve" )
                                     
                                     <h4>Xác nhận hoàn tất?</h4>
-                                    <a href="{{ url('import/confirm-order/'. $currentImportOrder->id) }}">Hoàn tất</a>
+                                    <input type="submit" value="Xác nhận">
 
                                 @else 
 
@@ -179,8 +180,8 @@
 
 
                     </div>
-
                     
+                    {!! Form::close() !!}
 
                 
 

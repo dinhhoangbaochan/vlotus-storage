@@ -157,14 +157,17 @@ class ImportOrderController extends Controller
     function single($id) {
         $currentImportOrder = ImportOrder::find($id);
         $orderProducts = unserialize( $currentImportOrder->products );
-        $expiration = unserialize( $currentImportOrder->expiration );
+        $originalExpiration = $currentImportOrder->expiration;
+        $expiration = unserialize( $originalExpiration );
         $Products = new Products;
 
         $data = array(
             'currentImportOrder'    =>  $currentImportOrder,
+            'orderID'               =>  $id,
             'orderProducts'         =>  $orderProducts,
             'Products'              =>  $Products,
             'expiration'            =>  $expiration,
+            'originalExpiration'    =>  $originalExpiration,
         );
 
         return view('order.import.single')->with( $data );
@@ -183,7 +186,10 @@ class ImportOrderController extends Controller
     }
 
     // Confirm order
-    function confirm($id) {
+    function confirm(Request $request) {
+
+        $decodeExpiration = unserialize($request->originalExpiration);
+        $id = $request->orderID;
 
         $order = ImportOrder::find($id);
         $order_location = $order->location;
@@ -206,6 +212,17 @@ class ImportOrderController extends Controller
 
         $order->status = "confirm";
         $order->save();
+
+        // Expiration 
+        foreach ($decodeExpiration as $productID => $dateArray) {
+            $newExpiration = new Expiration; 
+
+            $newExpiration->p_id = $productID;
+            $newExpiration->date = serialize($dateArray);
+            $newExpiration->location = $order_location;
+
+            $newExpiration->save();
+        }
 
         return redirect('orders/import')->with('success' , 'okay');
 
