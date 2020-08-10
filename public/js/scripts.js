@@ -113,7 +113,7 @@ $(document).ready(function() {
                                             "</div>" +
 
                                             "<div class='modal-footer'>" +
-                                                "<button id='cf_"+ productsOrdered[x].id +"'>Trigger</button>" +
+                                                "<button id='cf_"+ productsOrdered[x].id +"'>Tạo hạn sử dụng</button>" +
                                             "</div>" +
 
                                         "</div>" +
@@ -152,6 +152,7 @@ $(document).ready(function() {
                                 })
                             });
                             console.log(mergeArray);
+                            $("#op_" + thisParentData).modal('hide');
                         });
 
 

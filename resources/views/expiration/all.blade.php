@@ -18,7 +18,7 @@
 		<div class="container pt-4">
 			<div class="action_box d-flex align-items-center justify-content-between">
 				<h2 class="main_content__title">Quản lý Hạn Sử Dụng</h2>
-				<a href="{{url('expiration')}}" class="btn btn-outline-dark">Thêm HSD +</a>
+				
 			</div>
 
 			<table class="lotus_table">
