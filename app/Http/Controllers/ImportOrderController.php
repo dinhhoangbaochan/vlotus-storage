@@ -157,12 +157,14 @@ class ImportOrderController extends Controller
     function single($id) {
         $currentImportOrder = ImportOrder::find($id);
         $orderProducts = unserialize( $currentImportOrder->products );
+        $expiration = unserialize( $currentImportOrder->expiration );
         $Products = new Products;
 
         $data = array(
             'currentImportOrder'    =>  $currentImportOrder,
             'orderProducts'         =>  $orderProducts,
             'Products'              =>  $Products,
+            'expiration'            =>  $expiration,
         );
 
         return view('order.import.single')->with( $data );

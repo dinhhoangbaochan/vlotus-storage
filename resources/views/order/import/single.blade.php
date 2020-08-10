@@ -36,7 +36,6 @@
                                 </thead>
 
                                 <tbody class="LT_body">
-
                                     
 
                                     @foreach( $orderProducts as $key => $value )
@@ -47,7 +46,7 @@
                                             <td><img src="/uploaded/{{ $pio->product_image }}" alt=""></td>
                                             <td>{{ $pio->name }}</td>
                                             <td>{{ $pio->sku }}</td>
-                                            <td>{{ $value }}</td>
+                                            <td>{{ $value }} <a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'>open</a></td>
                                         </tr>
 
                                         {{-- <li>{{$Products::find($value)}}</li> --}}
@@ -56,6 +55,53 @@
 
                             </table>
                         </form>
+                        
+                        <pre>
+                            @php
+                                var_dump($expiration);
+                            @endphp
+                        </pre>
+
+                        @foreach ($expiration as $p_id => $expirationArray)
+                            <div class='modal fade' id='op_<?php echo $p_id ?>' role='dialog' aria-hidden='true'>
+                                <div class='modal-dialog expiration-modal' role='document'>
+                                    <div class='modal-content'>
+                                        @php
+                                            $thisProduct = $Products::find($p_id);
+                                        @endphp
+                                        <div class="modal-header">
+                                            Quản lý HSD Sản phẩm <b>{{$thisProduct->name}}</b>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    Số lượng 
+                                                </div>
+                                                <div class="col-6">
+                                                    Ngày hết hạn
+                                                </div>
+                                            </div>
+                                            @foreach ($expirationArray as $key => $value)
+                                                @foreach ($value as $amount => $exp) 
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input type="number" value="{{$amount}}" class="form-control" readonly>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="date" value="{{$exp}}" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                                    
+                                                @endforeach
+                                            @endforeach
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
 
                         <div class="product_info">
                             <div class="do_action">
