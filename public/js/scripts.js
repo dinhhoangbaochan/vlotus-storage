@@ -86,10 +86,9 @@ $(document).ready(function() {
 
                         text += "<tr class='tt' data-id='"+ productsOrdered[x].id +"'>" + 
                                     "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
-                                    "<td>" + productsOrdered[x].name + "<input type='hidden' name='productID' value='"+ productsOrdered[x].id +"' />" + "</td>"  + 
+                                    "<td>" + productsOrdered[x].name + "</td>"  + 
                                     "<td>" + productsOrdered[x].sku + "</td>"  +
-                                    "<td>" + "<input type='number' name='pickAmount'>" + "</td>" + 
-                                    "<td>" + "<input type='date' name='pickADate' />" +
+                                    "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"'>" + "</td>" + 
                                     "<td><a href data-target='#op_"+ productsOrdered[x].id +"' data-toggle='modal'>+</a></td>" +
                                 "<tr>" +
 
@@ -106,8 +105,8 @@ $(document).ready(function() {
                                                 "<span>This is product: " + productsOrdered[x].name + "</span>" +
 
                                                 "<div class='row'>" + 
-                                                    "<div class='col-5'><input type='number' class='form-control' name='Amount_' /></div>" +
-                                                    "<div class='col-5'><input type='date' class='form-control' name='Date_"+ productsOrdered[x].id +"' /></div>" +
+                                                    "<div class='col-5'><input type='number' class='form-control' /></div>" +
+                                                    "<div class='col-5'><input type='date' class='form-control' /></div>" +
                                                     "<div class='col-2'><a class='triggerExp'>++</a></div>" +
                                                 "</div>" +
 
@@ -128,13 +127,10 @@ $(document).ready(function() {
                         // newScript.appendChild(inlineScript); 
                         // document.querySelector(".LT_body").appendChild(newScript);
 
-                        var currentAmounts = fData.getAll('Amount_');
-
                         $(document).on("click", "#cf_" + productsOrdered[x].id ,function(e) {
                             e.preventDefault();
                             var thisParentId = $(this).parent().parent().parent().parent().attr('id');
                             var thisParentData = $(this).parent().parent().parent().parent().data('sku');
-                            console.log('trigger event at ID ' + thisParentId);
 
                             var inputAmountValues = $('#'+ thisParentId  + ' input[type="number"]').map(function() {
                                 return $(this).val()
@@ -144,11 +140,17 @@ $(document).ready(function() {
                                 return $(this).val()
                             }).get();
 
-                            console.log(inputAmountValues);
-                            console.log(inputDateValues);
-                            mergeArray[thisParentData] = {};
+                            // mergeArray.push({ 
+                            //     [thisParentData]: {}
+                            // });
+                            mergeArray[thisParentData] = [];
 
-                            inputAmountValues.forEach((key, i) => mergeArray[thisParentData][key] = inputDateValues[i]);
+                            inputAmountValues.forEach(function(key, i) {
+                                // mergeArray[thisParentData][key] = inputDateValues[i]
+                                mergeArray[thisParentData].push({
+                                    [key]: inputDateValues[i]
+                                })
+                            });
                             console.log(mergeArray);
                         });
 
@@ -168,43 +170,38 @@ $(document).ready(function() {
 
         });
 
-        
-        var object = {};
-        var json = JSON.stringify(object);
+
         $("#createOrderSubmit").click(function(event) {
             
-            var formProducts = $('#formTwo');
-            var formData = new FormData(formProducts[0]);
-            // rs = objToJson(formData);
+            var formProducts = $('#formTwo').serializeArray();
+            rs = objToJson(formProducts);
 
             var uniquePiO = getUnique(pio);
             var location = $("#storage_location").val();
             var orderCode = $("#order_code").val();
             var deadline = $("input[name='deadline']").val();
+            var expirationList = mergeArray;
 
-            formData.forEach(function(value, key){
-                // console.log('key ' + key + ' - ' + 'value ' + value);
-                console.log(formData);
-            });
             
-            // $.ajaxSetup({
-            //     headers: {
-            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //     }
-            // });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-            // $.ajax({
-            //     url: "/orders/create-import",
-            //     method: "post",
-            //     dataType: "json",
-            //     data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
-            //     success: function(res) {
-            //         window.location=res.url;               
-            //     },
-            //     error: function(res) {
-            //         console.log(res);                    
-            //     }
-            // });
+            $.ajax({
+                url: "/orders/create-import",
+                method: "post",
+                dataType: "json",
+                data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList },
+                success: function(res) {
+                    window.location=res.url;    
+                    // console.log(res);           
+                },
+                error: function(res) {
+                    console.log(res);                    
+                }
+            });
 
             // $('#rs').html(JSON.stringify(rs, undefined, 2));
 

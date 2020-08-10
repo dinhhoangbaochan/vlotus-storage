@@ -7,6 +7,7 @@ use App\ImportOrder;
 use App\Products;
 use App\ProductsInStorage;
 use DB;
+use App\Expiration;
 
 class ImportOrderController extends Controller
 {
@@ -90,6 +91,7 @@ class ImportOrderController extends Controller
         $productsInOrder = json_encode($request->products);
         $orderCode = $request->orderCode;
         $deadline = $request->deadline;
+        $expiration = $request->expirationList;
 
         foreach ($qty as $id => $amount) {
 
@@ -124,11 +126,22 @@ class ImportOrderController extends Controller
         $order->products = serialize($qty);
         $order->status = "wait";
         $order->deadline = $deadline;
+        $order->expiration = serialize($expiration);
 
         $order->save();
 
+        // Expiration 
+        // foreach ($expiration as $productID => $dateArray) {
+        //     $newExpiration = new Expiration; 
+
+        //     $newExpiration->p_id = $productID;
+        //     $newExpiration->date = serialize($dateArray);
+
+        //     $newExpiration->save();
+        // }
+        
+
         return response()->json(['url' => url('orders/import')]);
-        return $res;
 
     }
 
