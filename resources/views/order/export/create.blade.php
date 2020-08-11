@@ -70,12 +70,11 @@
 
                                 <div class="form-group">
                                     <label for="deadline_date">Ngày hẹn giao</label>
-                                    {{Form::date('deadline', \Carbon\Carbon::now(), ['class' => 'form-control'])}}
+                                    {{-- {{Form::date('deadline', \Carbon\Carbon::now(), ['class' => 'form-control'])}} --}}
+                                    <input type="text" class="deadline_date form-control" placeholder="Select">
                                 </div>
                             </div>
                         </div>
-    
-
 
                     </div>
 
@@ -88,4 +87,13 @@
         </div>
 
     </div>
+
+<script>
+    jQuery('.deadline_date').flatpickr({
+        enableTime: true,
+    })
+</script>
+
 @endsection
+
+
