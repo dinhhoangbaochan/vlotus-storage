@@ -174,15 +174,29 @@ $(document).ready(function() {
 
         $("#createOrderSubmit").click(function(event) {
             
-            var formProducts = $('#formTwo').serializeArray();
+            var formProducts = $('#formTwo').serializeArray(),
             rs = objToJson(formProducts);
 
             var uniquePiO = getUnique(pio);
             var location = $("#storage_location").val();
-            var orderCode = $("#order_code").val();
+            // var orderCode = $("#order_code").val();
+            var orderCode;
             var deadline = $("input[name='deadline']").val();
             var expirationList = mergeArray;
 
+            var today = new Date();
+            var locationCode;
+            var date = "" + today.getFullYear() + (today.getMonth()+1) + today.getDate();
+            var time = "" + today.getHours() + today.getMinutes() + today.getSeconds();
+            var dateTime = date + time;
+
+            if ( location == 1 ) {
+                locationCode = 'NTL';
+            } else {
+                locationCode = 'TT';
+            }
+
+            orderCode = locationCode + dateTime;
             
             $.ajaxSetup({
                 headers: {
@@ -204,7 +218,7 @@ $(document).ready(function() {
                 }
             });
 
-            // $('#rs').html(JSON.stringify(rs, undefined, 2));
+            $('#rs').html(JSON.stringify(rs, undefined, 2));
 
         });
 
