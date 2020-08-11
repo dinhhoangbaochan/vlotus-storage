@@ -81,6 +81,7 @@ $(document).ready(function() {
                         // console.log(productsOrdered);
 
                     } 
+
                     for (x in productsOrdered) {
                         // text += productsOrdered[x].name + "<br>";
 
@@ -88,7 +89,7 @@ $(document).ready(function() {
                                     "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                     "<td>" + productsOrdered[x].name + "</td>"  + 
                                     "<td>" + productsOrdered[x].sku + "</td>"  +
-                                    "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' readonly>" + "</td>" + 
+                                    "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' class='form-control' readonly>" + "</td>" + 
                                     "<td><a href data-target='#op_"+ productsOrdered[x].id +"' data-toggle='modal'>+</a></td>" +
                                 "<tr>" +
 
@@ -107,7 +108,9 @@ $(document).ready(function() {
                                                 "<div class='row'>" + 
                                                     "<div class='col-5'><input type='number' class='form-control' /></div>" +
                                                     "<div class='col-5'><input type='date' class='form-control' /></div>" +
-                                                    "<div class='col-2'><a class='triggerExp'>++</a></div>" +
+                                                    "<div class='col-2 d-flex justify-content-center align-items-center'>" +
+                                                        "<a class='triggerExp'>++</a> <a class='deleteExp'>xx</a>"+
+                                                    "</div>" +
                                                 "</div>" +
 
                                             "</div>" +
@@ -122,11 +125,6 @@ $(document).ready(function() {
                                 ;
                         pio.push(productsOrdered[x].id);
 
-                        // var newScript = document.createElement("script");
-                        // var inlineScript = document.createTextNode("alert('Hello World!' + productsOrdered[x].id);");
-                        // newScript.appendChild(inlineScript); 
-                        // document.querySelector(".LT_body").appendChild(newScript);
-
                         $(document).on("click", "#cf_" + productsOrdered[x].id ,function(e) {
                             e.preventDefault();
                             var thisParentId = $(this).parent().parent().parent().parent().attr('id');
@@ -140,9 +138,8 @@ $(document).ready(function() {
                                 return $(this).val()
                             }).get();
 
-                            // mergeArray.push({ 
-                            //     [thisParentData]: {}
-                            // });
+                            var sumOfAmount = inputAmountValues.reduce(function(a,b){ return a + b })
+
                             mergeArray[thisParentData] = [];
 
                             inputAmountValues.forEach(function(key, i) {
@@ -151,8 +148,11 @@ $(document).ready(function() {
                                     [key]: inputDateValues[i]
                                 })
                             });
-                            console.log(inputAmountValues.reduce(function(a,b){ return a + b }));
-                            // $("#op_" + thisParentData).modal('hide');
+
+                            console.log(sumOfAmount);
+                            $(" input[name='"+ thisParentData + "'] ").val(sumOfAmount);
+
+                            $("#op_" + thisParentData).modal('hide');
                         });
 
 
@@ -229,6 +229,11 @@ $(document).ready(function() {
             console.log(elementParent.clone());
             elementParent.clone().insertAfter(elementParent);
             
+        });
+
+        $(document).on('click', ".deleteExp", function(event) {
+            event.preventDefault();
+            $(this).closest('.row').remove();
         });
 
 
