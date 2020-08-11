@@ -88,7 +88,7 @@ $(document).ready(function() {
                                     "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                     "<td>" + productsOrdered[x].name + "</td>"  + 
                                     "<td>" + productsOrdered[x].sku + "</td>"  +
-                                    "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"'>" + "</td>" + 
+                                    "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' readonly>" + "</td>" + 
                                     "<td><a href data-target='#op_"+ productsOrdered[x].id +"' data-toggle='modal'>+</a></td>" +
                                 "<tr>" +
 
@@ -133,7 +133,7 @@ $(document).ready(function() {
                             var thisParentData = $(this).parent().parent().parent().parent().data('sku');
 
                             var inputAmountValues = $('#'+ thisParentId  + ' input[type="number"]').map(function() {
-                                return $(this).val()
+                                return +$(this).val() // return value and convert value into integer
                             }).get();
                             
                             var inputDateValues = $('#'+ thisParentId + ' input[type="date"]').map(function() {
@@ -151,8 +151,8 @@ $(document).ready(function() {
                                     [key]: inputDateValues[i]
                                 })
                             });
-                            console.log(mergeArray);
-                            $("#op_" + thisParentData).modal('hide');
+                            console.log(inputAmountValues.reduce(function(a,b){ return a + b }));
+                            // $("#op_" + thisParentData).modal('hide');
                         });
 
 
