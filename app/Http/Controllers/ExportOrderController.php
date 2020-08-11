@@ -153,10 +153,25 @@ class ExportOrderController extends Controller
             $productsInStorage->save();
 
         }
-
         
 
         return redirect('orders/export')->with('success' , 'okay');
+
+    }
+
+
+    public function loadExpiration(Request $request) {
+        $id = $request->id;
+        $location = $request->location;
+
+        $expiration = DB::table('expiration')
+            ->where('p_id', $id)
+            ->where('location', $location)
+            ->get();
+
+        foreach ($expiration as $object) {
+            return unserialize($object->date) ;
+        }
 
     }
 

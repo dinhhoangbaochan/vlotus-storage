@@ -59,7 +59,8 @@ $(document).ready(function() {
         $(document).on("click", ".import-dropdown" , function(event){
             event.preventDefault();
             var currentDataID = $(this).data("id");
-            console.log(currentDataID);
+
+            
 
             $.ajax({
                 url: "/get-selected-product",
@@ -107,9 +108,10 @@ $(document).ready(function() {
 
                                                 "<div class='row'>" + 
                                                     "<div class='col-5'><input type='number' class='form-control' /></div>" +
-                                                    "<div class='col-5'><input type='date' class='form-control' /></div>" +
+                                                    "<div class='col-5'><input type='text' class='imp_date form-control ' /></div>" +
                                                     "<div class='col-2 d-flex justify-content-center align-items-center'>" +
-                                                        "<a class='triggerExp'>++</a> <a class='deleteExp'>xx</a>"+
+                                                        "<a class='triggerExp'><span class='material-icons'>add_task</span></a>" +
+                                                        "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
                                                     "</div>" +
                                                 "</div>" +
 
@@ -124,6 +126,7 @@ $(document).ready(function() {
                                 "</div>" 
                                 ;
                         pio.push(productsOrdered[x].id);
+
 
                         $(document).on("click", "#cf_" + productsOrdered[x].id ,function(e) {
                             e.preventDefault();
@@ -170,6 +173,26 @@ $(document).ready(function() {
 
 
         });
+
+        $("a").click(function() {
+            if ( $("").length ) {
+                console.log('ton tai');
+            } else {
+                console.log('chua ton tai');
+            }
+        })
+
+        var checkExist = setInterval(function() {
+            if ($('.imp_date').length) {
+                console.log("Exists!");
+                $('.imp_date').flatpickr({
+                    enableTime: true,
+                })
+                clearInterval(checkExist);
+            } else {
+                console.log('not yet')
+            }
+        }, 100); // check every 100ms
 
 
         $("#createOrderSubmit").click(function(event) {
@@ -326,36 +349,25 @@ $(document).ready(function() {
                                     "<td>" + productsOrdered[x].name + "</td>"  + 
                                     "<td>" + productsOrdered[x].sku + "</td>"  +
                                     "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' class='form-control' readonly>" + "</td>" + 
-                                    "<td><a href data-target='#op_"+ productsOrdered[x].id +"' data-toggle='modal'>+</a></td>" +
+                                    "<td><a data-toggle='modal' class='expand_collapse' href='#coll_"+ productsOrdered[x].id +"' data-id='"+ productsOrdered[x].id +"'>+</a></td>" +
                                 "<tr>" +
 
-                                "<div class='modal fade' id='op_"+ productsOrdered[x].id +"' data-sku='"+ productsOrdered[x].id +"' role='dialog' aria-hidden='true'>" +
-                                    "<div class='modal-dialog expiration-modal' role='document'>" +
-                                        "<div class='modal-content'>" +
 
-                                            "<div class='modal-header'>" +
-                                                "<h5 class='modal-title'>Quản lý hạn sử dụng</h5>" +
-                                                "<button class='close' data-dismiss='modal'><span>&times;</span></button>" +
-                                            "</div>" +
-
-                                            "<div class='modal-body'>" +
-                                                "<span>This is product: " + productsOrdered[x].name + "</span>" +
-
-                                                "<div class='row'>" + 
-                                                    "<div class='col-5'><input type='number' class='form-control' /></div>" +
-                                                    "<div class='col-5'><input type='date' class='form-control' /></div>" +
-                                                    "<div class='col-2 d-flex justify-content-center align-items-center'>" +
-                                                        "<a class='triggerExp'>++</a> <a class='deleteExp'>xx</a>"+
-                                                    "</div>" +
-                                                "</div>" +
-
-                                            "</div>" +
-
-                                            "<div class='modal-footer'>" +
-                                                "<button id='cf_"+ productsOrdered[x].id +"'>Tạo hạn sử dụng</button>" +
-                                            "</div>" +
-
+                                "<div class='modal' id='coll_" + productsOrdered[x].id + "'>" +
+                                    "<div class='modal-dialog'>" +
+                                    "<div class='modal-content'>" +
+                                        "<div class='modal-header'>" + 
+                                            "<h3>Chọn phiên bản xuất</h3>" + 
                                         "</div>" +
+
+                                        "<div class='modal-body'>" + 
+                                            "<span>hey</span>" +
+                                        "</div>" +
+
+                                        "<div class='modal-footer'>" +
+                                            "<button class='cf_exp'>Confirm</button>"
+                                        "</div>" +
+                                    "</div>" +
                                     "</div>" +
                                 "</div>" 
                                 ;
@@ -409,11 +421,42 @@ $(document).ready(function() {
 
 
 
+        $(document).on("click", ".expand_collapse", function(e) {
+            
+            var id = $(this).data('id');
+            var location = $('#location_id').val();
+            var obj = "";
 
+            $.ajax({
+                url: "/load-expiration",
+                method: "GET",
+                dataType: "json",
+                data: { id: id, location: location },
+                success: function(res) {
+                    console.log(res);
+                    res.forEach(function(item) {
+                        Object.entries(item).forEach(([amount, date]) => {
+                            obj += "<div class='row'>" +
+                                        "<div class='col-6'>" +
+                                            "<input type='number' value='"+ amount +"' class='form-control'>" +
+                                        "</div>" +
+                                        "<div class='col-6'>" +
+                                            "<input type='number' name='newExp' class='form-control' />" +
+                                            "<input type='hidden' value='"+date+"' name='newDate' class='form-control' />" +
+                                        "</div>" +
+                                    "</div>"
+                            ;
+                        })
+                    });
+      
+                    document.querySelector("#coll_" + id + ' .modal-body').innerHTML = obj;          
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
 
-
-
-
+        });
 
 
         // Image preview when uploaded
