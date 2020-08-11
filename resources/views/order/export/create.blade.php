@@ -89,10 +89,16 @@
     </div>
 
 <script>
-    jQuery('.deadline_date').flatpickr({
-        enableTime: true,
-    })
-</script>
+
+    $(document).ready(function() {
+
+        jQuery('.deadline_date').flatpickr({
+            enableTime: true,
+        })
+
+    });
+
+    </script>
 
 @endsection
 

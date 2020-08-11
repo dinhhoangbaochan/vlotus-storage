@@ -56,7 +56,7 @@ $(document).ready(function() {
         var fData = new FormData($('#formTwo')[0]);
         var mergeArray = {};
 
-        $(document).on("click", ".dropdown-item" , function(event){
+        $(document).on("click", ".import-dropdown" , function(event){
             event.preventDefault();
             var currentDataID = $(this).data("id");
             console.log(currentDataID);
@@ -237,17 +237,10 @@ $(document).ready(function() {
         });
 
 
-        // Image preview when uploaded
-        $(".upload_img").on("change", function() {
-            $(".img_preview").removeAttr("style");
-            $(".img_preview").attr("src", URL.createObjectURL(this.files[0]));
-        });
-
-
         // Trigger event
         $("#exportable_products").keyup(findExportableProducts);
 
-      // Load products in storage based on storage location 
+        // Load products in storage based on storage location 
         function findExportableProducts(event) {
             var getInput = $(this).val();
             var location = $("#location_id").val();
@@ -266,7 +259,6 @@ $(document).ready(function() {
                 }
             });
         }
-
 
         $("#createExportOrder").click(function(event) {
             event.preventDefault();
@@ -299,6 +291,138 @@ $(document).ready(function() {
             });
 
         }); 
+
+        $(document).on("click", ".export-dropdown" , function(event){
+            event.preventDefault();
+            var currentDataID = $(this).data("id");
+            console.log(currentDataID);
+
+            $.ajax({
+                url: "/choose-export-product",
+                method: "GET",
+                dataType: "json",
+                data: { currentID : currentDataID },
+                success: function(res) {
+                    $("#findProductList").removeClass("show");
+                    productsOrdered.push(res);
+                    var x, text = "";
+
+                    var valueArr = productsOrdered.map(function(item){ return item.id });
+                    var isDuplicate = valueArr.some(function(item, index){ 
+                        return valueArr.indexOf(item) != index 
+                    });
+
+                    if ( isDuplicate == true ) {
+                        productsOrdered.pop();
+                        // console.log(productsOrdered);
+
+                    } 
+
+                    for (x in productsOrdered) {
+                        // text += productsOrdered[x].name + "<br>";
+
+                        text += "<tr class='tt' data-id='"+ productsOrdered[x].id +"'>" + 
+                                    "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
+                                    "<td>" + productsOrdered[x].name + "</td>"  + 
+                                    "<td>" + productsOrdered[x].sku + "</td>"  +
+                                    "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' class='form-control' readonly>" + "</td>" + 
+                                    "<td><a href data-target='#op_"+ productsOrdered[x].id +"' data-toggle='modal'>+</a></td>" +
+                                "<tr>" +
+
+                                "<div class='modal fade' id='op_"+ productsOrdered[x].id +"' data-sku='"+ productsOrdered[x].id +"' role='dialog' aria-hidden='true'>" +
+                                    "<div class='modal-dialog expiration-modal' role='document'>" +
+                                        "<div class='modal-content'>" +
+
+                                            "<div class='modal-header'>" +
+                                                "<h5 class='modal-title'>Quản lý hạn sử dụng</h5>" +
+                                                "<button class='close' data-dismiss='modal'><span>&times;</span></button>" +
+                                            "</div>" +
+
+                                            "<div class='modal-body'>" +
+                                                "<span>This is product: " + productsOrdered[x].name + "</span>" +
+
+                                                "<div class='row'>" + 
+                                                    "<div class='col-5'><input type='number' class='form-control' /></div>" +
+                                                    "<div class='col-5'><input type='date' class='form-control' /></div>" +
+                                                    "<div class='col-2 d-flex justify-content-center align-items-center'>" +
+                                                        "<a class='triggerExp'>++</a> <a class='deleteExp'>xx</a>"+
+                                                    "</div>" +
+                                                "</div>" +
+
+                                            "</div>" +
+
+                                            "<div class='modal-footer'>" +
+                                                "<button id='cf_"+ productsOrdered[x].id +"'>Tạo hạn sử dụng</button>" +
+                                            "</div>" +
+
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>" 
+                                ;
+                        pio.push(productsOrdered[x].id);
+
+                        $(document).on("click", "#cf_" + productsOrdered[x].id ,function(e) {
+                            e.preventDefault();
+                            var thisParentId = $(this).parent().parent().parent().parent().attr('id');
+                            var thisParentData = $(this).parent().parent().parent().parent().data('sku');
+
+                            var inputAmountValues = $('#'+ thisParentId  + ' input[type="number"]').map(function() {
+                                return +$(this).val() // return value and convert value into integer
+                            }).get();
+                            
+                            var inputDateValues = $('#'+ thisParentId + ' input[type="date"]').map(function() {
+                                return $(this).val()
+                            }).get();
+
+                            var sumOfAmount = inputAmountValues.reduce(function(a,b){ return a + b })
+
+                            mergeArray[thisParentData] = [];
+
+                            inputAmountValues.forEach(function(key, i) {
+                                // mergeArray[thisParentData][key] = inputDateValues[i]
+                                mergeArray[thisParentData].push({
+                                    [key]: inputDateValues[i]
+                                })
+                            });
+
+                            console.log(sumOfAmount);
+                            $(" input[name='"+ thisParentData + "'] ").val(sumOfAmount);
+
+                            $("#op_" + thisParentData).modal('hide');
+                        });
+
+
+                    };
+                    
+                    document.querySelector(".LT_body").innerHTML = text;
+                    // $(".LT_body").append(text);
+
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+        // Image preview when uploaded
+        $(".upload_img").on("change", function() {
+            $(".img_preview").removeAttr("style");
+            $(".img_preview").attr("src", URL.createObjectURL(this.files[0]));
+        });
+
+
 
         // Create expiration dates
         $("#addExpDate").click(function(e) {

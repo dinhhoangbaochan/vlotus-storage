@@ -7,6 +7,7 @@ use App\ExportOrder;
 use DB;
 use App\Products;
 use App\ProductsInStorage;
+use App\Expiration;
 
 class ExportOrderController extends Controller
 {
@@ -37,7 +38,7 @@ class ExportOrderController extends Controller
         	$query = $request->get('input');
         	$find = Products::where('id', $row->p_id)->where('name', 'LIKE', "%{$query}%")->get();
         	foreach ($find as $prd) {
-        		$output .= '<a href="" class="dropdown-item" data-id="' .$prd->id. '" >' . $prd->name . '</a>';
+        		$output .= '<a href="" class="dropdown-item export-dropdown" data-id="' .$prd->id. '" >' . $prd->name . '</a>';
         		
         	}
            
@@ -76,6 +77,32 @@ class ExportOrderController extends Controller
         return response()->json(['url' => url('orders/export')]);
         return $res;
 
+    }
+
+    public function findProduct(Request $request) {
+        $current_id = $request->get('currentID');
+        if ( $current_id ) {
+            $find_product = DB::table('products')
+            ->where('id', $current_id)
+            ->get();
+
+            foreach ($find_product as $product) {
+                $response_array = array(
+                    'id'        =>      $product->id,
+                    'name'      =>      $product->name,
+                    'sku'       =>      $product->sku,
+                    'img'       =>      $product->product_image,
+                    'price'     =>      $product->price,
+                );
+            }
+
+            $encode_res = json_encode($response_array);
+
+            echo $encode_res;
+
+        } else {
+            echo "Unable to find what you've clicked";
+        }
     }
 
     public function single($id) {

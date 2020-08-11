@@ -42,7 +42,7 @@ class ImportOrderController extends Controller
             $output = '';
             foreach($data as $row)
             {
-               $output .= '<a href="" class="dropdown-item" data-id="' .$row->id. '" >' . $row->name . '</a>';
+               $output .= '<a href="" class="dropdown-item import-dropdown" data-id="' .$row->id. '" >' . $row->name . '</a>';
             }
            $output .= '';
            echo $output;
