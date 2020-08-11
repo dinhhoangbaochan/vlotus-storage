@@ -104,11 +104,10 @@ $(document).ready(function() {
                                             "</div>" +
 
                                             "<div class='modal-body'>" +
-                                                "<span>This is product: " + productsOrdered[x].name + "</span>" +
 
-                                                "<div class='row'>" + 
+                                                "<div class='row mb-2'>" + 
                                                     "<div class='col-5'><input type='number' class='form-control' /></div>" +
-                                                    "<div class='col-5'><input type='text' class='imp_date form-control ' /></div>" +
+                                                    "<div class='col-5'><input type='date' class='imp_date form-control ' /></div>" +
                                                     "<div class='col-2 d-flex justify-content-center align-items-center'>" +
                                                         "<a class='triggerExp'><span class='material-icons'>add_task</span></a>" +
                                                         "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
@@ -174,25 +173,17 @@ $(document).ready(function() {
 
         });
 
-        $("a").click(function() {
-            if ( $("").length ) {
-                console.log('ton tai');
-            } else {
-                console.log('chua ton tai');
-            }
-        })
-
-        var checkExist = setInterval(function() {
-            if ($('.imp_date').length) {
-                console.log("Exists!");
-                $('.imp_date').flatpickr({
-                    enableTime: true,
-                })
-                clearInterval(checkExist);
-            } else {
-                console.log('not yet')
-            }
-        }, 100); // check every 100ms
+        // var checkExist = setInterval(function() {
+        //     if ($('.imp_date').length) {
+        //         console.log("Exists!");
+        //         $('.imp_date').flatpickr({
+        //             enableTime: true,
+        //         })
+        //         clearInterval(checkExist);
+        //     } else {
+        //         console.log('not yet')
+        //     }
+        // }, 100); // check every 100ms
 
 
         $("#createOrderSubmit").click(function(event) {
@@ -250,9 +241,21 @@ $(document).ready(function() {
             event.preventDefault();
             var elementParent = $(this).parent().parent();
             console.log(elementParent.clone());
-            elementParent.clone().insertAfter(elementParent);
+            var copy = "<div class='row mb-2'>" + 
+                        "<div class='col-5'><input type='number' class='form-control' /></div>" +
+                        "<div class='col-5'><input type='text' class='ddd form-control ' /></div>" +
+                        "<div class='col-2 d-flex justify-content-center align-items-center'>" +
+                            "<a class='triggerExp'><span class='material-icons'>add_task</span></a>" +
+                            "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
+                        "</div>" +
+                    "</div>";
+            $(copy).insertAfter(elementParent);
+
+
+
             
         });
+
 
         $(document).on('click', ".deleteExp", function(event) {
             event.preventDefault();

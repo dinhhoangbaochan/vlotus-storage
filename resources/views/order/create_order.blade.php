@@ -60,10 +60,6 @@
                         <div class="col-4">
                             <div class="product_info">
                                 <div class="form-group">
-                                    <label for="">Mã đơn hàng</label>
-                                    <input type="text" name="order_code" id="order_code" class="form-control">
-                                </div>
-                                <div class="form-group">
                                     <label for="storage_location">Chọn chi nhánh</label>
                                     <select class="form-control" id="storage_location" name="storage_location">
                                         <option value="1">Nơ Trang Long</option>
