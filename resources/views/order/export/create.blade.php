@@ -73,6 +73,7 @@
                                     {{-- {{Form::date('deadline', \Carbon\Carbon::now(), ['class' => 'form-control'])}} --}}
                                     <input type="text" class="deadline_date form-control" placeholder="Select">
                                 </div>
+
                             </div>
                         </div>
 

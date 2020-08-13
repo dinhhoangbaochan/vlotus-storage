@@ -107,7 +107,7 @@ $(document).ready(function() {
 
                                                 "<div class='row mb-2'>" + 
                                                     "<div class='col-5'><input type='number' class='form-control' /></div>" +
-                                                    "<div class='col-5'><input type='date' class='imp_date form-control ' /></div>" +
+                                                    "<div class='col-5'><input type='text' class='imp_date form-control ' /></div>" +
                                                     "<div class='col-2 d-flex justify-content-center align-items-center'>" +
                                                         "<a class='triggerExp'><span class='material-icons'>add_task</span></a>" +
                                                         "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
@@ -172,18 +172,12 @@ $(document).ready(function() {
 
 
         });
-
-        // var checkExist = setInterval(function() {
-        //     if ($('.imp_date').length) {
-        //         console.log("Exists!");
-        //         $('.imp_date').flatpickr({
-        //             enableTime: true,
-        //         })
-        //         clearInterval(checkExist);
-        //     } else {
-        //         console.log('not yet')
-        //     }
-        // }, 100); // check every 100ms
+        
+        $(document).on('focus', '.imp_date', function() {
+            $(this).flatpickr({
+                enableTime: true,
+            });
+        });
 
 
         $("#createOrderSubmit").click(function(event) {
@@ -243,7 +237,7 @@ $(document).ready(function() {
             console.log(elementParent.clone());
             var copy = "<div class='row mb-2'>" + 
                         "<div class='col-5'><input type='number' class='form-control' /></div>" +
-                        "<div class='col-5'><input type='text' class='ddd form-control ' /></div>" +
+                        "<div class='col-5'><input type='text' class='imp_date form-control ' /></div>" +
                         "<div class='col-2 d-flex justify-content-center align-items-center'>" +
                             "<a class='triggerExp'><span class='material-icons'>add_task</span></a>" +
                             "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
