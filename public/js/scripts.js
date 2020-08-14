@@ -463,6 +463,9 @@ $(document).ready(function() {
 
         });
 
+        $(document).on("change", "input[name='newExp']", function() {
+            console.log('Changed');
+        })
 
         // Image preview when uploaded
         $(".upload_img").on("change", function() {
