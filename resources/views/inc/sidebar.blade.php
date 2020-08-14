@@ -46,7 +46,7 @@
 
 
 
-				<li><a href="/report"><span class="material-icons">list_alt</span>Report</a></li>
+				<li><a href=""><span class="material-icons">list_alt</span>Report</a></li>
 
 				<li><a href=""><span class="material-icons">emoji_flags</span>Notification</a></li>
 
