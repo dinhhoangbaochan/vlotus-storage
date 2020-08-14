@@ -39,7 +39,7 @@
 						@foreach ($productsInStorage as $item)
 							@php $currentProducts = $products::find( $item->p_id ) @endphp
 							<tr>
-								<td>{{ $currentProducts->product_image }}</td>
+								<td><img src="{{ url('/uploaded/') }}{{ $currentProducts->product_image }}" alt=""></td>
 								<td><a href="/expiration/p_id={{ $item->p_id }}&location={{ $item->location }}&id={{ $item->id }}">{{ $currentProducts->name }}</a></td>
 								<td> @if ($item->location == 1) Nơ Trang Long @else Tân Tạo @endif</td>
 								<td>{{ $item->amount }}</td>
