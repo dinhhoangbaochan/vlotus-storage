@@ -433,14 +433,16 @@ $(document).ready(function() {
                     console.log(res);
                     res.forEach(function(item) {
                         Object.entries(item).forEach(([amount, date]) => {
-                            obj += "<div class='row'>" +
-                                        "<div class='col-6'>" +
-                                            "<input type='number' value='"+ amount +"' class='form-control'>" +
-                                        "</div>" +
-                                        "<div class='col-6'>" +
+                            obj += "<div class='row mb-3'>" +
+                                        "<div class='col-4'>" +
                                             "<input type='number' name='newExp' class='form-control' />" +
-                                            "<input type='hidden' value='"+date+"' name='newDate' class='form-control' />" +
                                         "</div>" +
+                                        "<div class='col-4'>" +
+                                            "<input type='number' value='"+ amount +"' class='form-control' readonly>" +
+                                        "</div>" +
+                                        "<div class='col-4'>" +
+                                            "<input type='text' value='"+date+"' name='newDate' class='form-control' readonly />" +
+                                        "</div>" + 
                                     "</div>"
                             ;
                         })
