@@ -94,7 +94,7 @@
                     </a>
 
                     <a href="{{ url('orders/create-export/location_2') }}">
-                        <img src="{{asset('img/warehouse.svg')}}" alt="">
+                        <img src="{{asset('img/delivery.svg')}}" alt="">
                         Kho Tân Tạo
                     </a>
                 </div>
