@@ -464,7 +464,7 @@ $(document).ready(function() {
         });
 
         $(document).on("keypress", "input[name='newExp']", function() {
-            console.log('Changed');
+            console.log('Changed ' + $(this).val());
         })
 
         // Image preview when uploaded
