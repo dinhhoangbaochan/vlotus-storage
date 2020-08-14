@@ -440,7 +440,7 @@ $(document).ready(function() {
                                                 "<div class='input-group-prepend'>" + 
                                                     '<span class="input-group-text">@</span>' +
                                                 "</div>" + 
-                                                 "<input type='number' name='newExp' class='form-control' />" +
+                                                 "<input type='number' name='newExp' class='form-control' min='0' max='"+ amount +"' />" +
                                             "</div>" +
                                         "</div>" +
                                         "<div class='col-4'>" +
@@ -463,6 +463,9 @@ $(document).ready(function() {
 
         });
 
+        $(document).on("change", "input[name='newExp']", function() {
+            console.log('Changed' + this.data('name'));
+        })
 
         // Image preview when uploaded
         $(".upload_img").on("change", function() {
