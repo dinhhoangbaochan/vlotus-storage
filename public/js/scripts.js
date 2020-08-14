@@ -435,7 +435,13 @@ $(document).ready(function() {
                         Object.entries(item).forEach(([amount, date]) => {
                             obj += "<div class='row mb-3'>" +
                                         "<div class='col-4'>" +
-                                            "<input type='number' name='newExp' class='form-control' />" +
+
+                                            "<div class='input-group'>" + 
+                                                "<div class='input-group-prepend'>" + 
+                                                    '<span class="input-group-text">@</span>' +
+                                                "</div>" + 
+                                                 "<input type='number' name='newExp' class='form-control' />" +
+                                            "</div>" +
                                         "</div>" +
                                         "<div class='col-4'>" +
                                             "<input type='number' value='"+ amount +"' class='form-control' readonly>" +
