@@ -463,7 +463,7 @@ $(document).ready(function() {
 
         });
 
-        $(document).on("change", "input[name='newExp']", function() {
+        $(document).on("keypress", "input[name='newExp']", function() {
             console.log('Changed');
         })
 
