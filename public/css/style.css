@@ -287,3 +287,39 @@ a.triggerExp {
     font-size: 18px;
     vertical-align: middle;
 }
+
+#selectLocation .modal-dialog {
+    max-width: 800px;
+}
+
+.storage_select {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.storage_select a {
+    width: 40%;
+    text-align: center;
+    background: #f4f4f4de;
+    padding: 20px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+    transition: 0.4s ease all;
+    border: 1px solid transparent;
+}
+
+.storage_select img {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+
+.storage_select a:hover {
+    background-color: #fff;
+    border: 1px solid black;
+}

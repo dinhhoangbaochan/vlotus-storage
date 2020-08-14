@@ -86,8 +86,21 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<a href={{ url('orders/create-export/location_1') }}>Kho Nơ Trang Long</a>
-				<a href="{{ url('orders/create-export/location_2') }}">Kho Tân Tạo</a>
+
+                <div class="storage_select">
+                    <a href={{ url('orders/create-export/location_1') }}>
+                        <img src="{{asset('img/warehouse.svg')}}" alt="">
+                        Kho Nơ Trang Long
+                    </a>
+
+                    <a href="{{ url('orders/create-export/location_2') }}">
+                        <img src="{{asset('img/warehouse.svg')}}" alt="">
+                        Kho Tân Tạo
+                    </a>
+                </div>
+
+
+				
 			</div>
 		</div>
 	</div>
