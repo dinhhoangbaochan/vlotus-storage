@@ -144,13 +144,13 @@
                                 </div>
 
                                 <div class="location">
-                                    Nhập về kho <b>
+                                    <span class="s_label">Nhập về kho:</span>
                                         @if( $currentExportOrder->location == 1 )
                                             Nơ Trang Long
                                         @else 
                                             Tân Tạo
                                         @endif
-                                        </b>
+                                        
                                 </div>
 
                                 <div class="order_meta">
