@@ -51,7 +51,11 @@
                                             <td>{{ $pio->name }}</td>
                                             <td>{{ $pio->sku }}</td>
                                             <td>{{ $value }}</td>
-                                            <td><a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'>open</a></td>
+                                            <td>
+                                                <a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'>
+                                                    <span class="material-icons">list</span>
+                                                </a>
+                                            </td>
                                         </tr>
 
                                     @endforeach
