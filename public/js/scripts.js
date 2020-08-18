@@ -489,7 +489,7 @@ $(document).ready(function() {
 
             var uniquePiO = getUnique(pio);
             var location = $("#location_id").val();
-            var deadline = $("input[name='deadline']").val();
+            var deadline = $(".deadline_date").val();
             var orderCode;
             var expirationList = mergeArray;
 
@@ -507,28 +507,26 @@ $(document).ready(function() {
 
             orderCode = locationCode + dateTime;
 
-            console.log(rs);
 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-            // $.ajaxSetup({
-            //     headers: {
-            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //     }
-            // });
-
-            // $.ajax({
-            //     url: "/orders/create-export",
-            //     method: "post",
-            //     dataType: "json",
-            //     data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
-            //     success: function(res) {
-            //         window.location=res.url;
-            //         console.log(res);               
-            //     },
-            //     error: function(res) {
-            //         console.log(res);                    
-            //     }
-            // });
+            $.ajax({
+                url: "/orders/create-export",
+                method: "post",
+                dataType: "json",
+                data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList },
+                success: function(res) {
+                    window.location=res.url;
+                    console.log(res);               
+                },
+                error: function(res) {
+                    console.log(res);                    
+                }
+            });
 
         }); 
 

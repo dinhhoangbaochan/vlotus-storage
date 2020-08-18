@@ -50,6 +50,7 @@ class ExportOrderController extends Controller
     }
 
     public function store(Request $request) {
+
         $qty = $request->qty;
         $location = $request->location;
         $productsInOrder = json_encode($request->products);
@@ -69,8 +70,10 @@ class ExportOrderController extends Controller
         $order->code = $orderCode;
         $order->location = $location;
         $order->products = serialize($qty);
+        $order->expiration = serialize($request->expirationList);
         $order->status = "wait";
         $order->deadline = $deadline;
+
 
         $order->save();
 
