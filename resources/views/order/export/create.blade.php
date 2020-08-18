@@ -58,10 +58,7 @@
 
                         <div class="col-4">
                             <div class="product_info">
-                                <div class="form-group">
-                                    <label for="">Mã đơn hàng</label>
-                                    <input type="text" name="order_code" id="order_code" class="form-control">
-                                </div>
+                                
                                 <div class="form-group">
                                     <label for="storage_location">Giao từ chi nhánh</label>
                                     <input type="hidden" id="location_id" value="{{$location_id}}">
