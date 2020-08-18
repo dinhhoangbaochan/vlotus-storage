@@ -18,10 +18,10 @@
         
         @php
             $thisProduct = $products::find($pid);
-            $realProduct = $productsInStorage::find($id);
+            $realProduct = $productsInStorage::where('p_id', $pid)->first();
         @endphp
 
-    <input type="hidden" value="{{$id}}" id="getPID">
+    <input type="hidden" value="{{$pid}}" id="getPID">
 		<div class="container pt-4">
 			<div class="action_box d-flex align-items-center justify-content-between">
                 <h2 class="main_content__title">Tạo Hạn Sử Dụng cho {{ $thisProduct->name }}</h2>
