@@ -23,8 +23,10 @@
                         <div class="col-8">
                         
                         <h2>Thông tin đơn xuất hàng mã {{$currentExportOrder->code}}</h2>
-                        
-                        <form id="formTwo">
+                    
+
+                            <input type="hidden" name="orderID" value="{{$orderID}}">
+                            <input type="hidden" name="location" value="{{ $location }}">
                             <table class="lotus_table">
                                 <thead>
                                     <tr>
@@ -43,7 +45,7 @@
                                     @foreach( $orderProducts as $key => $value )
                                         
                                         <?php $pio = $Products::find($key) ?>
-
+ 
                                         <tr>
                                             <td><img src="/uploaded/{{ $pio->product_image }}" alt=""></td>
                                             <td>{{ $pio->name }}</td>
@@ -52,7 +54,6 @@
                                             <td><a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'>open</a></td>
                                         </tr>
 
-                                        {{-- <li>{{$Products::find($value)}}</li> --}}
                                     @endforeach
                                 </tbody>
 
@@ -176,9 +177,7 @@
                         </div>
 
                     </div>
-
                     
-
                 
 
             </div>
@@ -186,4 +185,5 @@
         </div>
 
     </div>
+
 @endsection

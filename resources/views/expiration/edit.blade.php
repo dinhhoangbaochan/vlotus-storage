@@ -37,15 +37,15 @@
                         </tr>
                     </thead>
                     
-                    
+                    +++
                         <tbody id="expirationDates">
                             @foreach($getDate as $id => $expArr)
                                 @foreach ($expArr as $amount => $date)
                                     <tr>
                                         <td>Phiên bản</td>
-                                        <td>Số lượng: <input type='number' class='form-control' name='expAmount' value="{{$amount}}" /></td>
-                                        <td>Ngày hết hạn: <input type='date' class='form-control' name='expDate' value="{{ $date }}" /></td>
-                                    </tr>   
+                                        <td>Số lượng: <input type='number' class='form-control' name='expAmount' value="{{$amount}}" readonly /></td>
+                                        <td>Ngày hết hạn: <input type='text' class='form-control' name='expDate' value="{{ $date }}" readonly /></td>
+                                    </tr> 
                                 @endforeach
                             
                             @endforeach

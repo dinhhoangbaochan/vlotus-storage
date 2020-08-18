@@ -93,6 +93,17 @@ class ImportOrderController extends Controller
         $deadline = $request->deadline;
         $expiration = $request->expirationList;
 
+        $order = new ImportOrder;
+        $order->code = $orderCode;
+        $order->location = $location;
+        $order->products = serialize($qty);
+        $order->status = "wait";
+        $order->deadline = $deadline;
+        $order->expiration = serialize($expiration);
+
+        $order->save();
+
+
         foreach ($qty as $id => $amount) {
 
             $productsInStorage = ProductsInStorage::where('p_id', '=' , $id)->where('location', $location)->first();
@@ -119,26 +130,6 @@ class ImportOrderController extends Controller
             }            
 
         }
-
-        $order = new ImportOrder;
-        $order->code = $orderCode;
-        $order->location = $location;
-        $order->products = serialize($qty);
-        $order->status = "wait";
-        $order->deadline = $deadline;
-        $order->expiration = serialize($expiration);
-
-        $order->save();
-
-        // Expiration 
-        // foreach ($expiration as $productID => $dateArray) {
-        //     $newExpiration = new Expiration; 
-
-        //     $newExpiration->p_id = $productID;
-        //     $newExpiration->date = serialize($dateArray);
-
-        //     $newExpiration->save();
-        // }
         
 
         return response()->json(['url' => url('orders/import')]);

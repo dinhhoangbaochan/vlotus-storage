@@ -137,7 +137,7 @@ $(document).ready(function() {
                                 return +$(this).val() // return value and convert value into integer
                             }).get();
                             
-                            var inputDateValues = $('#'+ thisParentId + ' input[type="date"]').map(function() {
+                            var inputDateValues = $('#'+ thisParentId + ' .imp_date').map(function() {
                                 return $(this).val()
                             }).get();
 
@@ -227,7 +227,6 @@ $(document).ready(function() {
                 }
             });
 
-            $('#rs').html(JSON.stringify(rs, undefined, 2));
 
         });
 

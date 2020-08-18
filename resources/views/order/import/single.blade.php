@@ -90,7 +90,7 @@
                                                         <input type="number" value="{{$amount}}" class="form-control" readonly>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="date" value="{{$exp}}" class="form-control" readonly>
+                                                        <input type="text" value="{{$exp}}" class="form-control" readonly>
                                                     </div>
                                                 </div>
                                                     

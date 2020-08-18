@@ -78,7 +78,6 @@ class ExportOrderController extends Controller
         $order->save();
 
         return response()->json(['url' => url('orders/export')]);
-        return $res;
 
     }
 
@@ -113,13 +112,16 @@ class ExportOrderController extends Controller
         $orderProducts = unserialize( $currentExportOrder->products );
         $originalExpiration = $currentExportOrder->expiration;
         $expiration = unserialize( $originalExpiration );
+        $location = $currentExportOrder->location;
         $Products = new Products;
 
 
         $data = array(
             'currentExportOrder'    =>  $currentExportOrder,
+            'orderID'               =>  $id,
             'orderProducts'         =>  $orderProducts,
             'Products'              =>  $Products,
+            'location'              =>  $location,
             'expiration'            =>  $expiration,
             'originalExpiration'    =>  $originalExpiration,
         );
@@ -127,7 +129,7 @@ class ExportOrderController extends Controller
     }
 
     // Approve Order
-    function approve($id) {
+    public function approve($id) {
 
         $order = ExportOrder::find($id);
 
@@ -139,10 +141,15 @@ class ExportOrderController extends Controller
     }
 
     // Confirm order
-    function confirm($id) {
+    public function confirm($id) {
+
+        // $id = $request->orderID;
+        // $location = $request->location;
 
         $order = ExportOrder::find($id);
         $productsInOrder = unserialize($order->products);
+        $location = $order->location;
+        $expiration = unserialize($order->expiration);
 
         $order->status = "confirm";
         $order->save();
@@ -161,12 +168,18 @@ class ExportOrderController extends Controller
             $productsInStorage->save();
 
         }
-        
 
-        return redirect('orders/export')->with('success' , 'okay');
+        foreach ($expiration as $productID => $expirationArr) {
+            $exp = Expiration::where('location', $location)->where('p_id', $productID)->first();
+
+            $exp->date = serialize($expirationArr);
+            $exp->save();
+        }
+
+        return redirect('orders/export')->with('success' , 'Complete');
+
 
     }
-
 
     public function loadExpiration(Request $request) {
         $id = $request->id;
@@ -182,6 +195,7 @@ class ExportOrderController extends Controller
         }
 
     }
+
 
 }
 

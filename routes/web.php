@@ -79,9 +79,10 @@ Route::get('/load-exportable-product', 'ExportOrderController@search');
 Route::post('/orders/create-export', 'ExportOrderController@store');
 Route::get('export/{id}', 'ExportOrderController@single');
 Route::get('export/approve-order/{id}', 'ExportOrderController@approve');
-Route::get('export/confirm-order/{id}', 'ExportOrderController@confirm');
 Route::get('choose-export-product', 'ExportOrderController@findProduct');
 Route::get('load-expiration', 'ExportOrderController@loadExpiration' );
+Route::get('export/confirm-order/{id}', 'ExportOrderController@confirm');
+
 
 // Storage 
 Route::get('storage', 'StorageController@viewAll');
