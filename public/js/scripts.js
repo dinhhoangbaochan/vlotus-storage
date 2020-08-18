@@ -350,7 +350,7 @@ $(document).ready(function() {
                                 "<tr>" +
 
 
-                                "<div class='modal' id='coll_" + productsOrdered[x].id + "'>" +
+                                "<div class='modal choose_version' id='coll_" + productsOrdered[x].id + "'>" +
                                     "<div class='modal-dialog'>" +
                                     "<div class='modal-content'>" +
                                         "<div class='modal-header'>" + 
