@@ -36,8 +36,7 @@
                             <th>Tồn kho: {{ $realProduct->amount }}</th>
                         </tr>
                     </thead>
-                    
-                    +++
+
                         <tbody id="expirationDates">
                             @foreach($getDate as $id => $expArr)
                                 @foreach ($expArr as $amount => $date)
