@@ -36,6 +36,7 @@
                                     <th rowspan="1" colspan="1">Sản phẩm</th>
                                     <th rospan="1" colspan="1">SKU</th>
                                     <th rowspan="1" colspan="1">Số lượng</th>
+                                    <th>Kiểm tra</th>
                                 </tr>
                             </thead>
 
@@ -50,7 +51,8 @@
                                         <td><img src="/uploaded/{{ $pio->product_image }}" alt=""></td>
                                         <td>{{ $pio->name }}</td>
                                         <td>{{ $pio->sku }}</td>
-                                        <td>{{ $value }} <a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'>open</a></td>
+                                        <td>{{ $value }} </td>
+                                        <td><a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'>open</a></td>
                                     </tr>
 
                                     {{-- <li>{{$Products::find($value)}}</li> --}}
