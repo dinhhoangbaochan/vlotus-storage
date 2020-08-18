@@ -32,6 +32,7 @@
                                         <th rowspan="1" colspan="1">Sản phẩm</th>
                                         <th rospan="1" colspan="1">SKU</th>
                                         <th rowspan="1" colspan="1">Số lượng</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -48,6 +49,7 @@
                                             <td>{{ $pio->name }}</td>
                                             <td>{{ $pio->sku }}</td>
                                             <td>{{ $value }}</td>
+                                            <td><a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'>open</a></td>
                                         </tr>
 
                                         {{-- <li>{{$Products::find($value)}}</li> --}}
@@ -56,6 +58,49 @@
 
                             </table>
                         </form>
+
+                        @foreach ($expiration as $p_id => $expirationArray)
+                            <div class='modal fade' id='op_<?php echo $p_id ?>' role='dialog' aria-hidden='true'>
+                                <div class='modal-dialog' role='document'>
+                                    <div class='modal-content'>
+                                        @php
+                                            $thisProduct = $Products::find($p_id);
+                                        @endphp
+                                        <div class="modal-header">
+                                            <b>Kiểm tra đơn xuất hàng {{$thisProduct->name}}</b>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div class="row mb-3 justify-content-center">
+                                                <div class="col-6">
+                                                    Số lượng xuất theo phiên bản
+                                                </div>
+                                                <div class="col-6">
+                                                    Ngày hết hạn
+                                                </div>
+                                            </div>
+                                            @foreach ($expirationArray as $key => $value)
+                                                @foreach ($value as $amount => $exp) 
+                                                <div class="row mb-2 justify-content-center">
+                                                    <div class="col-6">
+                                                        <input type="number" value="{{$amount}}" class="form-control" readonly>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="date" value="{{$exp}}" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                                    
+                                                @endforeach
+                                            @endforeach
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
 
                         <div class="product_info">
                             <div class="do_action">

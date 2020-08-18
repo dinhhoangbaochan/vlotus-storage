@@ -111,12 +111,17 @@ class ExportOrderController extends Controller
     public function single($id) {
         $currentExportOrder = ExportOrder::find($id);
         $orderProducts = unserialize( $currentExportOrder->products );
+        $originalExpiration = $currentExportOrder->expiration;
+        $expiration = unserialize( $originalExpiration );
         $Products = new Products;
+
 
         $data = array(
             'currentExportOrder'    =>  $currentExportOrder,
             'orderProducts'         =>  $orderProducts,
             'Products'              =>  $Products,
+            'expiration'            =>  $expiration,
+            'originalExpiration'    =>  $originalExpiration,
         );
         return view('order.export.single')->with($data);
     }
