@@ -246,10 +246,9 @@ $(document).ready(function() {
                     "</div>";
             $(copy).insertAfter(elementParent);
 
-
-
             
         });
+
 
 
         $(document).on('click', ".deleteExp", function(event) {
@@ -280,38 +279,6 @@ $(document).ready(function() {
                 }
             });
         }
-
-        $("#createExportOrder").click(function(event) {
-            event.preventDefault();
-            var formData = $('#exportForm').serializeArray(),
-            rs = objToJson(formData);
-
-            var uniquePiO = getUnique(pio);
-            var location = $("#location_id").val();
-            var orderCode = $("#order_code").val();
-            var deadline = $("input[name='deadline']").val();
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                url: "/orders/create-export",
-                method: "post",
-                dataType: "json",
-                data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
-                success: function(res) {
-                    window.location=res.url;
-                    console.log(res);               
-                },
-                error: function(res) {
-                    console.log(res);                    
-                }
-            });
-
-        }); 
 
         $(document).on("click", ".export-dropdown" , function(event){
             event.preventDefault();
@@ -445,7 +412,7 @@ $(document).ready(function() {
                                             "</div>" +
                                         "</div>" +
                                         "<div class='col-4'>" +
-                                            "<input type='number' name='AmountArr' value='"+ amount +"' class='form-control AmountArr' readonly>" +
+                                            "<input type='number' value='"+ amount +"' class='form-control AmountArr' readonly>" +
                                         "</div>" +
                                         "<div class='col-4'>" +
                                             "<input type='text' value='"+date+"' class='form-control DateArr' readonly />" +
@@ -515,69 +482,62 @@ $(document).ready(function() {
             
         });
 
+        $("#createExportOrder").click(function(event) {
+            event.preventDefault();
+            var formData = $('#exportForm').serializeArray(),
+            rs = objToJson(formData);
+
+            var uniquePiO = getUnique(pio);
+            var location = $("#location_id").val();
+            var deadline = $("input[name='deadline']").val();
+            var orderCode;
+            var expirationList = mergeArray;
+
+            var today = new Date();
+            var locationCode;
+            var date = "" + today.getFullYear() + (today.getMonth()+1) + today.getDate();
+            var time = "" + today.getHours() + today.getMinutes() + today.getSeconds();
+            var dateTime = date + time;
+
+            if ( location == 1 ) {
+                locationCode = 'NTL';
+            } else {
+                locationCode = 'TT';
+            }
+
+            orderCode = locationCode + dateTime;
+
+            console.log(rs);
+
+
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //     }
+            // });
+
+            // $.ajax({
+            //     url: "/orders/create-export",
+            //     method: "post",
+            //     dataType: "json",
+            //     data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline },
+            //     success: function(res) {
+            //         window.location=res.url;
+            //         console.log(res);               
+            //     },
+            //     error: function(res) {
+            //         console.log(res);                    
+            //     }
+            // });
+
+        }); 
+
+
 
         // Image preview when uploaded
         $(".upload_img").on("change", function() {
             $(".img_preview").removeAttr("style");
             $(".img_preview").attr("src", URL.createObjectURL(this.files[0]));
-        });
-
-
-
-        // Create expiration dates
-        $("#addExpDate").click(function(e) {
-            e.preventDefault();
-            $("#expirationDates").append(
-                "<tr>" + 
-                "<td>Phiên bản</td>" +
-                "<td>Số lượng: <input type='number' class='form-control' name='expAmount' /></td>" +
-                "<td>Ngày hết hạn: <input type='date' class='form-control' name='expDate' /></td>" +
-                "<td></td>" +
-                "<td></td>"
-                + "</tr>"
-            )
-        });
-
-        // Submit expiration form 
-        var amountDate = {};
-        var formOBJ = {};
-        $("#submitExpi").click(function(e) {
-            var formData = $("#expirationForm").serializeArray();
-            var formValues = new FormData($('#expirationForm')[0]);
-            var pid = $("#getPID").val();
-
-            var allAmount = formValues.getAll('expAmount');
-            var allDate = formValues.getAll('expDate');
-            var location = $("#getLocation").val();
-
-            allAmount.forEach((key, i) => amountDate[key] = allDate[i]);
-
-            console.log(amountDate);
-
-            // Display the key/value pairs
-            for(var pair of formValues.entries()) {
-                console.log(pair[0]+ ', '+ pair[1]); 
-            }
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                url: '/expiration/submit',
-                method: "post",
-                dataType: "json",
-                data: { formData: formData, pid: pid, amountDate: amountDate, location: location },
-                success: function(res) {
-                    console.log(res);
-                    window.location=res.url;
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            })
         });
 
 
