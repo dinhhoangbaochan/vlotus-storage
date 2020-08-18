@@ -463,8 +463,18 @@ $(document).ready(function() {
 
         });
 
-        $(document).on("keypress", "input[name='newExp']", function() {
-            console.log('Changed ' + $(this).val());
+        $(document).on("keyup", "input[name='newExp']", function() {
+            var value = $(this).val();
+            var max = $(this).attr('max');
+            var min =  $(this).attr('min');
+
+            if ( value > parseInt(max, 10) ) {
+                $(this).val(max)
+            } else if ( value < parseInt(min, 10) ) {
+                $(this).val(min);
+            }
+
+
         })
 
         // Image preview when uploaded
