@@ -52,7 +52,7 @@
                                         <td>{{ $pio->name }}</td>
                                         <td>{{ $pio->sku }}</td>
                                         <td>{{ $value }} </td>
-                                        <td><a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'>open</a></td>
+                                        <td><a href="" data-target='#op_<?php echo $key ?>' data-toggle='modal'><span class="material-icons">list</span></a></td>
                                     </tr>
 
                                     {{-- <li>{{$Products::find($value)}}</li> --}}
@@ -77,8 +77,8 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            <div class="row justify-content-center">
-                                                <div class="col-4">
+                                            <div class="row mb-3 justify-content-center">
+                                                <div class="col-5">
                                                     Số lượng 
                                                 </div>
                                                 <div class="col-6">
@@ -87,8 +87,8 @@
                                             </div>
                                             @foreach ($expirationArray as $key => $value)
                                                 @foreach ($value as $amount => $exp) 
-                                                <div class="row justify-content-center">
-                                                    <div class="col-4">
+                                                <div class="row mb-2 justify-content-center">
+                                                    <div class="col-5">
                                                         <input type="number" value="{{$amount}}" class="form-control" readonly>
                                                     </div>
                                                     <div class="col-6">
