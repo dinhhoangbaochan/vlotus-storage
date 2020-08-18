@@ -7,6 +7,7 @@ $(document).ready(function() {
 
         var productsOrdered = [];
         var pio = [];
+        var formExport = new FormData( $('#exportForm')[0] );
         
         // Convert Object to JSON
         function objToJson(formArray) { 
@@ -350,7 +351,7 @@ $(document).ready(function() {
                                 "<tr>" +
 
 
-                                "<div class='modal choose_version' id='coll_" + productsOrdered[x].id + "'>" +
+                                "<div class='modal choose_version' id='coll_" + productsOrdered[x].id + "' data-id='"+ productsOrdered[x].id +"' >" +
                                     "<div class='modal-dialog'>" +
                                     "<div class='modal-content'>" +
                                         "<div class='modal-header'>" + 
@@ -440,14 +441,14 @@ $(document).ready(function() {
                                                 "<div class='input-group-prepend'>" + 
                                                     '<span class="input-group-text">@</span>' +
                                                 "</div>" + 
-                                                 "<input type='number' name='newExp' class='form-control' min='0' max='"+ amount +"' />" +
+                                                 "<input type='number' class='form-control ExpArr' min='0' max='"+ amount +"' placeholder='0'/>" +
                                             "</div>" +
                                         "</div>" +
                                         "<div class='col-4'>" +
-                                            "<input type='number' value='"+ amount +"' class='form-control' readonly>" +
+                                            "<input type='number' name='AmountArr' value='"+ amount +"' class='form-control AmountArr' readonly>" +
                                         "</div>" +
                                         "<div class='col-4'>" +
-                                            "<input type='text' value='"+date+"' name='newDate' class='form-control' readonly />" +
+                                            "<input type='text' value='"+date+"' class='form-control DateArr' readonly />" +
                                         "</div>" + 
                                     "</div>"
                             ;
@@ -463,7 +464,7 @@ $(document).ready(function() {
 
         });
 
-        $(document).on("keyup", "input[name='newExp']", function() {
+        $(document).on("keyup", ".ExpArr", function() {
             var value = $(this).val();
             var max = $(this).attr('max');
             var min =  $(this).attr('min');
@@ -474,8 +475,46 @@ $(document).ready(function() {
                 $(this).val(min);
             }
 
+        });
 
-        })
+
+        $(document).on("click", ".cf_exp", function(e) {
+            e.preventDefault();
+
+            var thisParentId = $(this).parent().parent().parent().parent().data('id');
+            var expirationArray = $('#coll_'+ thisParentId  + ' .ExpArr').map(function() {
+                return +$(this).val() // return value and convert value into integer
+            }).get();
+            var amountArray = $('#coll_'+ thisParentId  + ' .AmountArr').map(function() {
+                return +$(this).val() // return value and convert value into integer
+            }).get();
+            var dateArray = $('#coll_'+ thisParentId  + ' .DateArr').map(function() {
+                return $(this).val() // return value and convert value into integer
+            }).get();
+
+            var afterExportExp = [] // All values left after export
+
+            for(let i = 0; i < expirationArray.length; i++) {
+                afterExportExp.push(Math.abs(amountArray[i] - expirationArray[i]));
+            }
+
+            mergeArray[thisParentId] = [];
+
+            var sumOfAmount = expirationArray.reduce(function(a,b){ return a + b })
+
+            afterExportExp.forEach(function(key, i) {
+                // mergeArray[thisParentData][key] = inputDateValues[i]
+                mergeArray[thisParentId].push({
+                    [key]: dateArray[i]
+                })
+            });
+
+            $(" input[name='"+ thisParentId + "'] ").val(sumOfAmount);
+            $("#coll_" + thisParentId).modal('hide');
+            
+            
+        });
+
 
         // Image preview when uploaded
         $(".upload_img").on("change", function() {
