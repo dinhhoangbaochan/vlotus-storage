@@ -1,13 +1,19 @@
 $(document).ready(function() {
 
 
-    /**
-    * HELPER FUNCTIONS
-    */
-
         var productsOrdered = [];
         var pio = [];
         var formExport = new FormData( $('#exportForm')[0] );
+
+        $(document).on('focus', '.imp_date', function() {
+            $(this).flatpickr({
+                enableTime: true,
+            });
+        });
+
+        $(".deadline_date").flatpickr({
+            enableTime: true,
+        });
         
         // Convert Object to JSON
         function objToJson(formArray) { 
@@ -172,12 +178,6 @@ $(document).ready(function() {
             });
 
 
-        });
-        
-        $(document).on('focus', '.imp_date', function() {
-            $(this).flatpickr({
-                enableTime: true,
-            });
         });
 
 
