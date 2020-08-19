@@ -70,6 +70,7 @@
                                 <div class="form-group">
                                     <label for="deadline_date">Ngày hẹn giao</label>
                                     {{Form::date('deadline', \Carbon\Carbon::now(), ['class' => 'form-control'])}}
+                                    <input type="text" class="deadline_date">
                                 </div>
                             </div>
                         </div>
