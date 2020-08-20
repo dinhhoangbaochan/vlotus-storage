@@ -24,7 +24,7 @@
                             <form id="formOne">
                                 <div class="product_info">
                                     <div class="dropdown">
-                                        <input type="text" class="w-100" id="exportable_products" name="findProducts" value="" placeholder="Nhập tên sản phẩm cần thêm vào đơn hàng">
+                                        <input type="text" class="w-100 search-input" id="exportable_products" name="findProducts" value="" placeholder="Nhập tên sản phẩm cần thêm vào đơn hàng">
                                         <div id="findProductList" class="dropdown-menu" aria-labelledby="">
                                         </div>
                                     </div>   
