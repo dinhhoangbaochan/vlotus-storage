@@ -342,8 +342,17 @@ a.triggerExp {
 }
 
 .s_label { font-weight: bold }
-.flatpickr-input { width: 100% }
+.flatpickr-input { width: 90% }
 .input-group-text {
     width: 100%;
-    justify-content: center
+    justify-content: center;
+    display: flex !important;
+    font-size: 16px;
+}
+.input-group-prepend { 
+    width: 10%; 
+    
+}
+input:focus {
+    outline: none !important;
 }

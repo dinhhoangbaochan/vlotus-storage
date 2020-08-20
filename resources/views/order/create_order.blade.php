@@ -72,7 +72,7 @@
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">@</span>
+                                            <span class="input-group-text material-icons">calendar_today</span>
                                         </div>
                                         <input type="text" placeholder="DD/MM/YYYY HH:MM" class="deadline_date">
                                     </div>
