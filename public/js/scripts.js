@@ -1,19 +1,21 @@
 $(document).ready(function() {
 
 
+        var config = {
+            enableTime: true,
+        };
+
         var productsOrdered = [];
         var pio = [];
         var formExport = new FormData( $('#exportForm')[0] );
 
         $(document).on('focus', '.imp_date', function() {
-            $(this).flatpickr({
-                enableTime: true,
-            });
+            $(this).flatpickr(config);
         });
 
-        $(".deadline_date").flatpickr({
-            enableTime: true,
-        });
+        $(".deadline_date").flatpickr(config);
+
+        $(".search-input").attr('autocomplete', "off");
         
         // Convert Object to JSON
         function objToJson(formArray) { 
