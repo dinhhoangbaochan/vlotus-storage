@@ -192,7 +192,7 @@ $(document).ready(function() {
             var location = $("#storage_location").val();
             // var orderCode = $("#order_code").val();
             var orderCode;
-            var deadline = $("input[name='deadline']").val();
+            var deadline = $(".deadline_date").val();
             var expirationList = mergeArray;
 
             var today = new Date();
@@ -208,6 +208,8 @@ $(document).ready(function() {
             }
 
             orderCode = locationCode + dateTime;
+
+            console.log(expirationList);
             
             $.ajaxSetup({
                 headers: {
@@ -221,8 +223,8 @@ $(document).ready(function() {
                 dataType: "json",
                 data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList },
                 success: function(res) {
-                    window.location=res.url;    
-                    // console.log(res);           
+                    // window.location=res.url;    
+                    console.log(res);           
                 },
                 error: function(res) {
                     console.log(res);                    

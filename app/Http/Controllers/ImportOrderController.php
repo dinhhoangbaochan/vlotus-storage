@@ -101,6 +101,8 @@ class ImportOrderController extends Controller
         $order->deadline = $deadline;
         $order->expiration = serialize($expiration);
 
+
+
         $order->save();
 
 
@@ -186,36 +188,45 @@ class ImportOrderController extends Controller
         $order_location = $order->location;
         $productsInOrder = unserialize($order->products);
 
-        foreach ($productsInOrder as $id => $amountInput) {
-            $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->where('location', $order_location)->first();
+        $expirationTest = Expiration::find(1);
+        $expirationDate = $expirationTest->date;
 
-            $productsInStorage->tmp_imp = null;
-            if ( $productsInStorage->amount ) {
-                $productsInStorage->amount = $productsInStorage->amount + $amountInput;
-            } else {
-                $productsInStorage->amount = $amountInput;
-            }
+        echo "<pre>";
+        var_dump($decodeExpiration);
+        echo "</pre>";
+        echo "<br><br>";
+        var_dump(unserialize($expirationDate));
+
+        // foreach ($productsInOrder as $id => $amountInput) {
+        //     $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->where('location', $order_location)->first();
+
+        //     $productsInStorage->tmp_imp = null;
+        //     if ( $productsInStorage->amount ) {
+        //         $productsInStorage->amount = $productsInStorage->amount + $amountInput;
+        //     } else {
+        //         $productsInStorage->amount = $amountInput;
+        //     }
             
 
-            $productsInStorage->save();
+        //     $productsInStorage->save();
 
-        }
+        // }
 
-        $order->status = "confirm";
-        $order->save();
+        // $order->status = "confirm";
+        // $order->save();
 
-        // Expiration 
-        foreach ($decodeExpiration as $productID => $dateArray) {
-            $newExpiration = new Expiration; 
+        // // Expiration 
+        // foreach ($decodeExpiration as $productID => $dateArray) {
+        //     $newExpiration = new Expiration; 
 
-            $newExpiration->p_id = $productID;
-            $newExpiration->date = serialize($dateArray);
-            $newExpiration->location = $order_location;
+        //     $newExpiration->p_id = $productID;
+        //     $newExpiration->date = serialize($dateArray);
+        //     $newExpiration->location = $order_location;
 
-            $newExpiration->save();
-        }
+        //     $newExpiration->save();
+        // }
 
-        return redirect('orders/import')->with('success' , 'okay');
+        // return redirect('orders/import')->with('success' , 'okay');
 
     }
 
