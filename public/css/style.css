@@ -342,3 +342,8 @@ a.triggerExp {
 }
 
 .s_label { font-weight: bold }
+.flatpickr-input { width: 100% }
+.input-group-text {
+    width: 100%;
+    justify-content: center
+}
