@@ -405,7 +405,7 @@ $(document).ready(function() {
 
                                             "<div class='input-group'>" + 
                                                 "<div class='input-group-prepend'>" + 
-                                                    '<span class="input-group-text">@</span>' +
+                                                    '<span class="input-group-text material-icons">import_export</span>' +
                                                 "</div>" + 
                                                  "<input type='number' class='form-control ExpArr' min='0' max='"+ amount +"' placeholder='0'/>" +
                                             "</div>" +
