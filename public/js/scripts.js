@@ -153,10 +153,10 @@ $(document).ready(function() {
 
                             mergeArray[thisParentData] = [];
 
-                            inputAmountValues.forEach(function(key, i) {
+                            inputDateValues.forEach(function(key, i) {
                                 // mergeArray[thisParentData][key] = inputDateValues[i]
                                 mergeArray[thisParentData].push({
-                                    [key]: inputDateValues[i]
+                                    [key]: inputAmountValues[i]
                                 })
                             });
 

@@ -61,7 +61,6 @@
 
                         </table>
                         
-
                         @foreach ($expiration as $p_id => $expirationArray)
                             <div class='modal fade' id='op_<?php echo $p_id ?>' role='dialog' aria-hidden='true'>
                                 <div class='modal-dialog' role='document'>
@@ -89,7 +88,7 @@
                                                 @foreach ($value as $amount => $exp) 
                                                 <div class="row mb-2 justify-content-center">
                                                     <div class="col-5">
-                                                        <input type="number" value="{{$amount}}" class="form-control" readonly>
+                                                        <input type="text" value="{{$amount}}" class="form-control" readonly>
                                                     </div>
                                                     <div class="col-6">
                                                         <input type="text" value="{{$exp}}" class="form-control" readonly>
