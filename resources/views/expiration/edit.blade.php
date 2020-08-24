@@ -39,6 +39,13 @@
                     </thead>
 
                         <tbody id="expirationDates">
+
+{{--                             <pre>
+                                @php
+                                    print_r($getDate);
+                                @endphp
+                            </pre>
+ --}}
                             @foreach($getDate as $id => $expArr)
                                 @foreach ($expArr as $date => $amount)
                                     <tr>

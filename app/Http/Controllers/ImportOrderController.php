@@ -195,25 +195,6 @@ class ImportOrderController extends Controller
         $order_location = $order->location;
         $productsInOrder = unserialize($order->products);
 
-        // echo "<pre>";
-        // print_r($decodeExpiration);
-        // echo "</pre>";
-
-        // echo "<br><br>";
-
-        // foreach ($decodeExpiration as $id => $value) {
-            
-        //     $expirationData = Expiration::where('p_id', $id)->get(); 
-
-        //     foreach ($expirationData as $data) {
-        //         echo "<pre>";
-        //         print_r(unserialize($data->date));
-        //         echo "</pre>";
-        //     }
-            
-
-        // }
-
         foreach ($productsInOrder as $id => $amountInput) {
             $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->where('location', $order_location)->first();
 
@@ -232,16 +213,61 @@ class ImportOrderController extends Controller
         $order->status = "confirm";
         $order->save();
 
+        // // Expiration 
+        // foreach ($decodeExpiration as $productID => $dateArray) {
+        //     $newExpiration = new Expiration; 
+
+        //     $newExpiration->p_id = $productID;
+        //     $newExpiration->date = serialize($dateArray);
+        //     $newExpiration->location = $order_location;
+
+        //     $newExpiration->save();
+        // }
+
         // Expiration 
-        foreach ($decodeExpiration as $productID => $dateArray) {
-            $newExpiration = new Expiration; 
+        foreach ($decodeExpiration as $id => $value) {
 
-            $newExpiration->p_id = $productID;
-            $newExpiration->date = serialize($dateArray);
-            $newExpiration->location = $order_location;
+            $expirationData = Expiration::where('p_id', $id); 
 
-            $newExpiration->save();
+            if ( $expirationData->exists() ) {
+
+                echo "exists";
+
+                foreach ($value as $index => $impArr) {
+                    
+                    foreach ($expirationData as $data) {
+                        $existedDate = unserialize($data->date);
+                        foreach ($existedDate as $key => $extArr) {
+                            
+                            foreach ($impArr as $key => $value) {
+                                if (!array_key_exists($key, $extArr)) {
+                                    $extArr[$key] = 0;
+                                }
+                                $extArr[$key] += $value;
+                            }
+
+                            $importExst = Expiration::where('p_id', $id)->first(); 
+
+                            $importExst->date = serialize($extArr);
+                            $importExst->save();
+                            
+                        }
+                    }
+                }     
+            } else {
+                
+                $newExpiration = new Expiration; 
+
+                $newExpiration->p_id = $id;
+                $newExpiration->date = serialize($value);
+                $newExpiration->location = $order_location;
+
+                $newExpiration->save();
+                
+            }
+
         }
+
 
         return redirect('orders/import')->with('success' , 'okay');
 
