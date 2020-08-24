@@ -178,7 +178,14 @@ class ImportOrderController extends Controller
 
     }
 
-    // Confirm order
+    /**
+     * 1. Change current import order status to "confirm"
+     * 2. Import expirations into DB. Before import, check if that product existed in Expiration table. 
+     *    If exists - find existed product, add expiration into existed expiration
+     * 
+     * @param  Request $request [form request]
+     * @return [type]           [description]
+     */
     function confirm(Request $request) {
 
         $decodeExpiration = unserialize($request->originalExpiration);
@@ -188,45 +195,55 @@ class ImportOrderController extends Controller
         $order_location = $order->location;
         $productsInOrder = unserialize($order->products);
 
-        $expirationTest = Expiration::find(1);
-        $expirationDate = $expirationTest->date;
+        // echo "<pre>";
+        // print_r($decodeExpiration);
+        // echo "</pre>";
 
-        echo "<pre>";
-        var_dump($decodeExpiration);
-        echo "</pre>";
-        echo "<br><br>";
-        var_dump(unserialize($expirationDate));
+        // echo "<br><br>";
 
-        // foreach ($productsInOrder as $id => $amountInput) {
-        //     $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->where('location', $order_location)->first();
+        // foreach ($decodeExpiration as $id => $value) {
+            
+        //     $expirationData = Expiration::where('p_id', $id)->get(); 
 
-        //     $productsInStorage->tmp_imp = null;
-        //     if ( $productsInStorage->amount ) {
-        //         $productsInStorage->amount = $productsInStorage->amount + $amountInput;
-        //     } else {
-        //         $productsInStorage->amount = $amountInput;
+        //     foreach ($expirationData as $data) {
+        //         echo "<pre>";
+        //         print_r(unserialize($data->date));
+        //         echo "</pre>";
         //     }
             
 
-        //     $productsInStorage->save();
-
         // }
 
-        // $order->status = "confirm";
-        // $order->save();
+        foreach ($productsInOrder as $id => $amountInput) {
+            $productsInStorage = ProductsInStorage::where('p_id', '=', $id)->where('location', $order_location)->first();
 
-        // // Expiration 
-        // foreach ($decodeExpiration as $productID => $dateArray) {
-        //     $newExpiration = new Expiration; 
+            $productsInStorage->tmp_imp = null;
+            if ( $productsInStorage->amount ) {
+                $productsInStorage->amount = $productsInStorage->amount + $amountInput;
+            } else {
+                $productsInStorage->amount = $amountInput;
+            }
+            
 
-        //     $newExpiration->p_id = $productID;
-        //     $newExpiration->date = serialize($dateArray);
-        //     $newExpiration->location = $order_location;
+            $productsInStorage->save();
 
-        //     $newExpiration->save();
-        // }
+        }
 
-        // return redirect('orders/import')->with('success' , 'okay');
+        $order->status = "confirm";
+        $order->save();
+
+        // Expiration 
+        foreach ($decodeExpiration as $productID => $dateArray) {
+            $newExpiration = new Expiration; 
+
+            $newExpiration->p_id = $productID;
+            $newExpiration->date = serialize($dateArray);
+            $newExpiration->location = $order_location;
+
+            $newExpiration->save();
+        }
+
+        return redirect('orders/import')->with('success' , 'okay');
 
     }
 

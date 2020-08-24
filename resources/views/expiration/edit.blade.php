@@ -21,6 +21,7 @@
             $realProduct = $productsInStorage::where('p_id', $pid)->first();
         @endphp
 
+
     <input type="hidden" value="{{$pid}}" id="getPID">
 		<div class="container pt-4">
 			<div class="action_box d-flex align-items-center justify-content-between">
@@ -39,10 +40,10 @@
 
                         <tbody id="expirationDates">
                             @foreach($getDate as $id => $expArr)
-                                @foreach ($expArr as $amount => $date)
+                                @foreach ($expArr as $date => $amount)
                                     <tr>
                                         <td>Phiên bản</td>
-                                        <td>Số lượng: <input type='number' class='form-control' name='expAmount' value="{{$amount}}" readonly /></td>
+                                        <td>Số lượng: <input type='text' class='form-control' name='expAmount' value="{{$amount}}" readonly /></td>
                                         <td>Ngày hết hạn: <input type='text' class='form-control' name='expDate' value="{{ $date }}" readonly /></td>
                                     </tr> 
                                 @endforeach

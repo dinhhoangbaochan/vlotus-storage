@@ -153,14 +153,19 @@ $(document).ready(function() {
 
                             mergeArray[thisParentData] = [];
 
-                            inputDateValues.forEach(function(key, i) {
-                                // mergeArray[thisParentData][key] = inputDateValues[i]
-                                mergeArray[thisParentData].push({
-                                    [key]: inputAmountValues[i]
-                                })
-                            });
+                            var resultObject = {};
+                            inputDateValues.forEach((key, i) => resultObject[key] = inputAmountValues[i]);
+                            
 
-                            console.log(sumOfAmount);
+                            mergeArray[thisParentData].push(resultObject);
+                            console.log(mergeArray);
+
+                            // inputDateValues.forEach(function(key, i) {
+                            //     mergeArray[thisParentData].push({
+                            //         [key]: inputAmountValues[i]
+                            //     })
+                            // });
+
                             $(" input[name='"+ thisParentData + "'] ").val(sumOfAmount);
 
                             $("#op_" + thisParentData).modal('hide');
@@ -208,8 +213,6 @@ $(document).ready(function() {
             }
 
             orderCode = locationCode + dateTime;
-
-            console.log(expirationList);
             
             $.ajaxSetup({
                 headers: {
