@@ -231,13 +231,21 @@ class ImportOrderController extends Controller
 
             if ( $expirationData->exists() ) {
 
-                echo "exists";
-
                 foreach ($value as $index => $impArr) {
+
+                    $getExp = Expiration::where('p_id', $id)->get();
                     
-                    foreach ($expirationData as $data) {
+                    foreach ($getExp as $data) {
                         $existedDate = unserialize($data->date);
                         foreach ($existedDate as $key => $extArr) {
+
+                            echo "<pre>";
+                            print_r($impArr);
+                            echo "</pre><br>";
+
+                            echo "<pre>";
+                            print_r($extArr);
+                            echo "</pre><br>";
                             
                             foreach ($impArr as $key => $value) {
                                 if (!array_key_exists($key, $extArr)) {
@@ -246,16 +254,18 @@ class ImportOrderController extends Controller
                                 $extArr[$key] += $value;
                             }
 
+                            $updateExisted[0] = array_replace($existedDate[0],$extArr);
+
                             $importExst = Expiration::where('p_id', $id)->first(); 
 
-                            $importExst->date = serialize($extArr);
+                            $importExst->date = serialize($updateExisted);
                             $importExst->save();
                             
                         }
                     }
                 }     
             } else {
-                
+
                 $newExpiration = new Expiration; 
 
                 $newExpiration->p_id = $id;
