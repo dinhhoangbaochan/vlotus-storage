@@ -3,7 +3,7 @@
   --input-padding-y: 10px;
 }
 
-a:hover, a:focus { text-decoration: none; transition: 0.4s ease-in-out all; }
+a:hover, a:focus { text-decoration: none; transition: 0.4s ease-in-out all; cursor: pointer }
 textarea { width: 100%; }
 img { width: 100% }
 input:focus, textarea { box-shadow: none !important; border: 1px solid #007bff !important; }
@@ -12,10 +12,12 @@ input[type="submit"]:hover { cursor: pointer }
 select:hover { cursor: pointer; }
 input.imp_date {
     padding: .375rem .75rem;
-    width: 90%;
+    width: 85%;
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .gap-1 {
@@ -283,16 +285,33 @@ a.delete_btn {
     max-width: 800px;
 }
 
-a.triggerExp:hover {
-    color: #007bff !important;
+.triggerExp:hover {
+    background-color: #0056b3;
     cursor: pointer;
 }
+.deleteExp:hover {
+    background-color: #df0016;
+}
 
-a.triggerExp {
-    color: #007bff !important;
+.triggerExp {
+    background: #007bff;
     font-weight: 800;
     font-size: 18px;
-    vertical-align: middle;
+    display: flex;
+    color: #fff !important;
+    transition: .4s ease all;
+    padding: .375rem 8px;
+    margin: 0 2px;
+}
+
+.deleteExp {
+    display: flex;
+    padding: .375rem 8px;
+    color: #fff !important;
+    background-color: #e62f41;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 2px;
 }
 
 #selectLocation .modal-dialog {
@@ -349,17 +368,23 @@ a.triggerExp {
 }
 
 .s_label { font-weight: bold }
-.flatpickr-input { width: 90% }
+.flatpickr-input { width: 85% }
 .input-group-text {
     width: 100%;
     justify-content: center;
     display: flex !important;
-    font-size: 16px;
+    font-size: 20px;
 }
 .input-group-prepend { 
-    width: 10%; 
+    width: 15%; 
     
 }
 input:focus {
     outline: none !important;
+}
+
+.deadline_date {
+    padding: 8px 4px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
 }

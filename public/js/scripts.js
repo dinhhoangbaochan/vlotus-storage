@@ -3,6 +3,7 @@ $(document).ready(function() {
 
         var config = {
             enableTime: true,
+            minDate: "today"
         };
 
         var productsOrdered = [];
@@ -69,8 +70,6 @@ $(document).ready(function() {
             event.preventDefault();
             var currentDataID = $(this).data("id");
 
-            
-
             $.ajax({
                 url: "/get-selected-product",
                 method: "GET",
@@ -99,7 +98,7 @@ $(document).ready(function() {
                                     "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                     "<td>" + productsOrdered[x].name + "</td>"  + 
                                     "<td>" + productsOrdered[x].sku + "</td>"  +
-                                    "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' class='form-control' readonly>" + "</td>" + 
+                                    "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' class='form-control t_qty' readonly>" + "</td>" + 
                                     "<td><a href data-target='#op_"+ productsOrdered[x].id +"' data-toggle='modal'>+</a></td>" +
                                 "<tr>" +
 
@@ -120,7 +119,7 @@ $(document).ready(function() {
                                                         "<div class='input-group'>" + 
 
                                                             "<div class='input-group-prepend'>" +
-                                                                "<span class='input-group-text material-icons'>calendar_today</span>" + 
+                                                                "<span class='input-group-text material-icons'>import_export</span>" + 
                                                             "</div>" +
 
                                                             "<input type='number' class='form-control' />" + 
@@ -141,7 +140,7 @@ $(document).ready(function() {
                                                     "</div>" +
 
                                                     "<div class='col-2 d-flex justify-content-center align-items-center'>" +
-                                                        "<a class='triggerExp'><span class='material-icons'>add_task</span></a>" +
+                                                        "<a class='triggerExp'><span class='material-icons'>add</span></a>" +
                                                         "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
                                                     "</div>" +
                                                 "</div>" +
@@ -183,15 +182,23 @@ $(document).ready(function() {
                             mergeArray[thisParentData].push(resultObject);
                             console.log(mergeArray);
 
-                            // inputDateValues.forEach(function(key, i) {
-                            //     mergeArray[thisParentData].push({
-                            //         [key]: inputAmountValues[i]
-                            //     })
-                            // });
-
                             $(" input[name='"+ thisParentData + "'] ").val(sumOfAmount);
 
-                            $("#op_" + thisParentData).modal('hide');
+                            var emptyAmount = inputAmountValues.includes(0);
+                            var emptyDate = inputDateValues.includes("");
+
+                            if ( emptyAmount ) {
+                                alert('Vui lòng điền đủ các trường số lượng');
+                            } 
+
+                            if ( emptyDate ) {
+                                alert('Vui lòng điền đủ các trường hạn sử dụng');
+                            } 
+                            if ( !emptyAmount && !emptyDate ) {
+                                $("#op_" + thisParentData).modal('hide');
+                            }
+
+                            // $("#op_" + thisParentData).modal('hide');
                         });
 
 
@@ -229,6 +236,10 @@ $(document).ready(function() {
             var time = "" + today.getHours() + today.getMinutes() + today.getSeconds();
             var dateTime = date + time;
 
+            var listQTY = $('.t_qty').map(function() {
+                return $(this).val()
+            }).get();
+
             if ( location == 1 ) {
                 locationCode = 'NTL';
             } else {
@@ -236,26 +247,39 @@ $(document).ready(function() {
             }
 
             orderCode = locationCode + dateTime;
-            
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+            var emptyQTY = listQTY.includes("");
+            console.log(listQTY);
 
-            $.ajax({
-                url: "/orders/create-import",
-                method: "post",
-                dataType: "json",
-                data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList },
-                success: function(res) {
-                    // window.location=res.url;    
-                    console.log(res);           
-                },
-                error: function(res) {
-                    console.log(res);                    
-                }
-            });
+            if ( $.isEmptyObject(rs) ) {
+                alert('Vui lòng chọn sản phẩm trước khi tạo đơn');
+            } else if (emptyQTY) {
+                alert('Vui lòng chọn số lượng - hạn sử dụng');
+            } else if ( !deadline ) {
+                alert('Vui lòng chọn ngày hẹn giao');
+            } else {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: "/orders/create-import",
+                    method: "post",
+                    dataType: "json",
+                    data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList },
+                    success: function(res) {
+                        alert("Đã tạo đơn thành công");
+                        window.location=res.url;             
+                    },
+                    error: function(res) {
+                        console.log(res);                    
+                    }
+                });
+
+            }
+            
+
 
 
         });
@@ -266,13 +290,36 @@ $(document).ready(function() {
             var elementParent = $(this).parent().parent();
             console.log(elementParent.clone());
             var copy = "<div class='row mb-2'>" + 
-                        "<div class='col-5'><input type='number' class='form-control' /></div>" +
-                        "<div class='col-5'><input type='text' class='imp_date form-control ' /></div>" +
-                        "<div class='col-2 d-flex justify-content-center align-items-center'>" +
-                            "<a class='triggerExp'><span class='material-icons'>add_task</span></a>" +
-                            "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
-                        "</div>" +
-                    "</div>";
+
+                            "<div class='col-5'>" + 
+                                "<div class='input-group'>" + 
+
+                                    "<div class='input-group-prepend'>" +
+                                        "<span class='input-group-text material-icons'>import_export</span>" + 
+                                    "</div>" +
+
+                                    "<input type='number' class='form-control' />" + 
+                                "</div>" +
+                                
+                            "</div>" +
+
+                            "<div class='col-5'>" + 
+                                "<div class='input-group'>" + 
+
+                                    "<div class='input-group-prepend'>" +
+                                        "<span class='input-group-text material-icons'>calendar_today</span>" + 
+                                    "</div>" +
+
+                                    "<input type='text' class='imp_date '/>" + 
+                                "</div>" +
+                                
+                            "</div>" +
+
+                            "<div class='col-2 d-flex justify-content-center align-items-center'>" +
+                                "<a class='triggerExp'><span class='material-icons'>add</span></a>" +
+                                "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
+                            "</div>" +
+                        "</div>";
             $(copy).insertAfter(elementParent);
 
             
@@ -355,7 +402,7 @@ $(document).ready(function() {
                                         "</div>" +
 
                                         "<div class='modal-body'>" + 
-                                            "<span>hey</span>" +
+                                            "<span></span>" +
                                         "</div>" +
 
                                         "<div class='modal-footer'>" +
@@ -391,7 +438,6 @@ $(document).ready(function() {
                                 })
                             });
 
-                            console.log(sumOfAmount);
                             $(" input[name='"+ thisParentData + "'] ").val(sumOfAmount);
 
                             $("#op_" + thisParentData).modal('hide');
@@ -429,7 +475,7 @@ $(document).ready(function() {
                 success: function(res) {
                     console.log(res);
                     res.forEach(function(item) {
-                        Object.entries(item).forEach(([amount, date]) => {
+                        Object.entries(item).forEach(([date, amount]) => {
                             obj += "<div class='row mb-3'>" +
                                         "<div class='col-4'>" +
 
