@@ -18,7 +18,7 @@
 		<div class="container pt-4">
 			<div class="action_box d-flex align-items-center justify-content-between">
 				<h2 class="main_content__title">Danh sách sản phẩm</h2>
-				<a href="/products/create" class="btn btn-outline-dark">Thêm sản phẩm +</a>
+				<a href="{{url('/products/create')}}" class="btn btn-outline-dark">Thêm sản phẩm +</a>
 			</div>
 			<table class="lotus_table">
 				<thead>
