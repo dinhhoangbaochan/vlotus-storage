@@ -22,6 +22,7 @@
 					<a href="{{ url('products') }}"><span class="material-icons">shopping_cart</span>Quản lý sản phẩm</a>
 
 					<ul class="child_list">
+						<li><a href="{{ url('/products') }}">Tất cả sản phẩm</a></li>
 						<li><a href="{{ url('/product-category') }}">Danh mục sản phẩm</a></li>
 						<li><a href="{{ url('/product-brand') }}">Thương hiệu</a></li>
 						<li><a href="">Đơn vị tính</a></li>
