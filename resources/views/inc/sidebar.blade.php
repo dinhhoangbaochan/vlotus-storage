@@ -19,37 +19,38 @@
 				<li><a href=""><span class="material-icons">account_tree</span>Quản lý vận đơn</a></li> <!-- đơn hàng vận chuyển ra ngoài -->
 
 				<li>
-					<a href="{{ url('products') }}"><span class="material-icons">shopping_cart</span>Quản lý sản phẩm</a>
+					<a href="javascript:void(0)"><span class="material-icons">shopping_cart</span>Quản lý sản phẩm</a>
 
 					<ul class="child_list">
 						<li><a href="{{ url('/products') }}">Tất cả sản phẩm</a></li>
 						<li><a href="{{ url('/product-category') }}">Danh mục sản phẩm</a></li>
 						<li><a href="{{ url('/product-brand') }}">Thương hiệu</a></li>
-						<li><a href="">Đơn vị tính</a></li>
+						<li><a href="javascript:void(0)">Đơn vị tính</a></li>
 					</ul>
 				</li>
 
 				<li>
 
-					<a href="{{ url('/storage') }}"> <span class="material-icons">storefront</span>Quản lý kho</a>
+					<a href="javascript:void(0)"> <span class="material-icons">storefront</span>Quản lý kho</a>
 
 					<ul class="child_list">
 
+						<li><a href="{{ url('/storage') }}">Sản phẩm trong kho</a></li>
 						<li><a href="{{ url('all-expiration') }}">Quản lý hạn sử dụng</a></li>
 						<li><a href="{{ url('/orders/import') }}">Quản lý nhập hàng</a></li>
 						<li><a href="{{ url('/orders/export') }}">Quản lý xuất hàng</a></li>
-						<li><a href="">Quản lý xuất chuyển kho</a></li>
-						<li><a href="">Quản lý đổi trả</a></li>
-
+{{-- 						<li><a href="javascript:void(0)">Quản lý xuất chuyển kho</a></li>
+						<li><a href="javascript:void(0)">Quản lý đổi trả</a></li>
+ --}}
 					</ul>
 
 				</li>
 
 
 
-				<li><a href=""><span class="material-icons">list_alt</span>Report</a></li>
+				<li><a href="javascript:void(0)"><span class="material-icons">list_alt</span>Report</a></li>
 
-				<li><a href=""><span class="material-icons">emoji_flags</span>Notification</a></li>
+				<li><a href="javascript:void(0)"><span class="material-icons">emoji_flags</span>Notification</a></li>
 
 
 
