@@ -528,7 +528,7 @@ $(document).ready(function() {
 
         });
 
-
+        var currentExportArr = {};
         $(document).on("click", ".cf_exp", function(e) {
             e.preventDefault();
 
@@ -549,12 +549,11 @@ $(document).ready(function() {
                 afterExportExp.push(Math.abs(amountArray[i] - expirationArray[i]));
             }
 
-            
-
-            // var resultObject = {};
-            // inputDateValues.forEach((key, i) => resultObject[key] = inputAmountValues[i]);
-            
-            // mergeArray[thisParentData].push(resultObject);
+            var testResults = {};
+            dateArray.forEach((key, i) => testResults[key] = expirationArray[i]);
+            currentExportArr[thisParentId] = [];
+            currentExportArr[thisParentId].push(testResults);
+            console.log(currentExportArr);
 
             var sumOfAmount = expirationArray.reduce(function(a,b){ return a + b })
 
@@ -609,7 +608,6 @@ $(document).ready(function() {
             orderCode = locationCode + dateTime;
 
             var emptyQTY = listQTY.includes("");
-            console.log(listQTY);
 
             if ( $.isEmptyObject(rs) ) {
                 alert('Vui lòng chọn sản phẩm trước khi tạo đơn');
@@ -628,7 +626,7 @@ $(document).ready(function() {
                     url: "/orders/create-export",
                     method: "post",
                     dataType: "json",
-                    data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList },
+                    data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList, currentExportArr: currentExportArr },
                     success: function(res) {
                         window.location=res.url;
                         console.log(res);               

@@ -71,6 +71,7 @@ class ExportOrderController extends Controller
         $order->location = $location;
         $order->products = serialize($qty);
         $order->expiration = serialize($request->expirationList);
+        $order->current_export = serialize($request->currentExportArr);
         $order->status = "wait";
         $order->deadline = $deadline;
 

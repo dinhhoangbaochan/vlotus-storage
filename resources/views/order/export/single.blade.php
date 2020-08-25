@@ -88,13 +88,13 @@
                                                 </div>
                                             </div>
                                             @foreach ($expirationArray as $key => $value)
-                                                @foreach ($value as $amount => $exp) 
+                                                @foreach ($value as $date => $amount) 
                                                 <div class="row mb-2 justify-content-center">
                                                     <div class="col-6">
-                                                        <input type="number" value="{{$amount}}" class="form-control" readonly>
+                                                        <input type="text" value="{{$amount}}" class="form-control" readonly>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="text" value="{{$exp}}" class="form-control" readonly>
+                                                        <input type="text" value="{{$date}}" class="form-control" readonly>
                                                     </div>
                                                 </div>
                                                     
