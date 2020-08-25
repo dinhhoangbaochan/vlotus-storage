@@ -369,7 +369,9 @@ $(document).ready(function() {
                 success: function(res) {
                     $("#findProductList").removeClass("show");
                     productsOrdered.push(res);
-                    var x, text = "";
+                    var x, text, newLine = "";
+
+                    console.log(res);
 
                     var valueArr = productsOrdered.map(function(item){ return item.id });
                     var isDuplicate = valueArr.some(function(item, index){ 
@@ -378,8 +380,6 @@ $(document).ready(function() {
 
                     if ( isDuplicate == true ) {
                         productsOrdered.pop();
-                        // console.log(productsOrdered);
-
                     } 
 
                     for (x in productsOrdered) {
@@ -414,40 +414,42 @@ $(document).ready(function() {
                                 ;
                         pio.push(productsOrdered[x].id);
 
-                        $(document).on("click", "#cf_" + productsOrdered[x].id ,function(e) {
-                            e.preventDefault();
-                            var thisParentId = $(this).parent().parent().parent().parent().attr('id');
-                            var thisParentData = $(this).parent().parent().parent().parent().data('sku');
+                };
 
-                            var inputAmountValues = $('#'+ thisParentId  + ' input[type="number"]').map(function() {
-                                return +$(this).val() // return value and convert value into integer
-                            }).get();
-                            
-                            var inputDateValues = $('#'+ thisParentId + ' input[type="date"]').map(function() {
-                                return $(this).val()
-                            }).get();
+                newLine += "<tr class='tt' data-id='"+ res.id +"'>" + 
+                                    "<td>" + "<img src='http://laravel-storage/uploaded/" + res.img +"'" + "/>" + "</td>" +
+                                    "<td>" + res.name + "</td>"  + 
+                                    "<td>" + res.sku + "</td>"  +
+                                    "<td>" + "<input type='number' name='"+ res.id +"' class='form-control e_qty' readonly>" + "</td>" + 
+                                    "<td>"+
+                                        "<a data-toggle='modal' class='expand_collapse' href='#coll_"+ res.id +"' data-id='"+ res.id +"'>+</a>" +
 
-                            var sumOfAmount = inputAmountValues.reduce(function(a,b){ return a + b })
+                                "<div class='modal choose_version' id='coll_" + res.id + "' data-id='"+ res.id +"' >" +
+                                    "<div class='modal-dialog'>" +
+                                    "<div class='modal-content'>" +
+                                        "<div class='modal-header'>" + 
+                                            "<h3>Chọn phiên bản xuất</h3>" + 
+                                        "</div>" +
 
-                            mergeArray[thisParentData] = [];
+                                        "<div class='modal-body'>" + 
+                                            "<span></span>" +
+                                        "</div>" +
 
-                            inputAmountValues.forEach(function(key, i) {
-                                // mergeArray[thisParentData][key] = inputDateValues[i]
-                                mergeArray[thisParentData].push({
-                                    [key]: inputDateValues[i]
-                                })
-                            });
+                                        "<div class='modal-footer'>" +
+                                            "<button class='cf_exp'>Confirm</button>"
+                                        "</div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                "</div>" +
 
-                            $(" input[name='"+ thisParentData + "'] ").val(sumOfAmount);
+                                    "</td>" +
+                                    "<div class='modal'></div>" +
+                                "</tr>" 
 
-                            $("#op_" + thisParentData).modal('hide');
-                        });
-
-
-                    };
+                                ;
                     
-                    document.querySelector(".LT_body").innerHTML = text;
-                    // $(".LT_body").append(text);
+                    // document.querySelector(".LT_body").innerHTML = text;
+                    $(".LT_body").append(newLine);
 
 
                 },
@@ -467,42 +469,49 @@ $(document).ready(function() {
             var location = $('#location_id').val();
             var obj = "";
 
-            $.ajax({
-                url: "/load-expiration",
-                method: "GET",
-                dataType: "json",
-                data: { id: id, location: location },
-                success: function(res) {
-                    console.log(res);
-                    res.forEach(function(item) {
-                        Object.entries(item).forEach(([date, amount]) => {
-                            obj += "<div class='row mb-3'>" +
-                                        "<div class='col-4'>" +
+            if ( id in mergeArray ) {
+                $("#coll_" + id).modal('show');
+            } else {
+                $.ajax({
+                    url: "/load-expiration",
+                    method: "GET",
+                    dataType: "json",
+                    data: { id: id, location: location },
+                    success: function(res) {
+                        console.log(res);
+                        res.forEach(function(item) {
+                            Object.entries(item).forEach(([date, amount]) => {
+                                obj += "<div class='row mb-3'>" +
+                                            "<div class='col-4'>" +
 
-                                            "<div class='input-group'>" + 
-                                                "<div class='input-group-prepend'>" + 
-                                                    '<span class="input-group-text material-icons">import_export</span>' +
-                                                "</div>" + 
-                                                 "<input type='number' class='form-control ExpArr' min='0' max='"+ amount +"' placeholder='0'/>" +
+                                                "<div class='input-group'>" + 
+                                                    "<div class='input-group-prepend'>" + 
+                                                        '<span class="input-group-text material-icons">import_export</span>' +
+                                                    "</div>" + 
+                                                     "<input type='number' class='form-control ExpArr' min='0' max='"+ amount +"' placeholder='0'/>" +
+                                                "</div>" +
                                             "</div>" +
-                                        "</div>" +
-                                        "<div class='col-4'>" +
-                                            "<input type='number' value='"+ amount +"' class='form-control AmountArr' readonly>" +
-                                        "</div>" +
-                                        "<div class='col-4'>" +
-                                            "<input type='text' value='"+date+"' class='form-control DateArr' readonly />" +
-                                        "</div>" + 
-                                    "</div>"
-                            ;
-                        })
-                    });
-      
-                    document.querySelector("#coll_" + id + ' .modal-body').innerHTML = obj;          
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
+                                            "<div class='col-4'>" +
+                                                "<input type='number' value='"+ amount +"' class='form-control AmountArr' readonly>" +
+                                            "</div>" +
+                                            "<div class='col-4'>" +
+                                                "<input type='text' value='"+date+"' class='form-control DateArr' readonly />" +
+                                            "</div>" + 
+                                        "</div>"
+                                ;
+                            })
+                        });
+          
+                        document.querySelector("#coll_" + id + ' .modal-body').innerHTML = obj;          
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+
+            }
+
+
 
         });
 
@@ -540,20 +549,33 @@ $(document).ready(function() {
                 afterExportExp.push(Math.abs(amountArray[i] - expirationArray[i]));
             }
 
-            mergeArray[thisParentId] = [];
+            
+
+            // var resultObject = {};
+            // inputDateValues.forEach((key, i) => resultObject[key] = inputAmountValues[i]);
+            
+            // mergeArray[thisParentData].push(resultObject);
 
             var sumOfAmount = expirationArray.reduce(function(a,b){ return a + b })
 
-            afterExportExp.forEach(function(key, i) {
-                // mergeArray[thisParentData][key] = inputDateValues[i]
-                mergeArray[thisParentId].push({
-                    [key]: dateArray[i]
-                })
-            });
+            // afterExportExp.forEach(function(key, i) {
+            //     // mergeArray[thisParentData][key] = inputDateValues[i]
+            //     mergeArray[thisParentId].push({
+            //         [key]: dateArray[i]
+            //     })
+            // });
 
-            $(" input[name='"+ thisParentId + "'] ").val(sumOfAmount);
-            $("#coll_" + thisParentId).modal('hide');
-            
+            var resultObject = {};
+            dateArray.forEach((key, i) => resultObject[key] = afterExportExp[i]);
+
+            if ( sumOfAmount == 0 ) {
+                alert('Vui lòng chọn phiên bản xuất');
+            } else {
+                mergeArray[thisParentId] = [];
+                mergeArray[thisParentId].push(resultObject);
+                $(" input[name='"+ thisParentId + "'] ").val(sumOfAmount);
+                $("#coll_" + thisParentId).modal('hide');
+            }
             
         });
 
@@ -574,6 +596,10 @@ $(document).ready(function() {
             var time = "" + today.getHours() + today.getMinutes() + today.getSeconds();
             var dateTime = date + time;
 
+            var listQTY = $('.e_qty').map(function() {
+                return $(this).val()
+            }).get();
+
             if ( location == 1 ) {
                 locationCode = 'NTL';
             } else {
@@ -582,26 +608,37 @@ $(document).ready(function() {
 
             orderCode = locationCode + dateTime;
 
+            var emptyQTY = listQTY.includes("");
+            console.log(listQTY);
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+            if ( $.isEmptyObject(rs) ) {
+                alert('Vui lòng chọn sản phẩm trước khi tạo đơn');
+            } else if (emptyQTY) {
+                alert('Vui lòng chọn số lượng cần xuất');
+            } else if ( !deadline ) {
+                alert('Vui lòng chọn ngày hẹn giao');
+            } else {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-            $.ajax({
-                url: "/orders/create-export",
-                method: "post",
-                dataType: "json",
-                data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList },
-                success: function(res) {
-                    window.location=res.url;
-                    console.log(res);               
-                },
-                error: function(res) {
-                    console.log(res);                    
-                }
-            });
+                $.ajax({
+                    url: "/orders/create-export",
+                    method: "post",
+                    dataType: "json",
+                    data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList },
+                    success: function(res) {
+                        window.location=res.url;
+                        console.log(res);               
+                    },
+                    error: function(res) {
+                        console.log(res);                    
+                    }
+                });
+            }
+
 
         }); 
 
