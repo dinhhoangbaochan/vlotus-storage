@@ -16,7 +16,7 @@
 
 				<li><a href="{{ url('users') }}"> <span class="material-icons">group</span>Quản lý User</a></li>
 
-				<li><a href=""><span class="material-icons">account_tree</span>Quản lý vận đơn</a></li> <!-- đơn hàng vận chuyển ra ngoài -->
+				<li><a href="javascript:void(0)"><span class="material-icons">account_tree</span>Quản lý vận đơn</a></li> 
 
 				<li>
 					<a href="javascript:void(0)"><span class="material-icons">shopping_cart</span>Quản lý sản phẩm</a>

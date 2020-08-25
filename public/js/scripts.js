@@ -115,8 +115,31 @@ $(document).ready(function() {
                                             "<div class='modal-body'>" +
 
                                                 "<div class='row mb-2'>" + 
-                                                    "<div class='col-5'><input type='number' class='form-control' /></div>" +
-                                                    "<div class='col-5'><input type='text' class='imp_date form-control ' /></div>" +
+
+                                                    "<div class='col-5'>" + 
+                                                        "<div class='input-group'>" + 
+
+                                                            "<div class='input-group-prepend'>" +
+                                                                "<span class='input-group-text material-icons'>calendar_today</span>" + 
+                                                            "</div>" +
+
+                                                            "<input type='number' class='form-control' />" + 
+                                                        "</div>" +
+                                                        
+                                                    "</div>" +
+
+                                                    "<div class='col-5'>" + 
+                                                        "<div class='input-group'>" + 
+
+                                                            "<div class='input-group-prepend'>" +
+                                                                "<span class='input-group-text material-icons'>calendar_today</span>" + 
+                                                            "</div>" +
+
+                                                            "<input type='text' class='imp_date '/>" + 
+                                                        "</div>" +
+                                                        
+                                                    "</div>" +
+
                                                     "<div class='col-2 d-flex justify-content-center align-items-center'>" +
                                                         "<a class='triggerExp'><span class='material-icons'>add_task</span></a>" +
                                                         "<a class='deleteExp'><span class='material-icons'>close</span></a>"+

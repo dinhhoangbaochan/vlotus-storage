@@ -6,8 +6,17 @@
 a:hover, a:focus { text-decoration: none; transition: 0.4s ease-in-out all; }
 textarea { width: 100%; }
 img { width: 100% }
-input:focus { box-shadow: none !important; border: 1px solid #007bff !important; }
+input:focus, textarea { box-shadow: none !important; border: 1px solid #007bff !important; }
+input:hover { cursor:  }
+input[type="submit"]:hover { cursor: pointer }
 select:hover { cursor: pointer; }
+input.imp_date {
+    padding: .375rem .75rem;
+    width: 90%;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 
 .gap-1 {
   height: 1rem;
