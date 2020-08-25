@@ -64,7 +64,7 @@
                             </table>
                         </form>
 
-                        @foreach ($expiration as $p_id => $expirationArray)
+                        @foreach ($currentExport as $p_id => $expirationArray)
                             <div class='modal fade' id='op_<?php echo $p_id ?>' role='dialog' aria-hidden='true'>
                                 <div class='modal-dialog' role='document'>
                                     <div class='modal-content'>

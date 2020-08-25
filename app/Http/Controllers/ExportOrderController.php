@@ -113,6 +113,7 @@ class ExportOrderController extends Controller
         $orderProducts = unserialize( $currentExportOrder->products );
         $originalExpiration = $currentExportOrder->expiration;
         $expiration = unserialize( $originalExpiration );
+        $currentExport = unserialize( $currentExportOrder->current_export );
         $location = $currentExportOrder->location;
         $Products = new Products;
 
@@ -122,6 +123,7 @@ class ExportOrderController extends Controller
             'orderID'               =>  $id,
             'orderProducts'         =>  $orderProducts,
             'Products'              =>  $Products,
+            'currentExport'         =>  $currentExport,
             'location'              =>  $location,
             'expiration'            =>  $expiration,
             'originalExpiration'    =>  $originalExpiration,
