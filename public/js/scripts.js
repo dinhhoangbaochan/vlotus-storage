@@ -43,7 +43,7 @@ $(document).ready(function() {
 
         // AJAX - Find product by name, check what user types in
         function findProductByName(event) {
-        	var getInput = $(this).val();
+            var getInput = $(this).val();
 
             $.ajax({
                 url: "/search-product",
@@ -76,7 +76,7 @@ $(document).ready(function() {
                 dataType: "json",
                 data: { currentID : currentDataID },
                 success: function(res) {
-                	$("#findProductList").removeClass("show");
+                    $("#findProductList").removeClass("show");
                     productsOrdered.push(res);
                     var x, text = "";
 
@@ -95,7 +95,7 @@ $(document).ready(function() {
                         // text += productsOrdered[x].name + "<br>";
 
                         text += "<tr class='tt' data-id='"+ productsOrdered[x].id +"'>" + 
-                                    "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
+                                    "<td>" + "<img src='/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                     "<td>" + productsOrdered[x].name + "</td>"  + 
                                     "<td>" + productsOrdered[x].sku + "</td>"  +
                                     "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' class='form-control t_qty' readonly>" + "</td>" + 
@@ -112,6 +112,20 @@ $(document).ready(function() {
                                             "</div>" +
 
                                             "<div class='modal-body'>" +
+                                                "<div class='row mb-2'>" + 
+
+                                                    "<div class='col-5'>" + 
+                                                        "<h3 class='guide_label'>Nhập số lượng cần nhập</h3>" +
+                                                    "</div>" +
+
+                                                    "<div class='col-5'>" + 
+                                                        "<h3 class='guide_label'>Tạo hạn sử dụng</h3>" +
+                                                    "</div>" +
+
+                                                    "<div class='col-2'>" + 
+                                                        "<h3 class='guide_label'>Thao tác</h3>" +
+                                                    "</div>" +
+                                                "</div>" +
 
                                                 "<div class='row mb-2'>" + 
 
@@ -139,9 +153,9 @@ $(document).ready(function() {
                                                         
                                                     "</div>" +
 
-                                                    "<div class='col-2 d-flex justify-content-center align-items-center'>" +
+                                                    "<div class='col-2 d-flex align-items-center'>" +
                                                         "<a class='triggerExp'><span class='material-icons'>add</span></a>" +
-                                                        "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
+                                                        // "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
                                                     "</div>" +
                                                 "</div>" +
 
@@ -180,7 +194,6 @@ $(document).ready(function() {
                             
 
                             mergeArray[thisParentData].push(resultObject);
-                            console.log(mergeArray);
 
                             $(" input[name='"+ thisParentData + "'] ").val(sumOfAmount);
 
@@ -315,7 +328,7 @@ $(document).ready(function() {
                                 
                             "</div>" +
 
-                            "<div class='col-2 d-flex justify-content-center align-items-center'>" +
+                            "<div class='col-2 d-flex align-items-center'>" +
                                 "<a class='triggerExp'><span class='material-icons'>add</span></a>" +
                                 "<a class='deleteExp'><span class='material-icons'>close</span></a>"+
                             "</div>" +
@@ -346,7 +359,6 @@ $(document).ready(function() {
                 method: "GET",
                 data: { input: getInput, location: location},
                 success: function(res) {
-                    console.log(res);
                     $("#findProductList").addClass("show");
                     $("#findProductList").html(res);
                 },
@@ -371,8 +383,6 @@ $(document).ready(function() {
                     productsOrdered.push(res);
                     var x, text, newLine = "";
 
-                    console.log(res);
-
                     var valueArr = productsOrdered.map(function(item){ return item.id });
                     var isDuplicate = valueArr.some(function(item, index){ 
                         return valueArr.indexOf(item) != index 
@@ -386,7 +396,7 @@ $(document).ready(function() {
                         // text += productsOrdered[x].name + "<br>";
 
                         text += "<tr class='tt' data-id='"+ productsOrdered[x].id +"'>" + 
-                                    "<td>" + "<img src='http://laravel-storage/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
+                                    "<td>" + "<img src='/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                     "<td>" + productsOrdered[x].name + "</td>"  + 
                                     "<td>" + productsOrdered[x].sku + "</td>"  +
                                     "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' class='form-control' readonly>" + "</td>" + 
@@ -406,7 +416,7 @@ $(document).ready(function() {
                                         "</div>" +
 
                                         "<div class='modal-footer'>" +
-                                            "<button class='cf_exp'>Confirm</button>"
+                                            "<button class='cf_exp'>Xác Nhận</button>"
                                         "</div>" +
                                     "</div>" +
                                     "</div>" +
@@ -417,7 +427,7 @@ $(document).ready(function() {
                 };
 
                 newLine += "<tr class='tt' data-id='"+ res.id +"'>" + 
-                                    "<td>" + "<img src='http://laravel-storage/uploaded/" + res.img +"'" + "/>" + "</td>" +
+                                    "<td>" + "<img src='/quan-ly-kho-meiwa/uploaded/" + res.img +"'" + "/>" + "</td>" +
                                     "<td>" + res.name + "</td>"  + 
                                     "<td>" + res.sku + "</td>"  +
                                     "<td>" + "<input type='number' name='"+ res.id +"' class='form-control e_qty' readonly>" + "</td>" + 
@@ -432,11 +442,25 @@ $(document).ready(function() {
                                         "</div>" +
 
                                         "<div class='modal-body'>" + 
+                                                "<div class='row mb-2'>" + 
+
+                                                    "<div class='col-5'>" + 
+                                                        "<h3 class='guide_label'>Nhập số lượng cần xuất</h3>" +
+                                                    "</div>" +
+
+                                                    "<div class='col-5'>" + 
+                                                        "<h3 class='guide_label'>Tạo hạn sử dụng</h3>" +
+                                                    "</div>" +
+
+                                                    "<div class='col-2'>" + 
+                                                        "<h3 class='guide_label'>Thao tác</h3>" +
+                                                    "</div>" +
+                                                "</div>" +
                                             "<span></span>" +
                                         "</div>" +
 
                                         "<div class='modal-footer'>" +
-                                            "<button class='cf_exp'>Confirm</button>"
+                                            "<button class='cf_exp'>Xác Nhận</button>"
                                         "</div>" +
                                     "</div>" +
                                     "</div>" +
@@ -467,7 +491,20 @@ $(document).ready(function() {
             
             var id = $(this).data('id');
             var location = $('#location_id').val();
-            var obj = "";
+            var obj = "<div class='row mb-2'>" + 
+
+                        "<div class='col-4'>" + 
+                            "<h3 class='guide_label'>Nhập số lượng cần xuất</h3>" +
+                        "</div>" +
+
+                        "<div class='col-4'>" + 
+                            "<h3 class='guide_label'>Số lượng tồn kho</h3>" +
+                        "</div>" +
+
+                        "<div class='col-4'>" + 
+                            "<h3 class='guide_label'>Ngày hết hạn</h3>" +
+                        "</div>" +
+                    "</div>";
 
             if ( id in mergeArray ) {
                 $("#coll_" + id).modal('show');
@@ -623,11 +660,12 @@ $(document).ready(function() {
                 });
 
                 $.ajax({
-                    url: "/orders/create-export",
+                    url: "/quan-ly-kho-meiwa/orders/create-export",
                     method: "post",
                     dataType: "json",
                     data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList, currentExportArr: currentExportArr },
                     success: function(res) {
+                        alert("Đã tạo đơn thành công");
                         window.location=res.url;
                         console.log(res);               
                     },
