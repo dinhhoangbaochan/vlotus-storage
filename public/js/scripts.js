@@ -6,6 +6,8 @@ $(document).ready(function() {
             minDate: "today"
         };
 
+        const parentURL = document.location.origin;
+
         var productsOrdered = [];
         var pio = [];
         var formExport = new FormData( $('#exportForm')[0] );
@@ -46,7 +48,7 @@ $(document).ready(function() {
             var getInput = $(this).val();
 
             $.ajax({
-                url: "/search-product",
+                url: parentURL + "/search-product",
                 method: "GET",
                 data: { input: getInput, },
                 success: function(res) {
@@ -71,7 +73,7 @@ $(document).ready(function() {
             var currentDataID = $(this).data("id");
 
             $.ajax({
-                url: "/get-selected-product",
+                url: parentURL + "/get-selected-product",
                 method: "GET",
                 dataType: "json",
                 data: { currentID : currentDataID },
@@ -95,7 +97,7 @@ $(document).ready(function() {
                         // text += productsOrdered[x].name + "<br>";
 
                         text += "<tr class='tt' data-id='"+ productsOrdered[x].id +"'>" + 
-                                    "<td>" + "<img src='/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
+                                    "<td>" + "<img src='"+ parentURL +"/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                     "<td>" + productsOrdered[x].name + "</td>"  + 
                                     "<td>" + productsOrdered[x].sku + "</td>"  +
                                     "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' class='form-control t_qty' readonly>" + "</td>" + 
@@ -277,7 +279,7 @@ $(document).ready(function() {
                 });
 
                 $.ajax({
-                    url: "/orders/create-import",
+                    url: parentURL + "/orders/create-import",
                     method: "post",
                     dataType: "json",
                     data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList },
@@ -355,7 +357,7 @@ $(document).ready(function() {
             var location = $("#location_id").val();
 
             $.ajax({
-                url: "/load-exportable-product",
+                url: parentURL + "/load-exportable-product",
                 method: "GET",
                 data: { input: getInput, location: location},
                 success: function(res) {
@@ -374,7 +376,7 @@ $(document).ready(function() {
             console.log(currentDataID);
 
             $.ajax({
-                url: "/choose-export-product",
+                url: parentURL + "/choose-export-product",
                 method: "GET",
                 dataType: "json",
                 data: { currentID : currentDataID },
@@ -396,7 +398,7 @@ $(document).ready(function() {
                         // text += productsOrdered[x].name + "<br>";
 
                         text += "<tr class='tt' data-id='"+ productsOrdered[x].id +"'>" + 
-                                    "<td>" + "<img src='/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
+                                    "<td>" + "<img src='"+parentURL+"/uploaded/" + productsOrdered[x].img +"'" + "/>" + "</td>" +
                                     "<td>" + productsOrdered[x].name + "</td>"  + 
                                     "<td>" + productsOrdered[x].sku + "</td>"  +
                                     "<td>" + "<input type='number' name='"+ productsOrdered[x].id +"' class='form-control' readonly>" + "</td>" + 
@@ -427,7 +429,7 @@ $(document).ready(function() {
                 };
 
                 newLine += "<tr class='tt' data-id='"+ res.id +"'>" + 
-                                    "<td>" + "<img src='/quan-ly-kho-meiwa/uploaded/" + res.img +"'" + "/>" + "</td>" +
+                                    "<td>" + "<img src='"+parentURL+"/uploaded/" + res.img +"'" + "/>" + "</td>" +
                                     "<td>" + res.name + "</td>"  + 
                                     "<td>" + res.sku + "</td>"  +
                                     "<td>" + "<input type='number' name='"+ res.id +"' class='form-control e_qty' readonly>" + "</td>" + 
@@ -510,7 +512,7 @@ $(document).ready(function() {
                 $("#coll_" + id).modal('show');
             } else {
                 $.ajax({
-                    url: "/load-expiration",
+                    url: parentURL + "/load-expiration",
                     method: "GET",
                     dataType: "json",
                     data: { id: id, location: location },
@@ -660,7 +662,7 @@ $(document).ready(function() {
                 });
 
                 $.ajax({
-                    url: "/quan-ly-kho-meiwa/orders/create-export",
+                    url: parentURL + "/orders/create-export",
                     method: "post",
                     dataType: "json",
                     data: {qty: rs, location: location, products: uniquePiO, orderCode: orderCode, deadline: deadline, expirationList: expirationList, currentExportArr: currentExportArr },

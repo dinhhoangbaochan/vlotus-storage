@@ -7,8 +7,7 @@ a:hover, a:focus { text-decoration: none; transition: 0.4s ease-in-out all; curs
 textarea { width: 100%; }
 img { width: 100% }
 input:focus, textarea { box-shadow: none !important; border: 1px solid #007bff !important; }
-input:hover { cursor:  }
-input[type="submit"]:hover { cursor: pointer }
+input[type="submit"]:hover, button:hover { cursor: pointer }
 select:hover { cursor: pointer; }
 input.imp_date {
     padding: .375rem .75rem;
@@ -20,8 +19,45 @@ input.imp_date {
     border-bottom-left-radius: 0;
 }
 
+.guide_label {
+    font-size: 14px;
+    text-transform: capitalize;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 8px;
+    margin-bottom: 6px;
+}
+
+.modal-title {
+    font-weight: bold;
+    color: #000;
+}
+
 .gap-1 {
   height: 1rem;
+}
+
+button.cf_exp, .expiration-modal button {
+    border: none;
+    padding: 8px 18px;
+    background-color: #2e78c4;
+    color: #fff;
+    font-size: 14px;
+    transition: .4s ease all;
+}
+
+button.cf_exp:hover, .expiration-modal button:hover {
+    background-color: #0a8295;
+}
+
+button.close {
+    background-color: transparent !important;
+    color: #000 !important;
+    font-size: 26px;
+}
+
+button.close:hover {
+    background-color: transparent !important;
+    color: #000 !important;
 }
 
 body { 
