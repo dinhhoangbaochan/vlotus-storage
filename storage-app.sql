@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2020 at 12:29 PM
+-- Generation Time: Sep 01, 2020 at 11:27 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -34,13 +34,6 @@ CREATE TABLE `expiration` (
   `location` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `expiration`
---
-
-INSERT INTO `expiration` (`id`, `p_id`, `date`, `location`) VALUES
-(1, 16, 'a:3:{i:2;s:10:\"2020-08-25\";i:10;s:10:\"2020-08-08\";i:30;s:10:\"2020-08-14\";}', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -54,16 +47,11 @@ CREATE TABLE `export_orders` (
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `location` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `products` varchar(400) COLLATE utf8_unicode_ci NOT NULL,
+  `expiration` varchar(400) COLLATE utf8_unicode_ci NOT NULL,
+  `current_export` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `status` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `deadline` date NOT NULL
+  `deadline` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `export_orders`
---
-
-INSERT INTO `export_orders` (`id`, `created_at`, `updated_at`, `code`, `location`, `products`, `status`, `deadline`) VALUES
-(1, '2020-07-31 20:49:09', '2020-07-31 20:49:24', 'EXPORT', '1', 'a:1:{i:17;s:2:\"10\";}', 'confirm', '2020-08-01');
 
 -- --------------------------------------------------------
 
@@ -78,8 +66,9 @@ CREATE TABLE `import_orders` (
   `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `location` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `products` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deadline` date NOT NULL
+  `deadline` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -112,7 +101,7 @@ CREATE TABLE `model_has_roles` (
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\User', 1),
-(1, 'App\\User', 8),
+(1, 'App\\User', 9),
 (2, 'App\\User', 2);
 
 -- --------------------------------------------------------
@@ -170,16 +159,6 @@ CREATE TABLE `products` (
   `brand` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `name`, `sku`, `code`, `price`, `unit`, `note`, `product_image`, `by`, `import_date`, `cate`, `brand`) VALUES
-(16, 'Chocolate Wafers \"Tiramisu Cream (12 pcs)\"', 'RY0040', 'RY0040-1', 1000000, 'Hộp', NULL, 'noimage.png', 1, '2020-07-02', 2, 5),
-(17, 'Baton Cookies \"Coconut (25 pcs)\"', 'RY0030', 'RY0030-1', 200000, 'Hộp', NULL, 'sp-2_1595318913.jpg', 1, '2020-06-11', 3, 5),
-(18, 'Maccha Almond Chocolate', 'RY0073', 'RY0073-1', 150000, 'Hộp', NULL, 'sp-3_1595318970.jpg', 1, '2020-07-13', 3, 5),
-(19, 'Nama Chocolate \"Mild Cacao\"', 'RY0004', 'RY0004-1', 250000, 'b_box', NULL, 'noimage.png', 1, '2020-07-27', 3, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -195,15 +174,6 @@ CREATE TABLE `products_in_storage` (
   `amount` int(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `products_in_storage`
---
-
-INSERT INTO `products_in_storage` (`id`, `p_id`, `location`, `tmp_imp`, `tmp_exp`, `amount`) VALUES
-(1, 16, '1', 0, NULL, 32),
-(2, 16, '2', NULL, NULL, 33),
-(3, 17, '1', 0, NULL, 40);
-
 -- --------------------------------------------------------
 
 --
@@ -214,18 +184,6 @@ CREATE TABLE `product_brands` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `brand_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `product_brands`
---
-
-INSERT INTO `product_brands` (`id`, `brand_name`) VALUES
-(5, 'Royce Chocolate'),
-(8, 'Meiwa'),
-(9, 'Hokkaido'),
-(10, 'Shinshu'),
-(11, 'NK'),
-(12, 'Sugi Bee');
 
 -- --------------------------------------------------------
 
@@ -243,10 +201,16 @@ CREATE TABLE `product_categories` (
 --
 
 INSERT INTO `product_categories` (`id`, `cate_name`) VALUES
-(2, 'Thực phẩm'),
-(3, 'Bánh kẹo'),
-(5, 'Vật tư dụng cụ'),
-(6, 'Rượu');
+(1, 'Rượu'),
+(2, 'Hokkaido Fair'),
+(3, 'Sugi Bee'),
+(4, 'Phô mai - QBB Cheese'),
+(5, 'Bánh kẹo NK'),
+(6, 'Xúc xích Shinshu'),
+(7, 'Cà chua Hokkaido'),
+(8, 'Meiwa xiên que'),
+(9, 'Vật tư dụng cụ'),
+(10, 'Royce Chocolate');
 
 -- --------------------------------------------------------
 
@@ -330,9 +294,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Đinh Hoàng Bảo Chấn', 'dinhhoangbaochan@gmail.com', NULL, '$2y$10$SqXQVQ3Cgp/JCJrX5KoUTegkw00MFb4DHizFTfpjBbeMRdBftT9vy', 'ryMYAy93erQc3O3CIZFg8mY2TyrxUk8LDLtWLWUkvL15v6LwBJ8dOV6JrixV', '2020-07-02 01:54:16', '2020-07-21 00:33:46'),
+(1, 'Đinh Hoàng Bảo Chấn', 'dinhhoangbaochan@gmail.com', NULL, '$2y$10$SqXQVQ3Cgp/JCJrX5KoUTegkw00MFb4DHizFTfpjBbeMRdBftT9vy', 'SOZfiFKzbrGqOUOh5xcC6gXs5VqdV5ADJ4EcE5xwHnF7gnpXlFxAvLMGvO2W', '2020-07-02 01:54:16', '2020-07-21 00:33:46'),
 (2, 'William', 'baochan.gooweb@gmail.com', NULL, '$2y$10$tdnCjzpTAEt/.S2bnUkujuqYVgyKA9WVYSzbtz77HvE/pzwUUxEOe', NULL, '2020-07-02 19:57:36', '2020-07-02 19:57:36'),
-(8, 'Lotus Group', 'phongcm2003@gmail.com', NULL, '$2y$10$xjyxKQ20sYOLLn27NfoUjOO1LtvP1VDNxElqd66tO2TdS5J7J/swW', NULL, '2020-08-04 12:02:31', '2020-08-04 12:02:31');
+(9, 'Lotus Group', 'admin@lotusgroup.com.vn', NULL, '$2y$10$74B18BVFa6e3GU5piGQ0..gL8mCpVMx5UZNZ8dMOpIzF8PW9ofY8O', NULL, '2020-08-18 03:20:22', '2020-08-18 03:20:22');
 
 --
 -- Indexes for dumped tables
@@ -440,13 +404,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `expiration`
 --
 ALTER TABLE `expiration`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `export_orders`
 --
 ALTER TABLE `export_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `import_orders`
@@ -464,25 +428,25 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products_in_storage`
 --
 ALTER TABLE `products_in_storage`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product_brands`
 --
 ALTER TABLE `product_brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -500,7 +464,7 @@ ALTER TABLE `storages`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
