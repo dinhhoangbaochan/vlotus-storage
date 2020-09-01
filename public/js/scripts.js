@@ -3,7 +3,7 @@ $(document).ready(function() {
 
         var config = {
             enableTime: true,
-            minDate: "today"
+            // minDate: "today"
         };
 
         const parentURL = document.location.origin;
