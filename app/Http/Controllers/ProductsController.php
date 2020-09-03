@@ -193,9 +193,9 @@ class ProductsController extends Controller
         $products->code = $request->input('product_code');
         $products->unit = $request->input('unit');
         $products->note = $request->input('product_note');
-        $products->product_image = $fileNameToStore;
         $products->by = $current_user->id;
-        $products->cate = $request->input('cate_radio');
+        $products->product_image = $fileNameToStore;
+        $products->cate = $request->input('category');
 
         $products->save();
 
