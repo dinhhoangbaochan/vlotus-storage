@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{asset('css/components-style/sidebar-style.css')}}">
         <link rel="stylesheet" href="{{ asset('css/flatpickr.min.css') }}">
+        <link rel="icon" href="{{ asset('img/logo.png') }}">
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
