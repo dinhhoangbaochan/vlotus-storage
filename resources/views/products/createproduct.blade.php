@@ -75,14 +75,9 @@
                   </div>
 
                   <div class="row">
-
-                     
-                  </div>
-
-                  <div class="row">
                      <div class="col-12">
                         <div class="form-label-group">
-                           <textarea name="product_note" id="product_note" rows="8" placeholder="Nhập ghi chú cho đơn hàng (Tuỳ chọn)"></textarea>
+                           <textarea name="product_note" id="product_note" rows="8" placeholder="Nhập ghi chú cho sản phẩm (Tuỳ chọn)"></textarea>
                         </div>
 
                         <input type="submit" value="Đăng Sản Phẩm">
@@ -98,7 +93,7 @@
 
 
                   <div class="form-group">
-                        <label for="selectType">Chọn loại sản phẩm</label>
+                        <label for="selectType">Danh mục sản phẩm</label>
 
                         <select multiple class="form-control" id="selectType" name="category">
 
