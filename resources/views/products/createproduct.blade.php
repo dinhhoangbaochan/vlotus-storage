@@ -45,24 +45,21 @@
                   
 
                   <div class="row">
-                     <div class="col-6">
+                     <div class="col-4">
                         <div class="form-label-group">
                            <input type="text" id="product_sku" class="form-control" placeholder="SKU sản phẩm" name="product_sku" autofocus>
                            <label for="product_sku">Mã sản phẩm (mã kho)</label>
                         </div>
                      </div>
 
-                     <div class="col-6">
+                     <div class="col-4">
                         <div class="form-label-group">
                            <input type="text" id="product_code" class="form-control" placeholder="Code sản phẩm" name="product_code" autofocus>
                            <label for="product_code">Mã sản phẩm (kế toán)</label>
                         </div>
                      </div>
-                  </div>
 
-                  <div class="row">
-
-                     <div class="col-6">
+                     <div class="col-4">
                         <div class="form-label-group">
                            
                            <select name="unit" id="" class="form-control" style="padding: var(--input-padding-y) var(--input-padding-x)">
@@ -73,6 +70,13 @@
                            
                         </div>
                      </div>
+
+
+                  </div>
+
+                  <div class="row">
+
+                     
                   </div>
 
                   <div class="row">
