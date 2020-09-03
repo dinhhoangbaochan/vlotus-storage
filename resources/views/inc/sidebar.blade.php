@@ -4,7 +4,7 @@
 
 		<div class="logo">
 
-			<a href="/dashboard"><img src="{{asset('img/logo.png')}}"></a>
+			<a href="{{ url('dashboard') }}"><img src="{{asset('img/logo.png')}}"></a>
 
 		</div>
 
