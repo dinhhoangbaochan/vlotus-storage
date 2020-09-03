@@ -159,7 +159,6 @@ class ProductsController extends Controller
             'product_name'  =>  'required',
             'product_sku'  =>  'required',
             'product_code'  =>  'required',
-            'unit'  =>  'required',
             'product_thumbnail' => 'image|nullable|max:1999',
         ]);
 
