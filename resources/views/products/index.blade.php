@@ -27,7 +27,6 @@
 						<th rowspan="1" colspan="1">Sản phẩm</th>
 						<th rowspan="1" colspan="1">SKU</th>
 						<th rowspan="1" colspan="1">Mã Report</th>
-						<th rowspan="1" colspan="1">Ngày nhập</th>
 						<th rowspan="1" colspan="1">Đơn vị</th>
 					</tr>
 				</thead>
@@ -37,7 +36,7 @@
 					@if( count($products) > 0 )
 						@foreach ( $products as $product )
 							<tr>
-								<td style="text-align: center;">
+								<td>
 
 									@if ( $product->product_image )
 										<img src="/uploaded/{{ $product->product_image }}" alt="">
@@ -49,27 +48,8 @@
 								<td><a href="/products/{{$product->id}}/edit">{{ $product->name }}</a></td>
 								<td><span>{{ $product->sku }}</span></td>
 								<td><span>{{ $product->code }}</span></td>
-								<td><span>{{ $product->import_date }}</span></td>
 								<td><span>{{ $product->unit }}</span></td>
-{{-- 								<td><span>
-									@switch( $product->status )
-										@case('on-deliver')
-											{{ 'Đang Giao Hàng' }}
-											@break
 
-										@case('left')
-											{{ 'Tồn Kho' }}
-											@break
-
-										@case('completed')
-											{{ 'Hoàn Tất' }}
-											@break
-
-										@case('in-payment')
-											{{ 'Chờ Thanh Toán' }}
-											@break
-									@endswitch
-								</span></td> --}}
 							</tr>
 						@endforeach	
 
