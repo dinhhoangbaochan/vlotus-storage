@@ -24,7 +24,6 @@
 					<ul class="child_list">
 						<li><a href="{{ url('/products') }}">Tất cả sản phẩm</a></li>
 						<li><a href="{{ url('/product-category') }}">Danh mục sản phẩm</a></li>
-						<li><a href="{{ url('/product-brand') }}">Thương hiệu</a></li>
 						<li><a href="javascript:void(0)">Đơn vị tính</a></li>
 					</ul>
 				</li>
