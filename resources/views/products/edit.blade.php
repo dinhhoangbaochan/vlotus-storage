@@ -38,28 +38,21 @@
                            </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-4">
                            <div class="form-label-group">
                               <input type="text" id="product_sku" class="form-control" value="{{ $products->sku }}" name="product_sku" autofocus>
                               <label for="product_sku">Mã sản phẩm (mã kho)</label>
                            </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-4">
                            <div class="form-label-group">
                               <input type="text" id="product_code" class="form-control" value="{{$products->code}}" name="product_code" autofocus>
                               <label for="product_code">Mã sản phẩm (mã kế toán)</label>
                            </div>
                         </div>
 
-                        <div class="col-6">
-                           <div class="form-label-group">
-                              <input type="number" id="product_price" class="form-control" value="{{$products->price}}" name="product_price" autofocus>
-                              <label for="product_price">Giá sản phẩm</label>
-                           </div>
-                        </div>
-
-                        <div class="col-6">
+                        <div class="col-4">
                            <div class="form-label-group">
                               <select name="unit" id="" class="form-control" style="padding: var(--input-padding-y) var(--input-padding-x)">
                                  <option value="">Hộp</option>
@@ -72,7 +65,7 @@
                         <div class="col-12">
                            @if ( $products->note ) 
                               <div class="form-label-group">
-                                 <textarea name="product_note" id="product_note" rows="8" value="{{$product->note}}"></textarea>
+                                 <textarea name="product_note" id="product_note" rows="8" value="{{$products->note}}"></textarea>
                               </div>
                            @else 
                               <div class="form-label-group">
@@ -100,10 +93,6 @@
                      <button type="submit" class="update_btn">Cập nhật</button>
                      <a class="delete_btn" data-toggle="modal" href="#delete_modal">Xoá</a>
 
-                     {{-- {!! Form::open( ['action' => ['ProductsController@destroy', $products->id], 'method' => 'POST']) !!}
-                        {{ Form::hidden('_method', 'DELETE') }}
-                        {{ Form::submit('Xoá sản phẩm', ['class' => 'btn btn-danger']) }}  
-                     {!! Form::close() !!} --}}
 
                   </div>
 
@@ -137,31 +126,6 @@
                      </div>
 
                      <div class="gap-1"></div>
-
-                     <label for="selectBrand" class="title-label">Chỉnh sửa thương hiệu</label>
-
-                     <div class="product_meta">
-
-                        @foreach( $list_brand as $brand )
-                           <div class="each_el">
-                              @if ( $brand->id == $products->brand )
-
-                                 <div class="radio">
-                                    <label><input type="radio" name="brand_radio" value="{{$brand->id}}" checked> {{$brand->brand_name}}</label>
-                                 </div>
-
-                              @else 
-
-                                 <div class="radio">
-                                    <label><input type="radio" value="{{$brand->id}}" name="brand_radio"> {{$brand->brand_name}}</label>
-                                 </div>
-
-                              @endif
-                              
-                           </div>
-                        @endforeach
-
-                     </div>
 
 
                   </div>
