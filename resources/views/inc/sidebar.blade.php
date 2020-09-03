@@ -19,7 +19,7 @@
 				<li><a href="javascript:void(0)"><span class="material-icons">account_tree</span>Quản lý vận đơn</a></li> 
 
 				<li>
-					<a href="javascript:void(0)"><span class="material-icons">shopping_cart</span>Quản lý sản phẩm</a>
+					<a href="{{ url('/products') }}"><span class="material-icons">shopping_cart</span>Quản lý sản phẩm</a>
 
 					<ul class="child_list">
 						<li><a href="{{ url('/products') }}">Tất cả sản phẩm</a></li>
@@ -31,7 +31,7 @@
 
 				<li>
 
-					<a href="javascript:void(0)"> <span class="material-icons">storefront</span>Quản lý kho</a>
+					<a href="{{ url('/storage') }}"> <span class="material-icons">storefront</span>Quản lý kho</a>
 
 					<ul class="child_list">
 
