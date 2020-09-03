@@ -66,7 +66,6 @@ class ProductsController extends Controller
             'product_name'  =>  'required',
             'product_sku'  =>  'required',
             'product_code'  =>  'required',
-            'product_price'  =>  'required',
             'product_thumbnail' => 'image|nullable|max:1999',
         ]);
 
@@ -104,7 +103,6 @@ class ProductsController extends Controller
         $products->by = $current_user->id;
         $products->product_image = $fileNameToStore;
         $products->cate = $request->input('category');
-        $products->import_date = $request->input('import_date');
 
         $products->save();
 
@@ -161,7 +159,6 @@ class ProductsController extends Controller
             'product_name'  =>  'required',
             'product_sku'  =>  'required',
             'product_code'  =>  'required',
-            'product_price'  =>  'required',
             'unit'  =>  'required',
             'product_thumbnail' => 'image|nullable|max:1999',
         ]);
@@ -195,13 +192,11 @@ class ProductsController extends Controller
         $products->name = $request->input('product_name');
         $products->sku = $request->input('product_sku');
         $products->code = $request->input('product_code');
-        $products->price = $request->input('product_price');
         $products->unit = $request->input('unit');
         $products->note = $request->input('product_note');
         $products->product_image = $fileNameToStore;
         $products->by = $current_user->id;
         $products->cate = $request->input('cate_radio');
-        $products->brand = $request->input('brand_radio');
 
         $products->save();
 
