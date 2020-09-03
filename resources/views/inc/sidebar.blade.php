@@ -39,6 +39,7 @@
 						<li><a href="{{ url('all-expiration') }}">Quản lý hạn sử dụng</a></li>
 						<li><a href="{{ url('/orders/import') }}">Quản lý nhập hàng</a></li>
 						<li><a href="{{ url('/orders/export') }}">Quản lý xuất hàng</a></li>
+						<li><a href="javascript:void(0)">Quản lý xuất chuyển kho</a></li>
 {{-- 						<li><a href="javascript:void(0)">Quản lý xuất chuyển kho</a></li>
 						<li><a href="javascript:void(0)">Quản lý đổi trả</a></li>
  --}}
