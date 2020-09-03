@@ -35,7 +35,7 @@
 
 					<ul class="child_list">
 
-						<li><a href="{{ url('/storage') }}">Sản phẩm trong kho</a></li>
+						<li><a href="{{ url('/storage') }}">Quản lý tồn kho</a></li>
 						<li><a href="{{ url('all-expiration') }}">Quản lý hạn sử dụng</a></li>
 						<li><a href="{{ url('/orders/import') }}">Quản lý nhập hàng</a></li>
 						<li><a href="{{ url('/orders/export') }}">Quản lý xuất hàng</a></li>
