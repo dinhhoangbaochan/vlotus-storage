@@ -99,13 +99,11 @@ class ProductsController extends Controller
         $products->name = $request->input('product_name');
         $products->sku = $request->input('product_sku');
         $products->code = $request->input('product_code');
-        $products->price = $request->input('product_price');
         $products->unit = $request->input('unit');
         $products->note = $request->input('product_note');
         $products->by = $current_user->id;
         $products->product_image = $fileNameToStore;
         $products->cate = $request->input('category');
-        $products->brand = $request->input('brand');
         $products->import_date = $request->input('import_date');
 
         $products->save();
