@@ -41,7 +41,7 @@
 									@if ( $product->product_image )
 										<img src="/uploaded/{{ $product->product_image }}" alt="">
 									@else 
-										<img src="/img/noimage.png" alt="">
+										<img src="/uploaded/noimage.png" alt="">
 									@endif
 									
 								</td>
