@@ -61,12 +61,7 @@
                   </div>
 
                   <div class="row">
-                     <div class="col-6">
-                        <div class="form-label-group">
-                           <input type="number" id="product_price" class="form-control" placeholder="Code sản phẩm" name="product_price" autofocus>
-                           <label for="product_price">Giá sản phẩm</label>
-                        </div>
-                     </div>
+
                      <div class="col-6">
                         <div class="form-label-group">
                            
@@ -96,10 +91,7 @@
 
             <div class="col-4">
                <div class="product_info">
-                  <div class="form-group">
-                     {{Form::label('', 'Ngày Nhập Kho')}}
-                     {{Form::date('import_date', \Carbon\Carbon::now(), ['class' => 'form-control'])}}
-                  </div>
+
 
                   <div class="form-group">
                         <label for="selectType">Chọn loại sản phẩm</label>
@@ -118,22 +110,7 @@
                         </select>
                      </div>
 
-                     <div class="form-group">
-                        <label for="selectBrand">Chọn thương hiệu</label>
 
-                        <select multiple class="form-control" id="selectBrand" name="brand">
-
-                           <?php
-
-                              if ( count( $brand ) > 0 ) {
-                                 foreach( $brand as $type ) {
-                                    ?> <option value="<?php echo $type->id; ?>"><?php echo $type->brand_name; ?></option> <?php
-                                 }
-                              }
-
-                            ?>
-                        </select>
-                     </div>
                </div>
 
                <div class="product_info text-center">
